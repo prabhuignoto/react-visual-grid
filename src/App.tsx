@@ -2,7 +2,7 @@ import "./app.css";
 import { Gallery } from "./components/gallery/gallery";
 
 // generate random images array using lorem picsum api
-const images = Array.from({ length: 620 }, (_, i) => ({
+const images = Array.from({ length: 50 }, (_, i) => ({
   src: `https://picsum.photos/id/${Math.round(Math.random() * 110)}/400/300`,
   alt: `Image ${i + 1}`,
   id: i + 1 + "",
@@ -15,11 +15,21 @@ function App() {
         images={images}
         mode="auto"
         gridDimensions={{ columns: 8 }}
-        imageDimensions={{ width: 250, height: 180 }}
+        imageDimensions={{ width: 250, height: 150 }}
         gap={5}
-        width={2200}
-        height={1200}
+        width={1200}
+        height={620}
         scrollDir="horizontal"
+      />
+      <Gallery
+        images={images}
+        mode="auto"
+        gridDimensions={{ columns: 8 }}
+        imageDimensions={{ width: 250, height: 150 }}
+        gap={5}
+        width={1200}
+        height={620}
+        scrollDir="vertical"
       />
     </div>
   );

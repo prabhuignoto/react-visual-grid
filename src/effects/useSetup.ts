@@ -155,7 +155,7 @@ const useSetup: (options: Options) => {
           }));
         } else if (scrollDir === "horizontal") {
           setRows(rows);
-          setColumns(Math.round(totalImages / rows));
+          setColumns(Math.round(node.clientWidth / imageWidth));
           setRegion((prev) => ({
             ...prev,
             lowerBound: Math.round(node.clientWidth / imageWidth),
@@ -178,8 +178,8 @@ const useSetup: (options: Options) => {
         const newHeight = rows * height + "px";
         child.style.height = newHeight;
       } else {
-        // const newWidth = Math.round(totalImages / rows) * width + "px";
-        child.style.width = "1200px";
+        const newWidth = Math.round(totalImages / rows) * width + "px";
+        child.style.width = newWidth;
       }
     }
   }, [rows, columns, imageDimensions.width, imageDimensions.height]);
