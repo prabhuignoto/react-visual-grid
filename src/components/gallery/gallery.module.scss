@@ -1,0 +1,42 @@
+@use "../../common/styles.module.scss";
+
+.wrapper {
+  // display: flex;
+  // align-items: flex-start;
+  // justify-content: center;
+  position: relative;
+}
+
+.gallery {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  position: absolute;
+
+  &.vertical {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.horizontal {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.gallery_item {
+  @extend .center;
+  width: 100%;
+  height: 100%;
+  background: black;
+  border-radius: 2px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  // overflow: hidden;
+  position: relative;
+}

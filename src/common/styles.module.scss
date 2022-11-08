@@ -1,0 +1,19 @@
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  @extend .flex;
+  justify-content: center;
+}
+
+.left {
+  @extend .flex;
+  justify-content: flex-start;
+}
+
+.right {
+  @extend .flex;
+  justify-content: flex-end;
+}

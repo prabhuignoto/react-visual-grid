@@ -1,0 +1,24 @@
+@use "../../common/styles.module.scss";
+
+.image {
+  @extend .center;
+  max-width: 90%;
+  max-height: 90%;
+  transition: visibility 0s, opacity 0.25s linear;
+}
+
+.wrapper {
+  @extend .center;
+  width: 100%;
+  height: 100%;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
