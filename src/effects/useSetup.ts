@@ -35,6 +35,7 @@ const useSetup: useSetupFunctionType = ({
     height,
   });
   const isFullScreen = useRef<Boolean>(false);
+  const [hideImages, setHideImages] = useState<boolean | null>(null);
 
   const handleScroll = useDebouncedCallback((ev: Event) => {
     const target = ev.target as HTMLDivElement;
@@ -154,11 +155,13 @@ const useSetup: useSetupFunctionType = ({
     const { width, height } = wrapperDimensions;
 
     if (width && height) {
-      setTimeout(init, 500);
-      // init();
+      setHideImages(true);
+      init();
+      setTimeout(() => {
+        setHideImages(false);
+      }, 500);
     }
   }, [wrapperDimensions.width, wrapperDimensions.height]);
-
   const onRef = useCallback((node: HTMLDivElement) => {
     galleryRef.current = node;
     init();
@@ -218,6 +221,7 @@ const useSetup: useSetupFunctionType = ({
     wrapperStyle,
     containerStyle,
     fullScreen,
+    hideImages,
   };
 };
 

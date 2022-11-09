@@ -28,6 +28,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     rows,
     containerStyle,
     fullScreen,
+    hideImages,
   } = useSetup({
     mode,
     imageDimensions,
@@ -56,7 +57,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
 
   const galleryClass = useMemo(
     () => cx(styles.gallery, styles[scrollDir]),
-    [scrollDir]
+    [scrollDir, hideImages]
   );
 
   const wrapperClass = useMemo(
@@ -68,9 +69,19 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     [scrollDir]
   );
 
+  const screenClass = useMemo(
+    () =>
+      cx(
+        styles.screen,
+        hideImages !== null ? (hideImages ? styles.show : styles.hide) : ""
+      ),
+    [hideImages]
+  );
+
   return (
     <div style={wrapperStyle} ref={onRef} className={wrapperClass}>
       <div className={styles.container} style={containerStyle}>
+        <div className={screenClass}></div>
         <ul className={galleryClass} style={style}>
           {records.map((image, index) => (
             <li key={image.id} className={styles.gallery_item}>

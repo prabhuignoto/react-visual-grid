@@ -23,5 +23,6 @@ export type useSetupFunctionType = (options: Options) => {
   columns: number;
   rows: number;
   containerStyle: CSSProperties;
-  fullScreen: () => void
+  fullScreen: () => void;
+  hideImages: boolean | null;
 };
