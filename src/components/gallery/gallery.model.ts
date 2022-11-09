@@ -17,6 +17,8 @@ export type ImageSize = {
   };
 };
 
+export type ZoomLevel = "1X" | "2X" | "3X" | "4X";
+
 export type GalleryProps = {
   // images as array
   images: ImageProps[];
@@ -24,7 +26,7 @@ export type GalleryProps = {
   scrollDir?: "horizontal" | "vertical";
 
   // dimensions of the image
-  imageDimensions?: ImageDimensions;
+  // imageDimensions?: ImageDimensions;
 
   // dimensions of the grid
   gridDimensions?: GridDimensions;
@@ -43,4 +45,19 @@ export type GalleryProps = {
   totalImages?: number;
 
   imageSizes?: ImageSize;
+};
+
+export const defaultImageSizes = {
+  "1X": {
+    width: 120,
+    height: 100,
+  },
+  "2X": {
+    width: 200,
+    height: 180,
+  },
+  "3X": {
+    width: 320,
+    height: 280,
+  },
 };

@@ -7,12 +7,16 @@ import {
   useState,
 } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { ImageDimensions } from "../components/gallery/gallery.model";
+import {
+  defaultImageSizes,
+  ImageDimensions,
+  ZoomLevel,
+} from "../components/gallery/gallery.model";
 import { Region, useSetupFunctionType } from "./models";
 
 const useSetup: useSetupFunctionType = ({
   mode,
-  imageDimensions = { width: 200, height: 180 },
+  imageSizes = defaultImageSizes,
   gridDimensions = { columns: 4 },
   width = 0,
   height = 0,
@@ -23,6 +27,10 @@ const useSetup: useSetupFunctionType = ({
   // state for managing the rows and columns of the gallery
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
+
+  const [activeImageZoomLevel, setActiveImageZoomLevel] = useState<ZoomLevel>(
+    "2X"
+  );
 
   // reference to the gallery container
   const galleryRef = useRef<HTMLDivElement | null>(null);
@@ -43,12 +51,12 @@ const useSetup: useSetupFunctionType = ({
   });
 
   const [imageDims, setImageDims] = useState<ImageDimensions>({
-    width: imageDimensions.width,
-    height: imageDimensions.height,
+    width: imageSizes[activeImageZoomLevel].width,
+    height: imageSizes[activeImageZoomLevel].height,
   });
 
   // tracks if the gallery is in fullscreen mode
-  const isFullScreen = useRef<Boolean>(false);
+  const [isFullScreen, setIsFullScreen] = useState<Boolean>(false);
 
   // used for temporarily hiding the images
   const [hideImages, setHideImages] = useState<boolean | null>(null);
@@ -132,28 +140,42 @@ const useSetup: useSetupFunctionType = ({
   ]);
 
   const wrapperStyle = useMemo<CSSProperties>(() => {
-    let dimensions = {};
+    let styles = {};
     const { width, height } = wrapperDimensions;
 
     if (mode === "auto") {
-      dimensions = {
+      styles = {
         width: `${width}px`,
         height: `${height}px`,
       };
     }
 
+    if (isFullScreen) {
+      styles = {
+        ...styles,
+        position: "fixed",
+        left: "50%",
+        transform: "translateX(-50%) translateY(-50%)",
+        top: "50%",
+      };
+    }
+
     return {
-      ...dimensions,
+      ...styles,
       [`overflow${scrollDir === "vertical" ? "Y" : "X"}`]: "auto",
     };
-  }, [wrapperDimensions.width, wrapperDimensions.height, scrollDir, mode]);
+  }, [
+    wrapperDimensions.width,
+    wrapperDimensions.height,
+    scrollDir,
+    mode,
+    isFullScreen,
+  ]);
 
   const init = () => {
     const node = galleryRef.current;
     const { width: imageWidth, height: imageHeight } = imageDims;
     const { width: wrapperWidth, height: wrapperHeight } = wrapperDimensions;
-
-    console.log(imageDims);
 
     if (node && mode === "auto" && wrapperWidth && wrapperHeight) {
       const cols = Math.floor((wrapperWidth as number) / imageWidth);
@@ -185,7 +207,7 @@ const useSetup: useSetupFunctionType = ({
       setTimeout(() => {
         init();
         setHideImages(false);
-      }, 500);
+      }, 400);
     }
   }, [
     wrapperDimensions.width,
@@ -202,31 +224,38 @@ const useSetup: useSetupFunctionType = ({
 
   const fullScreen = () => {
     if (galleryRef.current) {
-      if (!isFullScreen.current) {
+      if (!isFullScreen) {
         const { innerHeight, innerWidth } = window;
 
         setWrapperDimensions({
           height: innerHeight,
           width: innerWidth,
         });
-        isFullScreen.current = true;
+        setIsFullScreen(true);
         document.body.style.overflow = "hidden";
       } else {
         setWrapperDimensions({
           height,
           width,
         });
-        isFullScreen.current = false;
+        setIsFullScreen(false);
         document.body.style.overflow = "auto";
       }
     }
   };
 
-  const resizeImages = ({ width, height }: ImageDimensions) => {
-    setImageDims({
-      width,
-      height,
-    });
+  const resizeImages = (z: ZoomLevel) => {
+    if (z !== activeImageZoomLevel) {
+      setHideImages(true);
+      setActiveImageZoomLevel(z);
+
+      const { width, height } = imageSizes[z];
+
+      setImageDims({
+        width,
+        height,
+      });
+    }
   };
 
   useEffect(() => {
@@ -256,16 +285,17 @@ const useSetup: useSetupFunctionType = ({
   }, []);
 
   return {
+    activeZoomLevel: activeImageZoomLevel,
     columns,
+    containerStyle,
+    fullScreen,
+    hideImages,
     onRef,
+    resizeImages,
     rows,
     style: galleryStyle,
     windowRegion: region,
     wrapperStyle,
-    containerStyle,
-    fullScreen,
-    hideImages,
-    resizeImages,
   };
 };
 

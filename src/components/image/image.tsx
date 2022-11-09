@@ -21,7 +21,7 @@ const Image: FunctionComponent<ImageProps> = ({
   );
 
   return (
-    <div className={styles.wrapper} style={{width, height}}>
+    <div className={styles.wrapper} style={{ width, height }}>
       {!loaded && <span>loading...</span>}
       <img src={src} alt={alt} className={imageClass} onLoad={onLoaded} />
     </div>

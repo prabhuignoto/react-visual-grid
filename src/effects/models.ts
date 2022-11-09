@@ -1,24 +1,23 @@
 import { CSSProperties } from "react";
-import {
-  GalleryProps,
-  ImageDimensions,
-} from "../components/gallery/gallery.model";
+import { GalleryProps, ZoomLevel } from "../components/gallery/gallery.model";
 
 export type Options = Pick<
   GalleryProps,
   | "mode"
-  | "imageDimensions"
   | "gridDimensions"
   | "width"
   | "height"
   | "scrollDir"
   | "gap"
   | "totalImages"
+  | "imageSizes"
 >;
 
 export type Region = { upperBound: number; lowerBound: number };
 
-export type useSetupFunctionType = (options: Options) => {
+export type useSetupFunctionType = (
+  options: Options
+) => {
   style: CSSProperties;
   wrapperStyle: CSSProperties;
   onRef: (node: HTMLDivElement) => void;
@@ -27,6 +26,7 @@ export type useSetupFunctionType = (options: Options) => {
   rows: number;
   containerStyle: CSSProperties;
   fullScreen: () => void;
-  resizeImages: (i: ImageDimensions) => void;
+  resizeImages: (i: ZoomLevel) => void;
   hideImages: boolean | null;
+  activeZoomLevel: ZoomLevel;
 };

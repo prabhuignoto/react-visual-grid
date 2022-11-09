@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write .",
+    "fix:js": "eslint --fix ./src/**/*.tsx"
   },
   "dependencies": {
     "classnames": "^2.3.2",
