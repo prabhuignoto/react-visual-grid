@@ -15,11 +15,11 @@ function App() {
         images={images}
         mode="auto"
         gridDimensions={{ columns: 8 }}
-        imageDimensions={{ width: 250, height: 150 }}
-        gap={5}
-        width={1200}
-        height={620}
-        scrollDir="horizontal"
+        imageDimensions={{ width: 260, height: 200 }}
+        gap={10}
+        width={1800}
+        height={920}
+        scrollDir="vertical"
       />
       {/* <Gallery
         images={images}

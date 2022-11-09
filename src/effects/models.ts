@@ -1,5 +1,8 @@
 import { CSSProperties } from "react";
-import { GalleryProps } from "../components/gallery/gallery.model";
+import {
+  GalleryProps,
+  ImageDimensions,
+} from "../components/gallery/gallery.model";
 
 export type Options = Pick<
   GalleryProps,
@@ -24,5 +27,6 @@ export type useSetupFunctionType = (options: Options) => {
   rows: number;
   containerStyle: CSSProperties;
   fullScreen: () => void;
+  resizeImages: (i: ImageDimensions) => void;
   hideImages: boolean | null;
 };

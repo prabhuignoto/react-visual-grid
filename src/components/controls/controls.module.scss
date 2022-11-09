@@ -1,0 +1,12 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  min-width: 500px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.95);
+  height: 50px;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.3);
+  list-style: none;
+}

@@ -10,6 +10,13 @@ export type GridDimensions = {
   rows?: number;
 };
 
+export type ImageSize = {
+  [key: string]: {
+    width: number;
+    height: number;
+  };
+};
+
 export type GalleryProps = {
   // images as array
   images: ImageProps[];
@@ -34,4 +41,6 @@ export type GalleryProps = {
   mode?: "auto" | "manual";
 
   totalImages?: number;
+
+  imageSizes?: ImageSize;
 };
