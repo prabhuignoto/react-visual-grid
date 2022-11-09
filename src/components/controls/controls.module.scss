@@ -1,12 +1,41 @@
+@use "../../common/styles.module.scss";
+
 .controls {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem 0;
-  min-width: 500px;
+  min-width: 300px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.95);
-  height: 50px;
-  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.3);
+  height: 60px;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.5);
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.control {
+  margin: 0 0.5rem;
+}
+
+.control_button {
+  border: 0;
+  background: #ccc;
+  @extend .center;
+
+  &.rounded {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+  }
+
+  &:not(.rounded) {
+    border-radius: 4px;
+    height: 2rem;
+  }
+
+  &.active {
+    background: blue;
+    color: white;
+  }
 }

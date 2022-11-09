@@ -58,10 +58,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, [windowRegion.upperBound, windowRegion.lowerBound, rows, columns]);
 
-  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
-    scrollDir,
-    hideImages,
-  ]);
+  const galleryClass = useMemo(
+    () => cx(styles.gallery, styles[scrollDir]),
+    [scrollDir, hideImages]
+  );
 
   const wrapperClass = useMemo(
     () =>
@@ -115,7 +115,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
         </ul>
       </div>
       <div className={styles.controls_wrapper}>
-        <Controls onAction={handleAction} />
+        <Controls onAction={handleAction} activeZoom={activeZoomLevel} />
       </div>
     </div>
   );

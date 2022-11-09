@@ -15,7 +15,6 @@ function App() {
         images={images}
         mode="auto"
         gridDimensions={{ columns: 8 }}
-        imageDimensions={{ width: 260, height: 200 }}
         gap={10}
         width={1800}
         height={920}
