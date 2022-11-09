@@ -7,48 +7,34 @@ import {
   useState,
 } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { GalleryProps } from "../components/gallery/gallery.model";
+import { Region, useSetupFunctionType } from "./models";
 
-type Options = Pick<
-  GalleryProps,
-  | "mode"
-  | "imageDimensions"
-  | "gridDimensions"
-  | "width"
-  | "height"
-  | "scrollDir"
-  | "gap"
-  | "totalImages"
->;
-
-type Region = { upperBound: number; lowerBound: number };
-
-const useSetup: (options: Options) => {
-  style: CSSProperties;
-  wrapperStyle: CSSProperties;
-  onRef: (node: HTMLDivElement) => void;
-  windowRegion: Region;
-  columns: number;
-  rows: number;
-} = ({
+const useSetup: useSetupFunctionType = ({
   mode,
   imageDimensions = { width: 200, height: 180 },
   gridDimensions = { columns: 4 },
-  width,
-  height,
+  width = 0,
+  height = 0,
   scrollDir,
   gap = 10,
   totalImages = 0,
 }) => {
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
-
   const galleryRef = useRef<HTMLDivElement | null>(null);
-
+  const [containerStyle, setContainerStyle] = useState<CSSProperties>({});
   const [region, setRegion] = useState<Region>({
     upperBound: 0,
     lowerBound: 0,
   });
+  const [wrapperDimensions, setWrapperDimensions] = useState<{
+    width: number;
+    height: number;
+  }>({
+    width,
+    height,
+  });
+  const isFullScreen = useRef<Boolean>(false);
 
   const handleScroll = useDebouncedCallback((ev: Event) => {
     const target = ev.target as HTMLDivElement;
@@ -121,6 +107,7 @@ const useSetup: (options: Options) => {
 
   const wrapperStyle = useMemo<CSSProperties>(() => {
     let dimensions = {};
+    const { width, height } = wrapperDimensions;
 
     if (mode === "auto") {
       dimensions = {
@@ -133,53 +120,85 @@ const useSetup: (options: Options) => {
       ...dimensions,
       [`overflow${scrollDir === "vertical" ? "Y" : "X"}`]: "auto",
     };
-  }, [width, height, scrollDir, mode]);
+  }, [wrapperDimensions.width, wrapperDimensions.height, scrollDir, mode]);
 
-  const onRef = useCallback(
-    (node: HTMLDivElement) => {
-      const { width: imageWidth, height: imageHeight } = imageDimensions;
-      galleryRef.current = node;
+  const init = useCallback(() => {
+    const node = galleryRef.current;
 
-      if (node && mode === "auto" && imageWidth && imageHeight) {
-        const { clientWidth, clientHeight } = node;
+    const { width: imageWidth, height: imageHeight } = imageDimensions;
+    const { width: wrapperWidth, height: wrapperHeight } = wrapperDimensions;
 
-        const cols = Math.floor(clientWidth / imageWidth);
-        const rows = Math.floor(clientHeight / imageHeight);
+    if (node && mode === "auto" && wrapperWidth && wrapperHeight) {
+      const cols = Math.floor((wrapperWidth as number) / imageWidth);
+      const rows = Math.floor((wrapperHeight as number) / imageHeight);
 
-        if (scrollDir === "vertical") {
-          setColumns(cols);
-          setRows(Math.round(totalImages / cols));
-          setRegion((prev) => ({
-            ...prev,
-            lowerBound: Math.round(node.clientHeight / imageHeight),
-          }));
-        } else if (scrollDir === "horizontal") {
-          setRows(rows);
-          setColumns(Math.round(node.clientWidth / imageWidth));
-          setRegion((prev) => ({
-            ...prev,
-            lowerBound: Math.round(node.clientWidth / imageWidth),
-          }));
-        }
-
-        node.addEventListener("scroll", handleScroll);
+      if (scrollDir === "vertical") {
+        setColumns(cols);
+        setRows(Math.round(totalImages / cols));
+        setRegion((prev) => ({
+          ...prev,
+          lowerBound: Math.round(wrapperHeight / imageHeight),
+        }));
+      } else if (scrollDir === "horizontal") {
+        setRows(rows);
+        setColumns(Math.round(wrapperWidth / imageWidth));
+        setRegion((prev) => ({
+          ...prev,
+          lowerBound: Math.round(wrapperWidth / imageWidth),
+        }));
       }
-    },
-    [imageDimensions?.width, imageDimensions?.height, totalImages, scrollDir]
-  );
+    }
+  }, [wrapperDimensions.height, wrapperDimensions.width]);
+
+  useEffect(() => {
+    const { width, height } = wrapperDimensions;
+
+    if (width && height) {
+      setTimeout(init, 500);
+      // init();
+    }
+  }, [wrapperDimensions.width, wrapperDimensions.height]);
+
+  const onRef = useCallback((node: HTMLDivElement) => {
+    galleryRef.current = node;
+    init();
+    node.addEventListener("scroll", handleScroll);
+  }, []);
+
+  const fullScreen = () => {
+    if (galleryRef.current) {
+      if (!isFullScreen.current) {
+        const { innerHeight, innerWidth } = window;
+
+        setWrapperDimensions({
+          height: innerHeight,
+          width: innerWidth,
+        });
+        isFullScreen.current = true;
+      } else {
+        setWrapperDimensions({
+          height,
+          width,
+        });
+        isFullScreen.current = false;
+      }
+    }
+  };
 
   useEffect(() => {
     if (galleryRef.current) {
-      const ele = galleryRef.current as HTMLElement;
-      const child = ele.children[0] as HTMLElement;
       const { height, width } = imageDimensions;
 
       if (scrollDir === "vertical") {
         const newHeight = rows * height + "px";
-        child.style.height = newHeight;
+        setContainerStyle({
+          height: newHeight,
+        });
       } else {
         const newWidth = Math.round(totalImages / rows) * width + "px";
-        child.style.width = newWidth;
+        setContainerStyle({
+          width: newWidth,
+        });
       }
     }
   }, [rows, columns, imageDimensions.width, imageDimensions.height]);
@@ -197,6 +216,8 @@ const useSetup: (options: Options) => {
     style: galleryStyle,
     windowRegion: region,
     wrapperStyle,
+    containerStyle,
+    fullScreen,
   };
 };
 

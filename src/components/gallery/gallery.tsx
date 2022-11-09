@@ -19,7 +19,16 @@ const Gallery: FunctionComponent<GalleryProps> = ({
 }) => {
   const imagesRef = useRef(images.map((image) => ({ ...image })));
 
-  const { style, onRef, windowRegion, columns, wrapperStyle, rows } = useSetup({
+  const {
+    style,
+    onRef,
+    windowRegion,
+    columns,
+    wrapperStyle,
+    rows,
+    containerStyle,
+    fullScreen,
+  } = useSetup({
     mode,
     imageDimensions,
     gridDimensions,
@@ -29,13 +38,6 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     gap,
     totalImages: images.length,
   });
-
-  const visibleImages = useMemo(
-    () => (windowRegion.lowerBound - windowRegion.upperBound - 1) * rows,
-    [rows, windowRegion.upperBound, windowRegion.lowerBound]
-  );
-
-  console.log(visibleImages);
 
   const records = useMemo(() => {
     const { upperBound, lowerBound } = windowRegion;
@@ -52,16 +54,23 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, [windowRegion.upperBound, windowRegion.lowerBound, rows, columns]);
 
-  // console.log(windowRegion);
-
   const galleryClass = useMemo(
     () => cx(styles.gallery, styles[scrollDir]),
     [scrollDir]
   );
 
+  const wrapperClass = useMemo(
+    () =>
+      cx(
+        scrollDir === "vertical" ? styles.vertical : styles.horizontal,
+        styles.wrapper
+      ),
+    [scrollDir]
+  );
+
   return (
-    <div style={wrapperStyle} ref={onRef} className={styles.wrapper}>
-      <div className={styles.container}>
+    <div style={wrapperStyle} ref={onRef} className={wrapperClass}>
+      <div className={styles.container} style={containerStyle}>
         <ul className={galleryClass} style={style}>
           {records.map((image, index) => (
             <li key={image.id} className={styles.gallery_item}>
@@ -71,10 +80,13 @@ const Gallery: FunctionComponent<GalleryProps> = ({
                 width={imageDimensions.width - gap}
                 height={imageDimensions.height - gap}
               />
-              <span style={{ color: "#fff" }}>{image.id}</span>
+              {/* <span style={{ color: "#fff" }}>{image.id}</span> */}
             </li>
           ))}
         </ul>
+      </div>
+      <div className={styles.controls}>
+        <button onClick={() => fullScreen()}>FullScreen</button>
       </div>
     </div>
   );
