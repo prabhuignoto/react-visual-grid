@@ -22,9 +22,8 @@ const useSetup: useSetupFunctionType = ({
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
 
-  const [activeImageZoomLevel, setActiveImageZoomLevel] = useState<ZoomLevel>(
-    "2X"
-  );
+  const [activeImageZoomLevel, setActiveImageZoomLevel] =
+    useState<ZoomLevel>("2X");
 
   const [scrollPositions, setScrollPositions] = useState<ScrollPositions>({
     scrollLeft: 0,
@@ -95,6 +94,7 @@ const useSetup: useSetupFunctionType = ({
     const node = galleryRef.current;
     const { width: imageWidth, height: imageHeight } = imageDims;
     const { width: wrapperWidth, height: wrapperHeight } = wrapperDimensions;
+    const { scrollLeft = 0, scrollTop = 0 } = scrollPositions;
 
     if (node && mode === "auto" && wrapperWidth && wrapperHeight) {
       const cols = Math.floor((wrapperWidth as number) / imageWidth);
@@ -104,15 +104,15 @@ const useSetup: useSetupFunctionType = ({
         setColumns(cols);
         setRows(Math.round(totalImages / cols));
         setRegion((prev) => ({
-          ...prev,
+          upperBound: Math.floor(scrollTop / imageHeight),
           lowerBound: Math.round(wrapperHeight / imageHeight),
         }));
       } else if (scrollDir === "horizontal") {
         setRows(rows);
         setColumns(Math.round(wrapperWidth / imageWidth));
         setRegion((prev) => ({
-          ...prev,
-          lowerBound: Math.round(wrapperWidth / imageWidth),
+          upperBound: Math.floor(scrollLeft / imageWidth),
+          lowerBound: Math.round(scrollLeft + wrapperWidth / imageWidth),
         }));
       }
     }
@@ -126,7 +126,7 @@ const useSetup: useSetupFunctionType = ({
       setTimeout(() => {
         init();
         setHideImages(false);
-      }, 400);
+      }, 500);
     }
   }, [
     wrapperDimensions.width,

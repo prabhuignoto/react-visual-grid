@@ -74,7 +74,6 @@ export function useStyle({
     columns,
     gridSettings,
     region.upperBound,
-    // galleryRef,
     scrollDir,
     imageDimensions.width,
     imageDimensions.height,
