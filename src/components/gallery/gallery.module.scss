@@ -55,8 +55,8 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
 .container {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   position: relative;
+  z-index: 0;
 }
 
 .screen {
@@ -81,9 +81,8 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
 
 .controls_wrapper {
   position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  // bottom: 100px;
+  left: 0;
   width: 100%;
   height: 100px;
   background: rgba(0, 0, 0, 0.5);
@@ -91,4 +90,8 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   align-items: center;
   justify-content: center;
   z-index: 1000;
+
+  &.hide {
+    visibility: hidden;
+  }
 }

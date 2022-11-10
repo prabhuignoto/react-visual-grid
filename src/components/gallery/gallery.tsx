@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { FunctionComponent, useMemo, useRef } from "react";
+import { CSSProperties, FunctionComponent, useMemo, useRef } from "react";
 import useSetup from "../../effects/useSetup";
 import { ActionType, Controls } from "../controls/controls";
 import { Image } from "../image/image";
@@ -32,6 +32,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     style,
     windowRegion,
     wrapperStyle,
+    scrollPositions,
   } = useSetup({
     mode,
     imageSizes,
@@ -58,10 +59,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, [windowRegion.upperBound, windowRegion.lowerBound, rows, columns]);
 
-  const galleryClass = useMemo(
-    () => cx(styles.gallery, styles[scrollDir]),
-    [scrollDir, hideImages]
-  );
+  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
+    scrollDir,
+    hideImages,
+  ]);
 
   const wrapperClass = useMemo(
     () =>
@@ -97,12 +98,31 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     [activeZoomLevel]
   );
 
+  const controlWrapperStyle = useMemo<CSSProperties>(() => {
+    let style = {};
+    if (scrollPositions?.scrollLeft) {
+      style = {
+        left: `${scrollPositions?.scrollLeft}px`,
+      };
+    } else if (scrollPositions?.scrollTop) {
+      style = {
+        top: `${scrollPositions?.scrollTop + height - 80}px`,
+      };
+    }
+    return style;
+  }, [scrollPositions?.scrollTop, scrollPositions?.scrollLeft]);
+
+  const controlWrapperClass = useMemo(
+    () => cx(styles.controls_wrapper, hideImages ? styles.hide : ""),
+    [hideImages]
+  );
+
   return (
     <div style={wrapperStyle} ref={onRef} className={wrapperClass}>
       <div className={styles.container} style={containerStyle}>
         <div className={screenClass}></div>
         <ul className={galleryClass} style={style}>
-          {records.map((image, index) => (
+          {records.map((image) => (
             <li key={image.id} className={styles.gallery_item}>
               <Image
                 src={image.src}
@@ -114,7 +134,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
           ))}
         </ul>
       </div>
-      <div className={styles.controls_wrapper}>
+      <div className={controlWrapperClass} style={controlWrapperStyle}>
         <Controls onAction={handleAction} activeZoom={activeZoomLevel} />
       </div>
     </div>

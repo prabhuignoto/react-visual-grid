@@ -15,6 +15,11 @@ export type Options = Pick<
 
 export type Region = { upperBound: number; lowerBound: number };
 
+export type ScrollPositions = {
+  scrollLeft?: number;
+  scrollTop?: number;
+};
+
 export type useSetupFunctionType = (
   options: Options
 ) => {
@@ -29,4 +34,5 @@ export type useSetupFunctionType = (
   resizeImages: (i: ZoomLevel) => void;
   hideImages: boolean | null;
   activeZoomLevel: ZoomLevel;
+  scrollPositions?: ScrollPositions;
 };
