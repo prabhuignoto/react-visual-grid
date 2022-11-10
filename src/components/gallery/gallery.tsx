@@ -99,6 +99,8 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     [activeZoomLevel]
   );
 
+  console.log("hide", hideImages);
+
   const controlWrapperStyle = useMemo<CSSProperties>(() => {
     const { scrollLeft, scrollTop } = scrollPositions;
 
@@ -118,7 +120,6 @@ const Gallery: FunctionComponent<GalleryProps> = ({
         top: `${scrollTop + height - 100}px`,
       };
     }
-    console.log(style, height, scrollTop, scrollLeft);
     return style;
   }, [scrollPositions?.scrollTop, scrollPositions?.scrollLeft, height, width]);
 

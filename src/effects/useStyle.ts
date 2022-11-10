@@ -34,7 +34,7 @@ export function useStyle({
     if (mode === "auto") {
       if (scrollDir === "vertical") {
         return {
-          gridTemplateColumns: `repeat(${columns}, ${newWidth}px)`,
+          gridTemplateColumns: `repeat(${columns}, ${newWidth - gap * 1}px)`,
         };
       } else {
         return {

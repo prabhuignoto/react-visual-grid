@@ -7,7 +7,7 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   position: relative;
   display: flex;
   transition: width 0.5s #{$ease-in-circ}, height 0.5s #{$ease-in-circ};
-  background: #282828;
+  background: #000;
 
   &.horizontal {
     // overflow-x: auto;
@@ -30,6 +30,7 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   margin: 0;
   justify-content: center;
   position: absolute;
+  background: #000;
 
   &.hide {
     visibility: hidden;
@@ -50,15 +51,15 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   @extend .center;
   width: 100%;
   height: 100%;
-  background: #101010;
   border-radius: 4px;
+
+  background: #202020;
 }
 
 .container {
   width: 100%;
   height: 100%;
   position: relative;
-  z-index: 0;
 }
 
 .screen {
@@ -71,13 +72,13 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   z-index: 100;
 
   &.hide {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 1);
     transition: background 0.5s ease-in;
     z-index: -1;
   }
 
   &.show {
-    background: rgba(0, 0, 0, 1);
+    background: rgba(0, 0, 0, 0.99);
   }
 }
 
