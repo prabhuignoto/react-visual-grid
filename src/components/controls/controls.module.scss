@@ -12,6 +12,9 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .control {

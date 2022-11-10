@@ -10,14 +10,16 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   background: #282828;
 
   &.horizontal {
-    overflow-x: auto;
-    overflow-y: hidden;
+    // overflow-x: auto;
+    // overflow-y: hidden;
+    overflow: hidden;
     flex-direction: column;
   }
 
   &.vertical {
-    overflow-y: auto;
-    overflow-x: hidden;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+    overflow: hidden;
     flex-direction: row;
   }
 }
@@ -82,6 +84,7 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
 .controls_wrapper {
   position: absolute;
   // bottom: 100px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 100px;

@@ -22,11 +22,12 @@ const useSetup: useSetupFunctionType = ({
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
 
-  const [activeImageZoomLevel, setActiveImageZoomLevel] =
-    useState<ZoomLevel>("2X");
+  const [activeImageZoomLevel, setActiveImageZoomLevel] = useState<ZoomLevel>(
+    "2X"
+  );
 
   // reference to the gallery container
-  const galleryRef = useRef<HTMLDivElement | null>(null);
+  const galleryRef = useRef<HTMLElement | null>(null);
 
   const [containerStyle, setContainerStyle] = useState<CSSProperties>({});
 
@@ -53,6 +54,7 @@ const useSetup: useSetupFunctionType = ({
     scrollPositions,
     region = { upperBound: 0, lowerBound: 0 },
     setRegion,
+    isScrolled,
   } = useScroll({
     ref: galleryRef,
     imageDimensions: imageDims,
@@ -142,6 +144,18 @@ const useSetup: useSetupFunctionType = ({
     }
   };
 
+  useEffect(() => {
+    if (galleryRef.current) {
+      const ele = galleryRef.current as HTMLElement;
+
+      if (scrollDir === "vertical") {
+        ele.scrollTop = 0;
+      } else {
+        ele.scrollLeft = 0;
+      }
+    }
+  }, [activeImageZoomLevel]);
+
   const resizeImages = (z: ZoomLevel) => {
     if (z !== activeImageZoomLevel) {
       setHideImages(true);
@@ -187,6 +201,7 @@ const useSetup: useSetupFunctionType = ({
     windowRegion: region,
     wrapperStyle,
     scrollPositions,
+    isScrolled,
   };
 };
 

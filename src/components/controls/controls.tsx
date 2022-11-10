@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { FunctionComponent, useMemo } from "react";
+import { CSSProperties, FunctionComponent, useMemo } from "react";
 import { ZoomLevel } from "../gallery/gallery.model";
 import styles from "./controls.module.scss";
 
@@ -8,11 +8,13 @@ export type ActionType = "1X" | "2X" | "3X" | "FULL_SCREEN";
 export type ControlsProps = {
   onAction: (type: ActionType) => void;
   activeZoom: ZoomLevel;
+  style: CSSProperties;
 };
 
 const Controls: FunctionComponent<ControlsProps> = ({
   onAction,
   activeZoom,
+  style,
 }) => {
   const controlButton = useMemo(
     () => cx(styles.control_button, styles.rounded),
@@ -20,7 +22,7 @@ const Controls: FunctionComponent<ControlsProps> = ({
   );
 
   return (
-    <ul className={styles.controls}>
+    <ul className={styles.controls} style={style}>
       <li className={styles.control}>
         <button
           onClick={() => onAction("1X")}

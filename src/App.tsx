@@ -18,7 +18,7 @@ function App() {
         gap={10}
         width={1800}
         height={920}
-        scrollDir="horizontal"
+        scrollDir="vertical"
       />
       {/* <Gallery
         images={images}

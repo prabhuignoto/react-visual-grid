@@ -33,6 +33,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     windowRegion,
     wrapperStyle,
     scrollPositions,
+    isScrolled,
   } = useSetup({
     mode,
     imageSizes,
@@ -59,10 +60,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, [windowRegion.upperBound, windowRegion.lowerBound, rows, columns]);
 
-  const galleryClass = useMemo(
-    () => cx(styles.gallery, styles[scrollDir]),
-    [scrollDir, hideImages]
-  );
+  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
+    scrollDir,
+    hideImages,
+  ]);
 
   const wrapperClass = useMemo(
     () =>
@@ -99,18 +100,27 @@ const Gallery: FunctionComponent<GalleryProps> = ({
   );
 
   const controlWrapperStyle = useMemo<CSSProperties>(() => {
-    let style = {};
-    if (scrollPositions?.scrollLeft) {
+    const { scrollLeft, scrollTop } = scrollPositions;
+
+    let style = {
+      [scrollDir === "vertical" ? "top" : "left"]:
+        scrollDir === "horizontal"
+          ? `${scrollLeft + width / 2 - 150}px`
+          : `${scrollTop + height - 100}px`,
+    };
+
+    if (scrollLeft) {
       style = {
-        left: `${scrollPositions?.scrollLeft}px`,
+        left: `${scrollLeft + width / 2 - 150}px`,
       };
-    } else if (scrollPositions?.scrollTop) {
+    } else if (scrollTop) {
       style = {
-        top: `${scrollPositions?.scrollTop + height - 80}px`,
+        top: `${scrollTop + height - 100}px`,
       };
     }
+    console.log(style, height, scrollTop, scrollLeft);
     return style;
-  }, [scrollPositions?.scrollTop, scrollPositions?.scrollLeft]);
+  }, [scrollPositions?.scrollTop, scrollPositions?.scrollLeft, height, width]);
 
   const controlWrapperClass = useMemo(
     () => cx(styles.controls_wrapper, hideImages ? styles.hide : ""),
@@ -134,9 +144,22 @@ const Gallery: FunctionComponent<GalleryProps> = ({
           ))}
         </ul>
       </div>
-      <div className={controlWrapperClass} style={controlWrapperStyle}>
-        <Controls onAction={handleAction} activeZoom={activeZoomLevel} />
-      </div>
+      {!isScrolled ? (
+        <div
+          className={controlWrapperClass}
+          style={
+            scrollDir === "horizontal"
+              ? { width: containerStyle.width }
+              : controlWrapperStyle
+          }
+        >
+          <Controls
+            onAction={handleAction}
+            activeZoom={activeZoomLevel}
+            style={scrollDir === "horizontal" ? controlWrapperStyle : {}}
+          />
+        </div>
+      ) : null}
     </div>
   );
 };
