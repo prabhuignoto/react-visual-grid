@@ -6,7 +6,7 @@ type StyleProps = {
   imageDimensions: ImageDimensions;
   region: Region;
   scrollDir?: "vertical" | "horizontal";
-  wrapperDimensions: ImageDimensions;
+  rootDimensions: ImageDimensions;
   mode?: "auto" | "manual";
   isFullScreen: boolean;
   gap: number;
@@ -15,7 +15,7 @@ type StyleProps = {
 };
 
 export function useStyle({
-  wrapperDimensions,
+  rootDimensions,
   imageDimensions,
   scrollDir,
   region,
@@ -25,6 +25,7 @@ export function useStyle({
   mode,
   isFullScreen,
 }: StyleProps) {
+  // core grid settings
   const gridSettings = useMemo<CSSProperties>(() => {
     const { width, height } = imageDimensions;
     const newWidth = width - gap;
@@ -49,6 +50,7 @@ export function useStyle({
     }
   }, [mode, columns, imageDimensions.width, rows, imageDimensions.height]);
 
+  // styles for the gallery list
   const galleryStyle = useMemo<CSSProperties>(() => {
     let style = {};
     const { height, width } = imageDimensions;
@@ -79,9 +81,10 @@ export function useStyle({
     imageDimensions.height,
   ]);
 
+  // styles for the root wrapper
   const wrapperStyle = useMemo<CSSProperties>(() => {
     let styles = {};
-    const { width, height } = wrapperDimensions;
+    const { width, height } = rootDimensions;
 
     if (mode === "auto") {
       styles = {
@@ -95,8 +98,8 @@ export function useStyle({
         ...styles,
         position: "fixed",
         left: "50%",
-        transform: "translateX(-50%) translateY(-50%)",
         top: "50%",
+        transform: "translateX(-50%) translateY(-50%)",
       };
     }
 
@@ -105,13 +108,14 @@ export function useStyle({
       [`overflow${scrollDir === "vertical" ? "Y" : "X"}`]: "auto",
     };
   }, [
-    wrapperDimensions.width,
-    wrapperDimensions.height,
+    rootDimensions.width,
+    rootDimensions.height,
     scrollDir,
     mode,
     isFullScreen,
   ]);
 
+  // return the new styles
   return {
     wrapperStyle,
     galleryStyle,

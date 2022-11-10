@@ -1,11 +1,11 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
-import { useDebouncedCallback } from "use-debounce";
 import {
   defaultImageSizes,
   ImageDimensions,
   ZoomLevel,
 } from "../components/gallery/gallery.model";
-import { Region, ScrollPositions, useSetupFunctionType } from "./models";
+import { useSetupFunctionType } from "./models";
+import useScroll from "./useScroll";
 import { useStyle } from "./useStyle";
 
 const useSetup: useSetupFunctionType = ({
@@ -25,22 +25,12 @@ const useSetup: useSetupFunctionType = ({
   const [activeImageZoomLevel, setActiveImageZoomLevel] =
     useState<ZoomLevel>("2X");
 
-  const [scrollPositions, setScrollPositions] = useState<ScrollPositions>({
-    scrollLeft: 0,
-    scrollTop: 0,
-  });
-
   // reference to the gallery container
   const galleryRef = useRef<HTMLDivElement | null>(null);
 
   const [containerStyle, setContainerStyle] = useState<CSSProperties>({});
 
-  const [region, setRegion] = useState<Region>({
-    upperBound: 0,
-    lowerBound: 0,
-  });
-
-  const [wrapperDimensions, setWrapperDimensions] = useState<{
+  const [rootDimensions, setRootDimensions] = useState<{
     width: number;
     height: number;
   }>({
@@ -59,8 +49,18 @@ const useSetup: useSetupFunctionType = ({
   // used for temporarily hiding the images
   const [hideImages, setHideImages] = useState<boolean | null>(null);
 
+  const {
+    scrollPositions,
+    region = { upperBound: 0, lowerBound: 0 },
+    setRegion,
+  } = useScroll({
+    ref: galleryRef,
+    imageDimensions: imageDims,
+    scrollDir,
+  });
+
   const { wrapperStyle, galleryStyle } = useStyle({
-    wrapperDimensions,
+    rootDimensions,
     imageDimensions: imageDims,
     scrollDir,
     region,
@@ -71,30 +71,10 @@ const useSetup: useSetupFunctionType = ({
     isFullScreen,
   });
 
-  const handleScroll = useDebouncedCallback((ev: Event) => {
-    const target = ev.target as HTMLDivElement;
-    const { height, width } = imageDims;
-    const { scrollLeft, scrollTop, clientHeight, clientWidth } = target;
-
-    setScrollPositions({ scrollLeft, scrollTop });
-    const upperBound =
-      scrollDir === "vertical" ? scrollTop / height : scrollLeft / width;
-    const lowerBound =
-      scrollDir === "vertical"
-        ? (scrollTop + clientHeight) / height
-        : (scrollLeft + clientWidth) / width;
-
-    setRegion({
-      upperBound: Math.floor(upperBound),
-      lowerBound: Math.ceil(lowerBound),
-    });
-  }, 100);
-
   const init = () => {
     const node = galleryRef.current;
     const { width: imageWidth, height: imageHeight } = imageDims;
-    const { width: wrapperWidth, height: wrapperHeight } = wrapperDimensions;
-    const { scrollLeft = 0, scrollTop = 0 } = scrollPositions;
+    const { width: wrapperWidth, height: wrapperHeight } = rootDimensions;
 
     if (node && mode === "auto" && wrapperWidth && wrapperHeight) {
       const cols = Math.floor((wrapperWidth as number) / imageWidth);
@@ -104,22 +84,22 @@ const useSetup: useSetupFunctionType = ({
         setColumns(cols);
         setRows(Math.round(totalImages / cols));
         setRegion((prev) => ({
-          upperBound: Math.floor(scrollTop / imageHeight),
+          ...prev,
           lowerBound: Math.round(wrapperHeight / imageHeight),
         }));
       } else if (scrollDir === "horizontal") {
         setRows(rows);
         setColumns(Math.round(wrapperWidth / imageWidth));
         setRegion((prev) => ({
-          upperBound: Math.floor(scrollLeft / imageWidth),
-          lowerBound: Math.round(scrollLeft + wrapperWidth / imageWidth),
+          ...prev,
+          lowerBound: Math.round(wrapperWidth / imageWidth),
         }));
       }
     }
   };
 
   useEffect(() => {
-    const { width, height } = wrapperDimensions;
+    const { width, height } = rootDimensions;
 
     if (width && height) {
       setHideImages(true);
@@ -129,8 +109,8 @@ const useSetup: useSetupFunctionType = ({
       }, 500);
     }
   }, [
-    wrapperDimensions.width,
-    wrapperDimensions.height,
+    rootDimensions.width,
+    rootDimensions.height,
     imageDims.width,
     imageDims.height,
   ]);
@@ -138,7 +118,6 @@ const useSetup: useSetupFunctionType = ({
   const onRef = useCallback((node: HTMLDivElement) => {
     galleryRef.current = node;
     init();
-    node.addEventListener("scroll", handleScroll);
   }, []);
 
   const fullScreen = () => {
@@ -146,14 +125,14 @@ const useSetup: useSetupFunctionType = ({
       if (!isFullScreen) {
         const { innerHeight, innerWidth } = window;
 
-        setWrapperDimensions({
+        setRootDimensions({
           height: innerHeight,
           width: innerWidth,
         });
         setIsFullScreen(true);
         document.body.style.overflow = "hidden";
       } else {
-        setWrapperDimensions({
+        setRootDimensions({
           height,
           width,
         });
@@ -194,14 +173,6 @@ const useSetup: useSetupFunctionType = ({
       }
     }
   }, [rows, columns, imageDims.width, imageDims.height]);
-
-  useEffect(() => {
-    return () => {
-      if (galleryRef.current) {
-        // galleryRef.current.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
 
   return {
     activeZoomLevel: activeImageZoomLevel,

@@ -59,10 +59,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, [windowRegion.upperBound, windowRegion.lowerBound, rows, columns]);
 
-  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
-    scrollDir,
-    hideImages,
-  ]);
+  const galleryClass = useMemo(
+    () => cx(styles.gallery, styles[scrollDir]),
+    [scrollDir, hideImages]
+  );
 
   const wrapperClass = useMemo(
     () =>
