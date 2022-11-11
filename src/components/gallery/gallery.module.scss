@@ -11,12 +11,10 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   // scroll-behavior: smooth;
 
   &.horizontal {
-    // overflow: hidden;
     flex-direction: column;
   }
 
   &.vertical {
-    // overflow: hidden;
     flex-direction: row;
   }
 }
@@ -66,7 +64,7 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   left: 0;
   top: 0;
   background: rgba(0, 0, 0, 1);
-  z-index: 100;
+  z-index: 10000;
 
   &.hide {
     background: rgba(0, 0, 0, 1);

@@ -22,9 +22,8 @@ const useSetup: useSetupFunctionType = ({
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
 
-  const [activeImageZoomLevel, setActiveImageZoomLevel] = useState<ZoomLevel>(
-    "2X"
-  );
+  const [activeImageZoomLevel, setActiveImageZoomLevel] =
+    useState<ZoomLevel>("2X");
 
   // reference to the gallery container
   const galleryRef = useRef<HTMLElement | null>(null);
@@ -108,8 +107,9 @@ const useSetup: useSetupFunctionType = ({
 
     if (width && height) {
       setHideImages(true);
-      init();
+
       setTimeout(() => {
+        init();
         setHideImages(false);
       }, 500);
     }
@@ -125,11 +125,23 @@ const useSetup: useSetupFunctionType = ({
     init();
   }, []);
 
+  const resetPosition = useCallback(() => {
+    if (galleryRef.current) {
+      galleryRef.current.scrollTo(0, 0);
+      setRegion({
+        upperBound: -1,
+        lowerBound: -1,
+      });
+    }
+  }, []);
+
   const fullScreen = () => {
+    resetPosition();
+
     if (galleryRef.current) {
       if (!isFullScreen) {
         const { innerHeight, innerWidth } = window;
-
+        setIsFullScreen(true);
         setRootDimensions({
           height: innerHeight,
           width: innerWidth,
@@ -138,7 +150,7 @@ const useSetup: useSetupFunctionType = ({
           height: innerHeight,
           width: innerWidth,
         });
-        setIsFullScreen(true);
+
         document.body.style.overflow = "hidden";
       } else {
         setRootDimensions({
@@ -150,6 +162,7 @@ const useSetup: useSetupFunctionType = ({
           width,
         });
         setIsFullScreen(false);
+
         document.body.style.overflow = "auto";
       }
     }
@@ -157,13 +170,7 @@ const useSetup: useSetupFunctionType = ({
 
   useEffect(() => {
     if (galleryRef.current) {
-      const ele = galleryRef.current as HTMLElement;
-
-      if (scrollDir === "vertical") {
-        ele.scrollTop = 0;
-      } else {
-        ele.scrollLeft = 0;
-      }
+      resetPosition();
     }
   }, [activeImageZoomLevel]);
 
