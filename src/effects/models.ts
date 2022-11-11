@@ -29,11 +29,13 @@ export type useSetupFunctionType = (
   windowRegion: Region;
   columns: number;
   rows: number;
-  containerStyle: CSSProperties;
+  containerDimensions: { width?: number; height?: number };
   fullScreen: () => void;
   resizeImages: (i: ZoomLevel) => void;
   hideImages: boolean | null;
   activeZoomLevel: ZoomLevel;
   scrollPositions: ScrollPositions;
   isScrolled: boolean;
+  isFullScreen: boolean;
+  rootDimensions: { width?: number; height?: number };
 };

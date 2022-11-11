@@ -1,4 +1,4 @@
-import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   defaultImageSizes,
   ImageDimensions,
@@ -29,7 +29,10 @@ const useSetup: useSetupFunctionType = ({
   // reference to the gallery container
   const galleryRef = useRef<HTMLElement | null>(null);
 
-  const [containerStyle, setContainerStyle] = useState<CSSProperties>({});
+  const [containerDimensions, setContainerDimensions] = useState<{
+    width?: number;
+    height?: number;
+  }>({ width, height });
 
   const [rootDimensions, setRootDimensions] = useState<{
     width: number;
@@ -76,25 +79,25 @@ const useSetup: useSetupFunctionType = ({
   const init = () => {
     const node = galleryRef.current;
     const { width: imageWidth, height: imageHeight } = imageDims;
-    const { width: wrapperWidth, height: wrapperHeight } = rootDimensions;
+    const { width: rootWidth, height: rootHeight } = rootDimensions;
 
-    if (node && mode === "auto" && wrapperWidth && wrapperHeight) {
-      const cols = Math.floor((wrapperWidth as number) / imageWidth);
-      const rows = Math.floor((wrapperHeight as number) / imageHeight);
+    if (node && mode === "auto" && rootWidth && rootHeight) {
+      const cols = Math.floor((rootWidth as number) / imageWidth);
+      const rows = Math.floor((rootHeight as number) / imageHeight);
 
       if (scrollDir === "vertical") {
         setColumns(cols);
         setRows(Math.round(totalImages / cols));
         setRegion((prev) => ({
           ...prev,
-          lowerBound: Math.round(wrapperHeight / imageHeight),
+          lowerBound: Math.round(rootHeight / imageHeight),
         }));
       } else if (scrollDir === "horizontal") {
         setRows(rows);
-        setColumns(Math.round(wrapperWidth / imageWidth));
+        setColumns(Math.round(rootWidth / imageWidth));
         setRegion((prev) => ({
           ...prev,
-          lowerBound: Math.round(wrapperWidth / imageWidth),
+          lowerBound: Math.round(rootWidth / imageWidth),
         }));
       }
     }
@@ -105,8 +108,8 @@ const useSetup: useSetupFunctionType = ({
 
     if (width && height) {
       setHideImages(true);
+      init();
       setTimeout(() => {
-        init();
         setHideImages(false);
       }, 500);
     }
@@ -131,10 +134,18 @@ const useSetup: useSetupFunctionType = ({
           height: innerHeight,
           width: innerWidth,
         });
+        setContainerDimensions({
+          height: innerHeight,
+          width: innerWidth,
+        });
         setIsFullScreen(true);
         document.body.style.overflow = "hidden";
       } else {
         setRootDimensions({
+          height,
+          width,
+        });
+        setContainerDimensions({
           height,
           width,
         });
@@ -175,13 +186,13 @@ const useSetup: useSetupFunctionType = ({
       const { height, width } = imageDims;
 
       if (scrollDir === "vertical") {
-        const newHeight = rows * height + "px";
-        setContainerStyle({
+        const newHeight = rows * height;
+        setContainerDimensions({
           height: newHeight,
         });
       } else {
-        const newWidth = Math.round(totalImages / rows) * width + "px";
-        setContainerStyle({
+        const newWidth = Math.round(totalImages / rows) * width;
+        setContainerDimensions({
           width: newWidth,
         });
       }
@@ -191,7 +202,7 @@ const useSetup: useSetupFunctionType = ({
   return {
     activeZoomLevel: activeImageZoomLevel,
     columns,
-    containerStyle,
+    containerDimensions,
     fullScreen,
     hideImages,
     onRef,
@@ -202,6 +213,8 @@ const useSetup: useSetupFunctionType = ({
     wrapperStyle,
     scrollPositions,
     isScrolled,
+    isFullScreen,
+    rootDimensions,
   };
 };
 

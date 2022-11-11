@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { CSSProperties, FunctionComponent, useMemo, useRef } from "react";
+import { FunctionComponent, useMemo, useRef } from "react";
 import useSetup from "../../effects/useSetup";
 import { ActionType, Controls } from "../controls/controls";
 import { Image } from "../image/image";
@@ -23,7 +23,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
   const {
     activeZoomLevel,
     columns,
-    containerStyle,
+    containerDimensions,
     fullScreen,
     hideImages,
     onRef,
@@ -34,6 +34,8 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     wrapperStyle,
     scrollPositions,
     isScrolled,
+    isFullScreen,
+    rootDimensions,
   } = useSetup({
     mode,
     imageSizes,
@@ -99,34 +101,14 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     [activeZoomLevel]
   );
 
-  console.log("hide", hideImages);
+  const containerStyle = useMemo(() => {
+    const { height, width } = containerDimensions;
 
-  const controlWrapperStyle = useMemo<CSSProperties>(() => {
-    const { scrollLeft, scrollTop } = scrollPositions;
-
-    let style = {
-      [scrollDir === "vertical" ? "top" : "left"]:
-        scrollDir === "horizontal"
-          ? `${scrollLeft + width / 2 - 150}px`
-          : `${scrollTop + height - 100}px`,
+    return {
+      width: `${width}px`,
+      height: `${height}px`,
     };
-
-    if (scrollLeft) {
-      style = {
-        left: `${scrollLeft + width / 2 - 150}px`,
-      };
-    } else if (scrollTop) {
-      style = {
-        top: `${scrollTop + height - 100}px`,
-      };
-    }
-    return style;
-  }, [scrollPositions?.scrollTop, scrollPositions?.scrollLeft, height, width]);
-
-  const controlWrapperClass = useMemo(
-    () => cx(styles.controls_wrapper, hideImages ? styles.hide : ""),
-    [hideImages]
-  );
+  }, [containerDimensions.width, containerDimensions.height]);
 
   return (
     <div style={wrapperStyle} ref={onRef} className={wrapperClass}>
@@ -145,22 +127,18 @@ const Gallery: FunctionComponent<GalleryProps> = ({
           ))}
         </ul>
       </div>
-      {!isScrolled ? (
-        <div
-          className={controlWrapperClass}
-          style={
-            scrollDir === "horizontal"
-              ? { width: containerStyle.width }
-              : controlWrapperStyle
-          }
-        >
-          <Controls
-            onAction={handleAction}
-            activeZoom={activeZoomLevel}
-            style={scrollDir === "horizontal" ? controlWrapperStyle : {}}
-          />
-        </div>
-      ) : null}
+      <Controls
+        onAction={handleAction}
+        activeZoom={activeZoomLevel}
+        isScrolled={isScrolled}
+        scrollDir={scrollDir}
+        rootHeight={!isFullScreen ? height : rootDimensions.height}
+        rootWidth={!isFullScreen ? width : rootDimensions.width}
+        scrollPositions={scrollPositions}
+        hide={isScrolled}
+        containerWidth={containerDimensions.width}
+        containerHeight={containerDimensions.height}
+      />
     </div>
   );
 };
