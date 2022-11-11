@@ -12,10 +12,12 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
 
   &.horizontal {
     flex-direction: column;
+    overflow-y: hidden;
   }
 
   &.vertical {
     flex-direction: row;
+    overflow-x: hidden;
   }
 }
 

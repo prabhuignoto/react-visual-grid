@@ -111,7 +111,7 @@ const useSetup: useSetupFunctionType = ({
       setTimeout(() => {
         init();
         setHideImages(false);
-      }, 500);
+      }, 250);
     }
   }, [
     rootDimensions.width,
