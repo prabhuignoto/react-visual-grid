@@ -19,8 +19,8 @@ export default function useScroll({
     scrollTop: 0,
   });
   const [region, setRegion] = useState<Region>({
-    upperBound: 0,
-    lowerBound: 0,
+    regionTop: 0,
+    regionBottom: 0,
   });
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,16 +50,16 @@ export default function useScroll({
     const { scrollLeft, scrollTop, clientHeight, clientWidth } = target;
 
     setScrollPositions({ scrollLeft, scrollTop });
-    const upperBound =
+    const regionTop =
       scrollDir === "vertical" ? scrollTop / height : scrollLeft / width;
-    const lowerBound =
+    const regionBottom =
       scrollDir === "vertical"
         ? (scrollTop + clientHeight) / height
         : (scrollLeft + clientWidth) / width;
 
     setRegion({
-      upperBound: Math.floor(upperBound),
-      lowerBound: Math.ceil(lowerBound),
+      regionTop: Math.floor(regionTop),
+      regionBottom: Math.ceil(regionBottom),
     });
   }, 50);
 

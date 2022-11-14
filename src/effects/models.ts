@@ -13,7 +13,7 @@ export type Options = Pick<
   | "imageSizes"
 >;
 
-export type Region = { upperBound: number; lowerBound: number };
+export type Region = { regionTop: number; regionBottom: number };
 
 export type ScrollPositions = {
   scrollLeft: number;

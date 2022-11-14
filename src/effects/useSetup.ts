@@ -28,8 +28,9 @@ const useSetup: useSetupFunctionType = ({
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
 
-  const [activeImageZoomLevel, setActiveImageZoomLevel] =
-    useState<ZoomLevel>("2X");
+  const [activeImageZoomLevel, setActiveImageZoomLevel] = useState<ZoomLevel>(
+    "2X"
+  );
 
   // reference to the gallery container
   const galleryRef = useRef<HTMLElement | null>(null);
@@ -60,7 +61,7 @@ const useSetup: useSetupFunctionType = ({
 
   const {
     scrollPositions,
-    region = { upperBound: 0, lowerBound: 0 },
+    region = { regionTop: 0, regionBottom: 0 },
     setRegion,
     isScrolled,
   } = useScroll({
@@ -95,14 +96,14 @@ const useSetup: useSetupFunctionType = ({
         setRows(Math.round(totalImages / cols));
         setRegion((prev) => ({
           ...prev,
-          lowerBound: Math.round(rootHeight / imageHeight),
+          regionBottom: Math.round(rootHeight / imageHeight),
         }));
       } else if (scrollDir === "horizontal") {
         setRows(rows);
         setColumns(Math.round(rootWidth / imageWidth));
         setRegion((prev) => ({
           ...prev,
-          lowerBound: Math.round(rootWidth / imageWidth),
+          regionBottom: Math.round(rootWidth / imageWidth),
         }));
       }
     }
@@ -135,8 +136,8 @@ const useSetup: useSetupFunctionType = ({
     if (galleryRef.current) {
       galleryRef.current.scrollTo(0, 0);
       setRegion({
-        upperBound: -1,
-        lowerBound: -1,
+        regionTop: -1,
+        regionBottom: -1,
       });
     }
   }, []);

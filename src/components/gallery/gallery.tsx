@@ -1,8 +1,16 @@
 import cx from "classnames";
-import { FunctionComponent, useMemo, useRef } from "react";
+import {
+  FunctionComponent,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import useSetup from "../../effects/useSetup";
-import { ActionType, Controls } from "../controls/controls";
+import { Controls } from "../controls/controls";
+import { ActionType } from "../controls/controls.model";
 import { Image } from "../image/image";
+import { ViewerContainer } from "../viewer/viewer";
 import { defaultImageSizes, GalleryProps } from "./gallery.model";
 import styles from "./gallery.module.scss";
 
@@ -23,19 +31,19 @@ const Gallery: FunctionComponent<GalleryProps> = ({
   const {
     activeZoomLevel,
     columns,
-    containerDimensions,
+    containerDimensions: { height: containerHeight, width: containerWidth },
     fullScreen,
     hideImages,
     onRef,
     resizeImages,
     rows,
     style,
-    windowRegion,
+    windowRegion: { regionTop, regionBottom },
     wrapperStyle,
     scrollPositions,
     isScrolled,
     isFullScreen,
-    rootDimensions,
+    rootDimensions: { height: rootHeight, width: rootWidth },
   } = useSetup({
     mode,
     imageSizes,
@@ -48,24 +56,33 @@ const Gallery: FunctionComponent<GalleryProps> = ({
   });
 
   const records = useMemo(() => {
-    const { upperBound, lowerBound } = windowRegion;
     if (scrollDir === "vertical") {
       return imagesRef.current.filter(
         (_, index) =>
-          Math.floor(index / columns) >= upperBound &&
-          Math.floor(index / columns) <= lowerBound
+          Math.floor(index / columns) >= regionTop &&
+          Math.floor(index / columns) <= regionBottom
       );
     } else {
       return imagesRef.current.filter((_, index) => {
-        return index >= upperBound * rows && index <= rows * lowerBound - 1;
+        return index >= regionTop * rows && index <= rows * regionBottom - 1;
       });
     }
-  }, [windowRegion.upperBound, windowRegion.lowerBound, rows, columns]);
+  }, [regionTop, regionBottom, rows, columns]);
 
-  const galleryClass = useMemo(
-    () => cx(styles.gallery, styles[scrollDir]),
-    [scrollDir, hideImages]
-  );
+  const containerRef = useRef<null | HTMLDivElement>(null);
+
+  const [activeImage, setActiveImage] = useState("");
+
+  const onContainerRef = useCallback((node: HTMLDivElement) => {
+    if (node) {
+      containerRef.current = node;
+    }
+  }, []);
+
+  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
+    scrollDir,
+    hideImages,
+  ]);
 
   const wrapperClass = useMemo(
     () =>
@@ -102,17 +119,23 @@ const Gallery: FunctionComponent<GalleryProps> = ({
   );
 
   const containerStyle = useMemo(() => {
-    const { height, width } = containerDimensions;
-
     return {
-      width: `${width}px`,
-      height: `${height}px`,
+      width: `${containerWidth}px`,
+      height: `${containerHeight}px`,
     };
-  }, [containerDimensions.width, containerDimensions.height]);
+  }, [containerWidth, containerHeight]);
+
+  const handleImageClick = (src: string) => {
+    setActiveImage(src);
+  };
 
   return (
     <div style={wrapperStyle} ref={onRef} className={wrapperClass}>
-      <div className={styles.container} style={containerStyle}>
+      <div
+        className={styles.container}
+        style={containerStyle}
+        ref={onContainerRef}
+      >
         <div className={screenClass}></div>
         <ul className={galleryClass} style={style}>
           {records.map((image) => (
@@ -122,6 +145,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
                 alt={image.alt}
                 width={getImageDimensions.width}
                 height={getImageDimensions.height}
+                onClick={handleImageClick}
               />
             </li>
           ))}
@@ -132,12 +156,17 @@ const Gallery: FunctionComponent<GalleryProps> = ({
         activeZoom={activeZoomLevel}
         isScrolled={isScrolled}
         scrollDir={scrollDir}
-        rootHeight={!isFullScreen ? height : rootDimensions.height}
-        rootWidth={!isFullScreen ? width : rootDimensions.width}
+        rootHeight={!isFullScreen ? height : rootHeight}
+        rootWidth={!isFullScreen ? width : rootWidth}
         scrollPositions={scrollPositions}
         hide={isScrolled}
-        containerWidth={containerDimensions.width}
-        containerHeight={containerDimensions.height}
+        containerWidth={containerWidth}
+        containerHeight={containerHeight}
+      />
+      <ViewerContainer
+        url={activeImage}
+        isFullScreen={isFullScreen}
+        node={containerRef.current}
       />
     </div>
   );

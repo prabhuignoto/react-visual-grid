@@ -58,12 +58,12 @@ export function useStyle({
     if (scrollDir === "vertical") {
       style = {
         gridAutoRows: `${height - gap}px`,
-        top: region.upperBound * imageDimensions.height + "px",
+        top: region.regionTop * imageDimensions.height + "px",
       };
     } else {
       style = {
         gridAutoColumns: `${width - gap}px`,
-        left: region.upperBound * imageDimensions.width + "px",
+        left: region.regionTop * imageDimensions.width + "px",
       };
     }
 
@@ -75,7 +75,7 @@ export function useStyle({
   }, [
     columns,
     gridSettings,
-    region.upperBound,
+    region.regionTop,
     scrollDir,
     imageDimensions.width,
     imageDimensions.height,
