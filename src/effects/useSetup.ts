@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  startTransition,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   defaultImageSizes,
   ImageDimensions,
@@ -140,28 +146,32 @@ const useSetup: useSetupFunctionType = ({
 
     if (galleryRef.current) {
       if (!isFullScreen) {
-        const { innerHeight, innerWidth } = window;
+        const { innerHeight: height, innerWidth: width } = window;
         setIsFullScreen(true);
-        setRootDimensions({
-          height: innerHeight,
-          width: innerWidth,
-        });
-        setContainerDimensions({
-          height: innerHeight,
-          width: innerWidth,
+        startTransition(() => {
+          setRootDimensions({
+            height,
+            width,
+          });
+          setContainerDimensions({
+            height,
+            width,
+          });
         });
 
         document.body.style.overflow = "hidden";
       } else {
-        setRootDimensions({
-          height,
-          width,
-        });
-        setContainerDimensions({
-          height,
-          width,
-        });
         setIsFullScreen(false);
+        startTransition(() => {
+          setRootDimensions({
+            height,
+            width,
+          });
+          setContainerDimensions({
+            height,
+            width,
+          });
+        });
 
         document.body.style.overflow = "auto";
       }
@@ -176,11 +186,9 @@ const useSetup: useSetupFunctionType = ({
 
   const resizeImages = (z: ZoomLevel) => {
     if (z !== activeImageZoomLevel) {
+      const { width, height } = imageSizes[z];
       setHideImages(true);
       setActiveImageZoomLevel(z);
-
-      const { width, height } = imageSizes[z];
-
       setImageDims({
         width,
         height,

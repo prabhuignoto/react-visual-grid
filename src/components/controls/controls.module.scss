@@ -45,7 +45,6 @@
 
 .controls_wrapper {
   position: absolute;
-  // bottom: 100px;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -55,8 +54,12 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  transition: opacity 0.25s ease-in-out;
+  opacity: 1;
+  visibility: visible;
 
   &.hide {
     visibility: hidden;
+    opacity: 0;
   }
 }

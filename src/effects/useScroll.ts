@@ -61,7 +61,7 @@ export default function useScroll({
       upperBound: Math.floor(upperBound),
       lowerBound: Math.ceil(lowerBound),
     });
-  }, 100);
+  }, 50);
 
   useEffect(() => {
     if (ref.current) {

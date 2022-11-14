@@ -16,8 +16,8 @@ function App() {
         mode="auto"
         gridDimensions={{ columns: 8 }}
         gap={10}
-        width={1800}
-        height={920}
+        width={900}
+        height={620}
         scrollDir="vertical"
       />
     </div>
