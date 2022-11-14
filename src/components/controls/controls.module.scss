@@ -1,14 +1,16 @@
 @use "../../common/styles.module.scss";
 
+$primary: #007fff;
+
 .controls {
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 300px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgb(255 255 255 / 95%);
   height: 60px;
-  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px 5px rgb(0 0 0 / 50%);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -23,8 +25,19 @@
 
 .control_button {
   border: 0;
-  background: #ccc;
+  background: #eee;
   @extend .center;
+
+  color: $primary;
+  transition: color 0.5s ease, background 0.5s ease;
+  box-shadow: 0 0 2px 1px rgb(0 0 0 / 30%), inset 0 0 8px 2px rgb(0 0 0 / 10%);
+
+  &:hover {
+    background: $primary;
+    color: white;
+    cursor: pointer;
+    box-shadow: none;
+  }
 
   &.rounded {
     width: 2rem;
@@ -38,8 +51,13 @@
   }
 
   &.active {
-    background: blue;
+    background: $primary;
     color: white;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -49,11 +67,11 @@
   left: 0;
   width: 100%;
   height: 100px;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgb(0 0 0 / 75%);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 100;
   transition: opacity 0.25s ease-in-out;
   opacity: 1;
   visibility: visible;

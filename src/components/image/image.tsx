@@ -28,12 +28,14 @@ const Image: FunctionComponent<ImageProps> = React.memo(
           | React.KeyboardEvent<HTMLDivElement>,
         src: string
       ) => {
+        const { x, y } = (ev.target as HTMLElement).getBoundingClientRect();
+
         if (ev instanceof KeyboardEvent) {
           if (ev.key === "Enter") {
-            onClick?.(src);
+            onClick?.(src, { x, y });
           }
         } else {
-          onClick?.(src);
+          onClick?.(src, { x, y });
         }
       },
       []

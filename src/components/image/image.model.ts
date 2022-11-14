@@ -7,7 +7,7 @@ export type ImageProps = {
   id?: string;
   onClick?: (
     src: string,
-    position?: {
+    rect?: {
       x: number;
       y: number;
     }

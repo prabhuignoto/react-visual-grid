@@ -1,38 +1,69 @@
-import { FunctionComponent } from "react";
+import cx from "classnames";
+import { FunctionComponent, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { CloseIcon } from "../icons";
+import { ViewerProps } from "./viewer.model";
 import styles from "./viewer.module.scss";
 
-export interface RootProps {
-  url: string;
-  isFullScreen: boolean;
-  imagePosition?: {
-    x: number;
-    y: number;
-  };
-  // children: ReactElement | ReactElement[];
-  node: HTMLElement | null;
-}
+const Viewer: FunctionComponent<ViewerProps> = ({
+  url,
+  dimensions: { height, width },
+  rect: { x, y },
+  onClose,
+  top = 0,
+  left = 0,
+}) => {
+  const style = useMemo(
+    () => ({
+      height: `${height}px`,
+      width: `${width}px`,
+      top: `${top}px`,
+      left: `${left}px`,
+    }),
+    [height, width, x, y]
+  );
 
-const Viewer: FunctionComponent<RootProps> = ({ url, isFullScreen }) => {
+  const isFirstRender = useRef(true);
+
+  const [showImage, setShowImage] = useState(false);
+
+  useEffect(() => {
+    isFirstRender.current = false;
+    setTimeout(() => {
+      setShowImage(true);
+    }, 100);
+  }, []);
+
+  const imageClass = useMemo(
+    () =>
+      cx(
+        styles.image,
+        !isFirstRender.current ? (showImage ? styles.show : styles.hide) : ""
+      ),
+    [showImage]
+  );
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={style} role="dialog">
+      <button onClick={onClose} className={styles.close_btn} aria-label="close">
+        <CloseIcon />
+      </button>
       <div className={styles.viewer}>
-        <img src={url} alt="" className={styles.image} />
+        <img src={url} alt="" className={imageClass} />
       </div>
     </div>
   );
 };
 
-const ViewerContainer: FunctionComponent<RootProps> = (props) => {
-  return (
-    props.node &&
-    createPortal(
-      <>
-        <Viewer {...props} />
-      </>,
-      props.node
-    )
-  );
+const ViewerContainer: FunctionComponent<ViewerProps> = (props) => {
+  return props.show && props.node
+    ? createPortal(
+        <>
+          <Viewer {...props} onClose={props.onClose} />
+        </>,
+        props.node
+      )
+    : null;
 };
 
 export { Viewer, ViewerContainer };

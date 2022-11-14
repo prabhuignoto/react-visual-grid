@@ -18,4 +18,5 @@ export type ControlsProps = {
   rootWidth?: number;
   containerWidth?: string | number;
   containerHeight?: string | number;
+  isFullScreen?: boolean;
 };

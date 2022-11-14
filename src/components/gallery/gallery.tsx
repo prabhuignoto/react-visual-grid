@@ -1,4 +1,5 @@
 import cx from "classnames";
+import { nanoid } from "nanoid";
 import {
   FunctionComponent,
   useCallback,
@@ -26,7 +27,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
   mode = "auto",
   imageSizes = defaultImageSizes,
 }) => {
-  const imagesRef = useRef(images.map((image) => ({ ...image })));
+  const imagesRef = useRef(images.map((image) => ({ ...image, id: nanoid() })));
 
   const {
     activeZoomLevel,
@@ -69,9 +70,16 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, [regionTop, regionBottom, rows, columns]);
 
-  const containerRef = useRef<null | HTMLDivElement>(null);
-
+  const containerRef = useRef<null | Element | HTMLDivElement>(null);
   const [activeImage, setActiveImage] = useState("");
+  const [showImage, setShowImage] = useState(false);
+  const [position, setPosition] = useState<{
+    x: number;
+    y: number;
+  }>({
+    x: 0,
+    y: 0,
+  });
 
   const onContainerRef = useCallback((node: HTMLDivElement) => {
     if (node) {
@@ -79,10 +87,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, []);
 
-  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
-    scrollDir,
-    hideImages,
-  ]);
+  const galleryClass = useMemo(
+    () => cx(styles.gallery, styles[scrollDir]),
+    [scrollDir, hideImages]
+  );
 
   const wrapperClass = useMemo(
     () =>
@@ -118,6 +126,14 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     [activeZoomLevel]
   );
 
+  const getRootDimensions = useMemo(
+    () => ({
+      rootHeight: !isFullScreen ? height : rootHeight,
+      rootWidth: !isFullScreen ? width : rootWidth,
+    }),
+    [isFullScreen, rootHeight, rootWidth]
+  );
+
   const containerStyle = useMemo(() => {
     return {
       width: `${containerWidth}px`,
@@ -125,12 +141,25 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     };
   }, [containerWidth, containerHeight]);
 
-  const handleImageClick = (src: string) => {
+  const handleImageClick = (src: string, pos?: { x: number; y: number }) => {
+    setShowImage(true);
     setActiveImage(src);
+    pos && setPosition(pos);
   };
 
+  const onClose = () => {
+    setShowImage(false);
+    setActiveImage("");
+  };
+
+  const wrapperStyleMod = useMemo(
+    () =>
+      Object.assign({}, wrapperStyle, showImage ? { overflow: "hidden" } : {}),
+    [showImage, wrapperStyle]
+  );
+
   return (
-    <div style={wrapperStyle} ref={onRef} className={wrapperClass}>
+    <div style={wrapperStyleMod} ref={onRef} className={wrapperClass}>
       <div
         className={styles.container}
         style={containerStyle}
@@ -156,18 +185,29 @@ const Gallery: FunctionComponent<GalleryProps> = ({
         activeZoom={activeZoomLevel}
         isScrolled={isScrolled}
         scrollDir={scrollDir}
-        rootHeight={!isFullScreen ? height : rootHeight}
-        rootWidth={!isFullScreen ? width : rootWidth}
+        rootHeight={getRootDimensions.rootHeight}
+        rootWidth={getRootDimensions.rootWidth}
         scrollPositions={scrollPositions}
         hide={isScrolled}
         containerWidth={containerWidth}
         containerHeight={containerHeight}
-      />
-      <ViewerContainer
-        url={activeImage}
         isFullScreen={isFullScreen}
-        node={containerRef.current}
       />
+      {activeImage ? (
+        <ViewerContainer
+          url={activeImage}
+          node={containerRef.current}
+          onClose={onClose}
+          dimensions={{
+            height: getRootDimensions.rootHeight,
+            width: getRootDimensions.rootWidth,
+          }}
+          show={showImage}
+          rect={position}
+          top={scrollPositions.scrollTop}
+          left={scrollPositions.scrollLeft}
+        />
+      ) : null}
     </div>
   );
 };

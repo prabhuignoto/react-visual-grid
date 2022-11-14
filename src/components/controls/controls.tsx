@@ -6,6 +6,7 @@ import {
   useMemo,
   useRef,
 } from "react";
+import { MaximizeIcon, MinimizeIcon } from "../icons";
 import { ActionType, ControlsProps } from "./controls.model";
 import styles from "./controls.module.scss";
 
@@ -20,6 +21,7 @@ const Controls: FunctionComponent<ControlsProps> = ({
   rootWidth = 0,
   containerWidth,
   containerHeight,
+  isFullScreen,
 }) => {
   const controlButton = useMemo(
     () => cx(styles.control_button, styles.rounded),
@@ -109,6 +111,7 @@ const Controls: FunctionComponent<ControlsProps> = ({
                 controlButton,
                 activeZoom === item ? styles.active : ""
               )}
+              aria-label={item}
             >
               {item}
             </button>
@@ -117,9 +120,10 @@ const Controls: FunctionComponent<ControlsProps> = ({
         <li className={styles.control}>
           <button
             onClick={() => onAction("FULL_SCREEN")}
-            className={styles.control_button}
+            className={controlButton}
+            aria-label={isFullScreen ? "Minimize" : "Maximize"}
           >
-            FullScreen
+            {isFullScreen ? <MinimizeIcon /> : <MaximizeIcon />}
           </button>
         </li>
       </ul>
