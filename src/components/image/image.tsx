@@ -11,6 +11,7 @@ import styles from "./image.module.scss";
 
 const Image: FunctionComponent<ImageProps> = React.memo(
   ({ src, alt, width = 100, height = 100, onClick, index }) => {
+    console.log(width);
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(false);
 

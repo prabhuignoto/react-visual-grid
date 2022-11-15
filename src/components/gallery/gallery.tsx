@@ -184,6 +184,25 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     [showImage, wrapperStyle]
   );
 
+  const galleryList = useMemo(() => {
+    return (
+      <ul className={galleryClass} style={style}>
+        {records.map((image, index) => (
+          <li key={image.id} className={styles.gallery_item}>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={getImageDimensions.width}
+              height={getImageDimensions.height}
+              onClick={handleImageClick}
+              index={index}
+            />
+          </li>
+        ))}
+      </ul>
+    );
+  }, [records.length, regionTop, regionBottom]);
+
   return (
     <div style={wrapperStyleMod} ref={onRef} className={wrapperClass}>
       <div
@@ -192,20 +211,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
         ref={onContainerRef}
       >
         <div className={screenClass}></div>
-        <ul className={galleryClass} style={style}>
-          {records.map((image, index) => (
-            <li key={image.id} className={styles.gallery_item}>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={getImageDimensions.width}
-                height={getImageDimensions.height}
-                onClick={handleImageClick}
-                index={index}
-              />
-            </li>
-          ))}
-        </ul>
+        {galleryList}
       </div>
       <Controls
         onAction={handleAction}

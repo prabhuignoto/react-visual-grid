@@ -1,18 +1,5 @@
 import { CSSProperties, useMemo } from "react";
-import { ImageDimensions } from "../components/gallery/gallery.model";
-import { Region } from "./models";
-
-type StyleProps = {
-  imageDimensions: ImageDimensions;
-  region: Region;
-  scrollDir?: "vertical" | "horizontal";
-  rootDimensions: ImageDimensions;
-  mode?: "auto" | "manual";
-  isFullScreen: boolean;
-  gap: number;
-  columns: number;
-  rows: number;
-};
+import { StyleProps } from "./models";
 
 export function useStyle({
   rootDimensions,

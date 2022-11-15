@@ -27,6 +27,8 @@ export default function useScroll({
 
   const intervalTrackerRef = useRef<number>();
 
+  const [endReached, setEndReached] = useState(false);
+
   const checkIfScrolled = useCallback((ev: Event) => {
     const target = ev.target as HTMLDivElement;
     const { scrollLeft, scrollTop } = target;
@@ -47,9 +49,30 @@ export default function useScroll({
   const handleScroll = useDebouncedCallback((ev: Event) => {
     const target = ev.target as HTMLDivElement;
     const { height, width } = imageDimensions;
-    const { scrollLeft, scrollTop, clientHeight, clientWidth } = target;
+    const {
+      scrollLeft,
+      scrollTop,
+      clientHeight,
+      clientWidth,
+      scrollHeight,
+    } = target;
 
     setScrollPositions({ scrollLeft, scrollTop });
+
+    if (setEndReached) {
+      setEndReached(false);
+    }
+
+    if (scrollDir === "vertical") {
+      if (scrollTop + clientHeight >= scrollHeight) {
+        setEndReached(true);
+      }
+    } else if (scrollDir === "horizontal") {
+      if (scrollLeft + clientWidth >= clientWidth) {
+        setEndReached(true);
+      }
+    }
+
     const regionTop =
       scrollDir === "vertical" ? scrollTop / height : scrollLeft / width;
     const regionBottom =
@@ -82,5 +105,6 @@ export default function useScroll({
     region,
     setRegion,
     isScrolled,
+    endReached,
   };
 }

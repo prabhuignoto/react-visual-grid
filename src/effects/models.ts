@@ -1,5 +1,9 @@
 import { CSSProperties } from "react";
-import { GalleryProps, ZoomLevel } from "../components/gallery/gallery.model";
+import {
+  GalleryProps,
+  ImageDimensions,
+  ZoomLevel,
+} from "../components/gallery/gallery.model";
 
 export type Options = Pick<
   GalleryProps,
@@ -38,4 +42,17 @@ export type useSetupFunctionType = (
   isScrolled: boolean;
   isFullScreen: boolean;
   rootDimensions: { width?: number; height?: number };
+};
+
+export type StyleProps = {
+  imageDimensions: ImageDimensions;
+  region: Region;
+  scrollDir?: "vertical" | "horizontal";
+  rootDimensions: ImageDimensions;
+  mode?: "auto" | "manual";
+  isFullScreen: boolean;
+  gap: number;
+  columns: number;
+  rows: number;
+  endReached: boolean;
 };

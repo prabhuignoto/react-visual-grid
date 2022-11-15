@@ -64,6 +64,7 @@ const useSetup: useSetupFunctionType = ({
     region = { regionTop: 0, regionBottom: 0 },
     setRegion,
     isScrolled,
+    endReached,
   } = useScroll({
     ref: galleryRef,
     imageDimensions: imageDims,
@@ -80,6 +81,7 @@ const useSetup: useSetupFunctionType = ({
     gap,
     mode,
     isFullScreen,
+    endReached,
   });
 
   const init = () => {
@@ -203,8 +205,12 @@ const useSetup: useSetupFunctionType = ({
 
       if (scrollDir === "vertical") {
         const newHeight = rows * height;
+        const addHeight = Math.max(
+          ...Object.keys(imageSizes).map((x) => imageSizes[x].height)
+        );
+
         setContainerDimensions({
-          height: newHeight,
+          height: newHeight + addHeight,
         });
       } else {
         const newWidth = Math.round(totalImages / rows) * width;
