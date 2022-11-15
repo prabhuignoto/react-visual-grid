@@ -2,7 +2,6 @@ import React from "react";
 
 export interface ViewerProps {
   url: string;
-  // isFullScreen: boolean;
   rect: {
     x: number;
     y: number;
@@ -16,4 +15,6 @@ export interface ViewerProps {
   node: Element | HTMLDivElement | null;
   onClose?: (ev: React.MouseEvent | React.KeyboardEvent) => void;
   show?: boolean;
+  onNext?: (ev: React.MouseEvent | React.KeyboardEvent) => void;
+  onPrevious?: (ev: React.MouseEvent | React.KeyboardEvent) => void;
 }

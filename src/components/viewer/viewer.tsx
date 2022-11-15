@@ -1,7 +1,7 @@
 import cx from "classnames";
 import { FunctionComponent, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { CloseIcon } from "../icons";
+import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "../icons";
 import { ViewerProps } from "./viewer.model";
 import styles from "./viewer.module.scss";
 
@@ -12,6 +12,8 @@ const Viewer: FunctionComponent<ViewerProps> = ({
   onClose,
   top = 0,
   left = 0,
+  onNext,
+  onPrevious,
 }) => {
   const style = useMemo(
     () => ({
@@ -49,7 +51,13 @@ const Viewer: FunctionComponent<ViewerProps> = ({
         <CloseIcon />
       </button>
       <div className={styles.viewer}>
+        <button className={styles.nav_button} onClick={onPrevious}>
+          <ChevronLeftIcon />
+        </button>
         <img src={url} alt="" className={imageClass} />
+        <button className={styles.nav_button} onClick={onNext}>
+          <ChevronRightIcon />
+        </button>
       </div>
     </div>
   );

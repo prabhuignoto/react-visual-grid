@@ -5,7 +5,6 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { useDebouncedCallback } from "use-debounce";
 import { AlertIcon } from "../icons";
 import { ImageProps } from "./image.model";
 import styles from "./image.module.scss";
@@ -15,7 +14,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(false);
 
-    const onLoaded = useDebouncedCallback(() => setLoaded(true), 1200);
+    const onLoaded = () => setLoaded(true);
     const onError = () => setError(true);
 
     const imageClass = useMemo(

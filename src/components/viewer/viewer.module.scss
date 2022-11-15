@@ -6,22 +6,23 @@ $white: #fff;
 .container {
   @extend %center;
 
-  background: rgba($color: #000, $alpha: 85%);
+  background: rgba($color: #000, $alpha: 97%);
   position: absolute;
+  z-index: 999;
 }
 
 .viewer {
   @extend %center;
 
-  width: 98%;
+  width: 80%;
   height: 98%;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  justify-items: center;
 }
 
 %show {
   animation-name: show;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   opacity: 1;
   max-width: 100%;
   max-height: 100%;
@@ -33,7 +34,6 @@ $white: #fff;
 }
 
 .image {
-  position: absolute;
   animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   animation-duration: 0.75s;
   opacity: 0;
@@ -53,7 +53,7 @@ $white: #fff;
   right: 1rem;
   @extend %center;
 
-  color: $primary;
+  color: $white;
   width: 3rem;
   height: 3rem;
   padding: 0;
@@ -61,7 +61,8 @@ $white: #fff;
   cursor: pointer;
 
   &:hover {
-    color: $white;
+    color: $primary;
+    background: rgba($color: #fff, $alpha: 4%);
   }
 
   svg {
@@ -87,5 +88,27 @@ $white: #fff;
 
   100% {
     opacity: 0;
+  }
+}
+
+.nav_button {
+  @extend %center;
+
+  width: 4rem;
+  height: 4rem;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  color: $white;
+  border-radius: 4px;
+
+  &:hover {
+    color: $primary;
+    background: rgba($color: #fff, $alpha: 4%);
+  }
+
+  svg {
+    width: 90%;
+    height: 90%;
   }
 }
