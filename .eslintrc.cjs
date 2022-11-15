@@ -26,5 +26,6 @@ module.exports = {
   plugins: ["react", "@typescript-eslint"],
   rules: {
     "react/prop-types": "off",
+    'jsx-a11y/no-noninteractive-tabindex': "off"
   },
 };

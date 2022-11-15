@@ -54,6 +54,7 @@ export function useStyle({
   const galleryStyle = useMemo<CSSProperties>(() => {
     let style = {};
     const { height, width } = imageDimensions;
+    console.log(region);
 
     if (scrollDir === "vertical") {
       style = {

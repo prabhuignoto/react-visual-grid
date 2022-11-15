@@ -10,7 +10,7 @@ import { ImageProps } from "./image.model";
 import styles from "./image.module.scss";
 
 const Image: FunctionComponent<ImageProps> = React.memo(
-  ({ src, alt, width = 100, height = 100, onClick }) => {
+  ({ src, alt, width = 100, height = 100, onClick, index }) => {
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(false);
 
@@ -33,10 +33,10 @@ const Image: FunctionComponent<ImageProps> = React.memo(
 
         if (ev instanceof KeyboardEvent) {
           if (ev.key === "Enter") {
-            onClick?.(src, { x, y });
+            onClick?.(src, index, { x, y });
           }
         } else {
-          onClick?.(src, { x, y });
+          onClick?.(src, index, { x, y });
         }
       },
       []

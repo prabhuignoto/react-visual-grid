@@ -30,7 +30,7 @@ $primary: #007fff;
 
   color: $primary;
   transition: color 0.25s ease, background 0.25s ease;
-  box-shadow: 0 0 1px 1px rgb(0 0 0 / 20%), inset 0 0 4px 1px rgb(0 0 0 / 8%);
+  box-shadow: 0 0 1px 1px rgb(0 0 0 / 20%), inset 0 0 6px 1px rgb(0 0 0 / 3%);
 
   &:hover {
     background: $primary;

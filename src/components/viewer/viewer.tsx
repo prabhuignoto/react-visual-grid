@@ -1,6 +1,7 @@
 import cx from "classnames";
 import { FunctionComponent, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import useKey from "../../effects/useKey";
 import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "../icons";
 import { ViewerProps } from "./viewer.model";
 import styles from "./viewer.module.scss";
@@ -14,6 +15,8 @@ const Viewer: FunctionComponent<ViewerProps> = ({
   left = 0,
   onNext,
   onPrevious,
+  activeImageIndex,
+  totalImages,
 }) => {
   const style = useMemo(
     () => ({
@@ -45,17 +48,42 @@ const Viewer: FunctionComponent<ViewerProps> = ({
     [showImage]
   );
 
+  const { onRef } = useKey({
+    leftCB: onPrevious,
+    rightCB: onNext,
+    escCB: onClose,
+  });
+
   return (
-    <div className={styles.container} style={style} role="dialog">
+    <div
+      className={styles.container}
+      style={style}
+      role="dialog"
+      ref={onRef}
+      tabIndex={0}
+    >
       <button onClick={onClose} className={styles.close_btn} aria-label="close">
         <CloseIcon />
       </button>
+      <span style={{ color: "#fff" }}>{activeImageIndex}</span>
       <div className={styles.viewer}>
-        <button className={styles.nav_button} onClick={onPrevious}>
+        <button
+          className={cx(
+            styles.nav_button,
+            activeImageIndex === 1 ? styles.hide : ""
+          )}
+          onClick={onPrevious}
+        >
           <ChevronLeftIcon />
         </button>
         <img src={url} alt="" className={imageClass} />
-        <button className={styles.nav_button} onClick={onNext}>
+        <button
+          className={cx(
+            styles.nav_button,
+            activeImageIndex === totalImages - 1 ? styles.hide : ""
+          )}
+          onClick={onNext}
+        >
           <ChevronRightIcon />
         </button>
       </div>

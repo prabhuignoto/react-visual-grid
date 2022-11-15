@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface ViewerProps {
   url: string;
   rect: {
@@ -13,8 +11,10 @@ export interface ViewerProps {
     height?: number;
   };
   node: Element | HTMLDivElement | null;
-  onClose?: (ev: React.MouseEvent | React.KeyboardEvent) => void;
+  onClose?: () => void;
   show?: boolean;
-  onNext?: (ev: React.MouseEvent | React.KeyboardEvent) => void;
-  onPrevious?: (ev: React.MouseEvent | React.KeyboardEvent) => void;
+  onNext?: () => void;
+  onPrevious?: () => void;
+  activeImageIndex: number;
+  totalImages: number;
 }

@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import {
   FunctionComponent,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -81,6 +82,8 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     y: 0,
   });
 
+  const [activeImageIndex, setActiveImageIndex] = useState(-1);
+
   const onContainerRef = useCallback((node: HTMLDivElement) => {
     if (node) {
       containerRef.current = node;
@@ -141,9 +144,14 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     };
   }, [containerWidth, containerHeight]);
 
-  const handleImageClick = (src: string, pos?: { x: number; y: number }) => {
+  const handleImageClick = (
+    src: string,
+    index: number,
+    pos?: { x: number; y: number }
+  ) => {
     setShowImage(true);
     setActiveImage(src);
+    setActiveImageIndex(index);
     pos && setPosition(pos);
   };
 
@@ -151,6 +159,24 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     setShowImage(false);
     setActiveImage("");
   };
+
+  const handlePreviousImage = useCallback(() => {
+    if (activeImageIndex > 0) {
+      setActiveImageIndex((prev) => prev - 1);
+    }
+  }, [activeImageIndex]);
+
+  const handleNextImage = useCallback(() => {
+    if (activeImageIndex < images.length - 1) {
+      setActiveImageIndex((prev) => prev + 1);
+    }
+  }, [activeImageIndex]);
+
+  useEffect(() => {
+    if (activeImageIndex > -1) {
+      setActiveImage(images[activeImageIndex].src);
+    }
+  }, [activeImageIndex]);
 
   const wrapperStyleMod = useMemo(
     () =>
@@ -167,7 +193,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
       >
         <div className={screenClass}></div>
         <ul className={galleryClass} style={style}>
-          {records.map((image) => (
+          {records.map((image, index) => (
             <li key={image.id} className={styles.gallery_item}>
               <Image
                 src={image.src}
@@ -175,6 +201,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
                 width={getImageDimensions.width}
                 height={getImageDimensions.height}
                 onClick={handleImageClick}
+                index={index}
               />
             </li>
           ))}
@@ -206,6 +233,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({
           rect={position}
           top={scrollPositions.scrollTop}
           left={scrollPositions.scrollLeft}
+          onPrevious={handlePreviousImage}
+          onNext={handleNextImage}
+          activeImageIndex={activeImageIndex}
+          totalImages={images.length}
         />
       ) : null}
     </div>

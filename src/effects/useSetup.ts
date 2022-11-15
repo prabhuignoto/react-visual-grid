@@ -136,8 +136,8 @@ const useSetup: useSetupFunctionType = ({
     if (galleryRef.current) {
       galleryRef.current.scrollTo(0, 0);
       setRegion({
-        regionTop: -1,
-        regionBottom: -1,
+        regionTop: 0,
+        regionBottom: 0,
       });
     }
   }, []);

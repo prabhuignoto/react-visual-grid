@@ -7,9 +7,11 @@ export type ImageProps = {
   id?: string;
   onClick?: (
     src: string,
+    index: number,
     rect?: {
       x: number;
       y: number;
     }
   ) => void;
+  index: number;
 };
