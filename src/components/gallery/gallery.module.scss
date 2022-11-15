@@ -47,7 +47,7 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .gallery_item {
-  @extend .center;
+  @extend %center;
 
   width: 100%;
   height: 100%;

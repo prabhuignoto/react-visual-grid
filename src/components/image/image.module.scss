@@ -1,17 +1,18 @@
 @use "../../common/styles.module.scss";
 
+$warning: #ff6700;
+
 .image {
-  @extend .center;
+  @extend %center;
 
   max-width: 90%;
   max-height: 90%;
   transition: visibility 0s, opacity 0.25s linear;
-
-  // border-radius: 4px;
+  cursor: pointer;
 }
 
 .wrapper {
-  @extend .center;
+  @extend %center;
 
   width: 100%;
   height: 100%;
@@ -25,4 +26,15 @@
 .hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: $warning;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }

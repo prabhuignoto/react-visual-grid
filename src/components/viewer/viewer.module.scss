@@ -4,14 +4,14 @@ $primary: #007fff;
 $white: #fff;
 
 .container {
-  @extend .center;
+  @extend %center;
 
   background: rgba($color: #000, $alpha: 85%);
   position: absolute;
 }
 
 .viewer {
-  @extend .center;
+  @extend %center;
 
   width: 98%;
   height: 98%;
@@ -51,7 +51,7 @@ $white: #fff;
   position: absolute;
   top: 1rem;
   right: 1rem;
-  @extend .center;
+  @extend %center;
 
   color: $primary;
   width: 3rem;

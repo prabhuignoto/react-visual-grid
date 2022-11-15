@@ -26,11 +26,11 @@ $primary: #007fff;
 .control_button {
   border: 0;
   background: #eee;
-  @extend .center;
+  @extend %center;
 
   color: $primary;
-  transition: color 0.5s ease, background 0.5s ease;
-  box-shadow: 0 0 2px 1px rgb(0 0 0 / 30%), inset 0 0 8px 2px rgb(0 0 0 / 10%);
+  transition: color 0.25s ease, background 0.25s ease;
+  box-shadow: 0 0 1px 1px rgb(0 0 0 / 20%), inset 0 0 4px 1px rgb(0 0 0 / 8%);
 
   &:hover {
     background: $primary;

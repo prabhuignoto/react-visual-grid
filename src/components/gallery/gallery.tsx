@@ -87,10 +87,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, []);
 
-  const galleryClass = useMemo(
-    () => cx(styles.gallery, styles[scrollDir]),
-    [scrollDir, hideImages]
-  );
+  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
+    scrollDir,
+    hideImages,
+  ]);
 
   const wrapperClass = useMemo(
     () =>

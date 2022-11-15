@@ -5,16 +5,18 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { useDebouncedCallback } from "use-debounce";
+import { AlertIcon } from "../icons";
 import { ImageProps } from "./image.model";
 import styles from "./image.module.scss";
 
 const Image: FunctionComponent<ImageProps> = React.memo(
   ({ src, alt, width = 100, height = 100, onClick }) => {
     const [loaded, setLoaded] = useState(false);
+    const [error, setError] = useState(false);
 
-    const onLoaded = () => {
-      setLoaded(true);
-    };
+    const onLoaded = useDebouncedCallback(() => setLoaded(true), 1200);
+    const onError = () => setError(true);
 
     const imageClass = useMemo(
       () => cx(styles.image, loaded ? styles.visible : styles.hidden),
@@ -50,8 +52,20 @@ const Image: FunctionComponent<ImageProps> = React.memo(
         onKeyUp={(ev) => handleOpen(ev, src)}
         tabIndex={0}
       >
-        {!loaded && <span>loading...</span>}
-        <img src={src} alt={alt} className={imageClass} onLoad={onLoaded} />
+        {error && (
+          <span className={styles.icon}>
+            <AlertIcon />
+          </span>
+        )}
+        {!error && (
+          <img
+            src={src}
+            alt={alt}
+            className={imageClass}
+            onLoad={onLoaded}
+            onError={onError}
+          />
+        )}
       </div>
     );
   }
