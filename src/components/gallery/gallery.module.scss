@@ -2,15 +2,11 @@
 
 $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
 
-// all 500ms cubic-bezier(0.600, 0.040, 0.980, 0.335);
-
 .wrapper {
   position: relative;
   display: flex;
   transition: width 0.5s #{$ease-in-circ}, height 0.5s #{$ease-in-circ};
   background: #000;
-
-  // scroll-behavior: smooth;
 
   &.horizontal {
     flex-direction: column;
@@ -41,8 +37,7 @@ $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
   &.horizontal {
-    top: 50%;
-    transform: translateY(-50%);
+    top: 20px;
   }
 }
 

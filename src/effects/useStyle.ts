@@ -41,17 +41,17 @@ export function useStyle({
   const galleryStyle = useMemo<CSSProperties>(() => {
     let style = {};
     const { height, width } = imageDimensions;
-    console.log(region);
+    const { regionTop } = region;
 
     if (scrollDir === "vertical") {
       style = {
         gridAutoRows: `${height - gap}px`,
-        top: region.regionTop * imageDimensions.height + "px",
+        top: Math.max(regionTop * height, 20) + "px",
       };
     } else {
       style = {
         gridAutoColumns: `${width - gap}px`,
-        left: region.regionTop * imageDimensions.width + "px",
+        left: Math.max(regionTop * width, 20) + "px",
       };
     }
 

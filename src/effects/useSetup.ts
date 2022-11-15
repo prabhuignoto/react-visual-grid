@@ -28,9 +28,8 @@ const useSetup: useSetupFunctionType = ({
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
 
-  const [activeImageZoomLevel, setActiveImageZoomLevel] = useState<ZoomLevel>(
-    "2X"
-  );
+  const [activeImageZoomLevel, setActiveImageZoomLevel] =
+    useState<ZoomLevel>("2X");
 
   // reference to the gallery container
   const galleryRef = useRef<HTMLElement | null>(null);
@@ -91,7 +90,7 @@ const useSetup: useSetupFunctionType = ({
 
     if (node && mode === "auto" && rootWidth && rootHeight) {
       const cols = Math.floor((rootWidth as number) / imageWidth);
-      const rows = Math.floor((rootHeight as number) / imageHeight);
+      const rows = Math.floor(((rootHeight as number) - 120) / imageHeight);
 
       if (scrollDir === "vertical") {
         setColumns(cols);
