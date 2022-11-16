@@ -29,6 +29,8 @@ export default function useScroll({
 
   const [endReached, setEndReached] = useState(false);
 
+  const [scrollPercent, setScrollPercent] = useState(0);
+
   const checkIfScrolled = useCallback((ev: Event) => {
     const target = ev.target as HTMLDivElement;
     const { scrollLeft, scrollTop } = target;
@@ -64,6 +66,7 @@ export default function useScroll({
     }
 
     if (scrollDir === "vertical") {
+      setScrollPercent((scrollTop + clientHeight) / scrollHeight);
       if (scrollTop + clientHeight >= scrollHeight) {
         setEndReached(true);
       }
@@ -106,5 +109,6 @@ export default function useScroll({
     setRegion,
     isScrolled,
     endReached,
+    scrollPercent,
   };
 }

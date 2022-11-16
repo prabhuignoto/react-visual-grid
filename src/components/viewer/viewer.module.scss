@@ -51,6 +51,7 @@ $white: #fff;
   position: absolute;
   top: 1rem;
   right: 1rem;
+  border: 0;
   @extend %center;
 
   color: $white;
@@ -98,6 +99,7 @@ $white: #fff;
   height: 4rem;
   padding: 0;
   background: none;
+  border: 0;
   cursor: pointer;
   color: $white;
   border-radius: 4px;

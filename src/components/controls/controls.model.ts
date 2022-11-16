@@ -19,4 +19,5 @@ export type ControlsProps = {
   containerWidth?: string | number;
   containerHeight?: string | number;
   isFullScreen?: boolean;
+  scrollPercent?: number;
 };

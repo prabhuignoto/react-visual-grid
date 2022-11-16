@@ -45,6 +45,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     scrollPositions,
     isScrolled,
     isFullScreen,
+    scrollPercent,
     rootDimensions: { height: rootHeight, width: rootWidth },
   } = useSetup({
     mode,
@@ -95,10 +96,10 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     }
   }, []);
 
-  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
-    scrollDir,
-    hideImages,
-  ]);
+  const galleryClass = useMemo(
+    () => cx(styles.gallery, styles[scrollDir]),
+    [scrollDir, hideImages]
+  );
 
   const wrapperClass = useMemo(
     () =>
@@ -226,6 +227,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
         containerWidth={containerWidth}
         containerHeight={containerHeight}
         isFullScreen={isFullScreen}
+        scrollPercent={scrollPercent}
       />
       {activeImage ? (
         <ViewerContainer

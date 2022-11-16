@@ -7,6 +7,7 @@ import {
   useRef,
 } from "react";
 import { MaximizeIcon, MinimizeIcon } from "../icons";
+import { ProgressBar } from "../progress-bar/progress-bar";
 import { ActionType, ControlsProps } from "./controls.model";
 import styles from "./controls.module.scss";
 
@@ -22,6 +23,7 @@ const Controls: FunctionComponent<ControlsProps> = ({
   containerWidth,
   containerHeight,
   isFullScreen,
+  scrollPercent,
 }) => {
   const controlButton = useMemo(
     () => cx(styles.control_button, styles.rounded),
@@ -127,6 +129,10 @@ const Controls: FunctionComponent<ControlsProps> = ({
           </button>
         </li>
       </ul>
+      <ProgressBar
+        percent={scrollPercent || 0}
+        top={scrollPositions.scrollTop}
+      />
     </div>
   );
 };

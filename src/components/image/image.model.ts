@@ -13,5 +13,5 @@ export type ImageProps = {
       y: number;
     }
   ) => void;
-  index: number;
+  index?: number;
 };

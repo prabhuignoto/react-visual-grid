@@ -42,6 +42,7 @@ export type useSetupFunctionType = (
   isScrolled: boolean;
   isFullScreen: boolean;
   rootDimensions: { width?: number; height?: number };
+  scrollPercent: number;
 };
 
 export type StyleProps = {

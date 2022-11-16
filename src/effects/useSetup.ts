@@ -65,6 +65,7 @@ const useSetup: useSetupFunctionType = ({
     setRegion,
     isScrolled,
     endReached,
+    scrollPercent,
   } = useScroll({
     ref: galleryRef,
     imageDimensions: imageDims,
@@ -237,6 +238,7 @@ const useSetup: useSetupFunctionType = ({
     isScrolled,
     isFullScreen,
     rootDimensions,
+    scrollPercent,
   };
 };
 
