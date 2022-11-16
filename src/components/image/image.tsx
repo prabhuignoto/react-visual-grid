@@ -10,7 +10,7 @@ import { ImageProps } from "./image.model";
 import styles from "./image.module.scss";
 
 const Image: FunctionComponent<ImageProps> = React.memo(
-  ({ src, alt, width = 100, height = 100, onClick, index }) => {
+  ({ src, alt, width = 100, height = 100, onClick, index, id }) => {
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(false);
 
@@ -37,10 +37,10 @@ const Image: FunctionComponent<ImageProps> = React.memo(
 
         if (ev instanceof KeyboardEvent) {
           if (ev.key === "Enter") {
-            onClick?.(src, index || -1, { x, y });
+            onClick?.(src, id, { x, y });
           }
         } else {
-          onClick?.(src, index || -1, { x, y });
+          onClick?.(src, id, { x, y });
         }
       },
       [error]
@@ -71,7 +71,8 @@ const Image: FunctionComponent<ImageProps> = React.memo(
         )}
       </div>
     );
-  }
+  },
+  (prev, next) => prev.index === next.index
 );
 
 Image.displayName = "Image";

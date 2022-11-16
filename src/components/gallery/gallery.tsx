@@ -83,14 +83,6 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     y: 0,
   });
 
-  const visibleStartIndex = useMemo(() => {
-    if (scrollDir === "vertical") {
-      return (rows * columns * regionTop) / rows;
-    } else {
-      return (rows * columns * regionTop) / columns;
-    }
-  }, [rows, columns, regionTop, records.length]);
-
   const [activeImageIndex, setActiveImageIndex] = useState(-1);
 
   const onContainerRef = useCallback((node: HTMLDivElement) => {
@@ -153,10 +145,10 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     };
   }, [containerWidth, containerHeight]);
 
-  const handleImageClick = (src: string, index?: number, pos?: Position) => {
+  const handleImageClick = (src: string, id?: string, pos?: Position) => {
     setShowViewer(true);
-    setActiveImage(src);
-    setActiveImageIndex(index || 0 + visibleStartIndex);
+    const index = imagesRef.current.findIndex((image) => image.id === id);
+    setActiveImageIndex(index || 0);
     pos && setPosition(pos);
   };
 
@@ -201,6 +193,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
               height={getImageDimensions.height}
               onClick={handleImageClick}
               index={index}
+              id={image.id}
             />
           </li>
         ))}

@@ -28,7 +28,8 @@
     "fix:css": "stylelint --fix ./src/components/**/*.scss",
     "prepare": "husky install",
     "lint:all": "pnpm run lint:js && pnpm run lint:css",
-    "rollup": "rollup -c ./rollup.config.js"
+    "rollup": "rollup -c ./rollup.config.js",
+    "clean": "npx concurrently \"pnpm run format\" \"pnpm run lint:all\""
   },
   "dependencies": {
     "classnames": "^2.3.2",
