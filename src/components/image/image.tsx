@@ -11,7 +11,6 @@ import styles from "./image.module.scss";
 
 const Image: FunctionComponent<ImageProps> = React.memo(
   ({ src, alt, width = 100, height = 100, onClick, index }) => {
-    console.log(width);
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(false);
 
@@ -30,6 +29,10 @@ const Image: FunctionComponent<ImageProps> = React.memo(
           | React.KeyboardEvent<HTMLDivElement>,
         src: string
       ) => {
+        if (error) {
+          return;
+        }
+
         const { x, y } = (ev.target as HTMLElement).getBoundingClientRect();
 
         if (ev instanceof KeyboardEvent) {
@@ -40,7 +43,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
           onClick?.(src, index, { x, y });
         }
       },
-      []
+      [error]
     );
 
     return (

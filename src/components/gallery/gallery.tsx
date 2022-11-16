@@ -13,7 +13,7 @@ import { Controls } from "../controls/controls";
 import { ActionType } from "../controls/controls.model";
 import { Image } from "../image/image";
 import { ViewerContainer } from "../viewer/viewer";
-import { defaultImageSizes, GalleryProps } from "./gallery.model";
+import { defaultImageSizes, GalleryProps, Position } from "./gallery.model";
 import styles from "./gallery.module.scss";
 
 const Gallery: FunctionComponent<GalleryProps> = ({
@@ -73,14 +73,19 @@ const Gallery: FunctionComponent<GalleryProps> = ({
 
   const containerRef = useRef<null | Element | HTMLDivElement>(null);
   const [activeImage, setActiveImage] = useState("");
-  const [showImage, setShowImage] = useState(false);
-  const [position, setPosition] = useState<{
-    x: number;
-    y: number;
-  }>({
+  const [showViewer, setShowViewer] = useState(false);
+  const [position, setPosition] = useState<Position>({
     x: 0,
     y: 0,
   });
+
+  const visibleStartIndex = useMemo(() => {
+    if (scrollDir === "vertical") {
+      return (rows * columns * regionTop) / rows;
+    } else {
+      return (rows * columns * regionTop) / columns;
+    }
+  }, [rows, columns, regionTop, records.length]);
 
   const [activeImageIndex, setActiveImageIndex] = useState(-1);
 
@@ -144,19 +149,15 @@ const Gallery: FunctionComponent<GalleryProps> = ({
     };
   }, [containerWidth, containerHeight]);
 
-  const handleImageClick = (
-    src: string,
-    index: number,
-    pos?: { x: number; y: number }
-  ) => {
-    setShowImage(true);
+  const handleImageClick = (src: string, index: number, pos?: Position) => {
+    setShowViewer(true);
     setActiveImage(src);
-    setActiveImageIndex(index);
+    setActiveImageIndex(index + visibleStartIndex);
     pos && setPosition(pos);
   };
 
   const onClose = () => {
-    setShowImage(false);
+    setShowViewer(false);
     setActiveImage("");
   };
 
@@ -180,8 +181,8 @@ const Gallery: FunctionComponent<GalleryProps> = ({
 
   const wrapperStyleMod = useMemo(
     () =>
-      Object.assign({}, wrapperStyle, showImage ? { overflow: "hidden" } : {}),
-    [showImage, wrapperStyle]
+      Object.assign({}, wrapperStyle, showViewer ? { overflow: "hidden" } : {}),
+    [showViewer, wrapperStyle]
   );
 
   const galleryList = useMemo(() => {
@@ -235,7 +236,7 @@ const Gallery: FunctionComponent<GalleryProps> = ({
             height: getRootDimensions.rootHeight,
             width: getRootDimensions.rootWidth,
           }}
-          show={showImage}
+          show={showViewer}
           rect={position}
           top={scrollPositions.scrollTop}
           left={scrollPositions.scrollLeft}

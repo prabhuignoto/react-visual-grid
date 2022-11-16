@@ -17,6 +17,11 @@ export type ImageSize = {
   };
 };
 
+export type Position = {
+  x: number;
+  y: number;
+};
+
 export type ZoomLevel = "1X" | "2X" | "3X" | "4X";
 
 export type GalleryProps = {
