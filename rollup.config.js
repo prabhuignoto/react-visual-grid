@@ -4,7 +4,7 @@ import common from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import cssnano from "cssnano";
 import { resolve as pathResolve } from "path";
-import postCSSModules from "postcss-modules";
+// import postCSSModules from "postcss-modules";
 import analyze from "rollup-plugin-analyzer";
 import copy from "rollup-plugin-copy";
 import del from "rollup-plugin-delete";
@@ -23,7 +23,7 @@ const banner = `/*
 `;
 
 export default {
-  input: "src/react-images.ts",
+  input: "src/react-calleria.ts",
   output: [
     {
       banner,
@@ -71,9 +71,6 @@ export default {
       plugins: [
         cssnano({
           preset: "default",
-        }),
-        postCSSModules({
-          scopeBehaviour: "local",
         }),
       ],
     }),

@@ -57,6 +57,7 @@ export default function useScroll({
       clientHeight,
       clientWidth,
       scrollHeight,
+      scrollWidth,
     } = target;
 
     setScrollPositions({ scrollLeft, scrollTop });
@@ -71,6 +72,7 @@ export default function useScroll({
         setEndReached(true);
       }
     } else if (scrollDir === "horizontal") {
+      setScrollPercent((scrollLeft + clientWidth) / scrollWidth);
       if (scrollLeft + clientWidth >= clientWidth) {
         setEndReached(true);
       }

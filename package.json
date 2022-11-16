@@ -1,6 +1,5 @@
 {
-  "name": "react-gallery",
-  "private": true,
+  "name": "react-calleria",
   "version": "0.1.0",
   "type": "module",
   "author": {
@@ -55,9 +54,9 @@
     "not dead",
     "> 5%"
   ],
-  "main": "dist/react-images.js",
-  "module": "dist/react-images.esm.js",
-  "umd": "dist/react-images.umd.js",
+  "main": "dist/react-calleria.js",
+  "module": "dist/react-calleria.esm.js",
+  "umd": "dist/react-calleria.umd.js",
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/plugin-proposal-optional-chaining": "^7.18.9",

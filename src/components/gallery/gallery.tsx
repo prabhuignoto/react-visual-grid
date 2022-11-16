@@ -153,10 +153,10 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     };
   }, [containerWidth, containerHeight]);
 
-  const handleImageClick = (src: string, index: number, pos?: Position) => {
+  const handleImageClick = (src: string, index?: number, pos?: Position) => {
     setShowViewer(true);
     setActiveImage(src);
-    setActiveImageIndex(index + visibleStartIndex);
+    setActiveImageIndex(index || 0 + visibleStartIndex);
     pos && setPosition(pos);
   };
 

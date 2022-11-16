@@ -11,6 +11,8 @@ import styles from "./progress-bar.module.scss";
 const ProgressBar: FunctionComponent<ProgressBarProps> = ({
   percent,
   top = 0,
+  containerWidth = 0,
+  left = 0,
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const onRef = useCallback((node: HTMLDivElement) => {
@@ -22,10 +24,11 @@ const ProgressBar: FunctionComponent<ProgressBarProps> = ({
   const style = useMemo(() => {
     const ele = ref.current;
     if (ele) {
-      console.log(ele.clientWidth);
+      const width = containerWidth || ele.clientWidth;
       return {
-        "--rc-images-width": `${Math.round(ele?.clientWidth * percent)}px`,
-        // top: `${top}px`,
+        "--rc-images-width": `${Math.round(width * percent)}px`,
+        left: `${left}px`,
+        width: `${width}px`,
       } as CSSProperties;
     }
   }, [percent, ref.current]);

@@ -132,6 +132,8 @@ const Controls: FunctionComponent<ControlsProps> = ({
       <ProgressBar
         percent={scrollPercent || 0}
         top={scrollPositions.scrollTop}
+        left={scrollPositions.scrollLeft}
+        containerWidth={rootWidth as number}
       />
     </div>
   );

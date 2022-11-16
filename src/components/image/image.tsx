@@ -37,10 +37,10 @@ const Image: FunctionComponent<ImageProps> = React.memo(
 
         if (ev instanceof KeyboardEvent) {
           if (ev.key === "Enter") {
-            onClick?.(src, index, { x, y });
+            onClick?.(src, index || -1, { x, y });
           }
         } else {
-          onClick?.(src, index, { x, y });
+          onClick?.(src, index || -1, { x, y });
         }
       },
       [error]
