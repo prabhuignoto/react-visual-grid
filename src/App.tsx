@@ -5,7 +5,6 @@ import { Gallery } from "./components/gallery/gallery";
 const images = Array.from({ length: 2500 }, (_, i) => ({
   src: `https://picsum.photos/id/${Math.round(Math.random() * 110)}/800/600`,
   alt: `Image ${i + 1}`,
-  id: i + 1 + "",
 }));
 
 function App() {
@@ -16,8 +15,8 @@ function App() {
         mode="auto"
         gridDimensions={{ columns: 8 }}
         gap={10}
-        width={1800}
-        height={1200}
+        width={1200}
+        height={900}
         scrollDir="vertical"
       />
     </div>
