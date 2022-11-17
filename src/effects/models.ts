@@ -11,7 +11,7 @@ export type Options = Pick<
   | "gridDimensions"
   | "width"
   | "height"
-  | "scrollDir"
+  | "gridLayout"
   | "gap"
   | "totalImages"
   | "imageSizes"
@@ -53,7 +53,7 @@ export type useSetupFunctionType = (
 export type StyleProps = {
   imageDimensions: ImageDimensions;
   region: Region;
-  scrollDir?: "vertical" | "horizontal";
+  gridLayout?: "vertical" | "horizontal";
   rootDimensions: ImageDimensions;
   mode?: "auto" | "manual";
   isFullScreen: boolean;

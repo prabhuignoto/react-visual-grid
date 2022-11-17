@@ -6,7 +6,7 @@ export const defaultProps: GalleryProps = {
   images: [],
   width: 1200,
   height: 600,
-  scrollDir: "vertical",
+  gridLayout: "vertical",
   gridDimensions: {
     columns: 3,
   },

@@ -33,13 +33,13 @@
 
 ## ⚡ Features <a name = "about"></a>
 
-- Generate image grids quickly and easily. Just provide a list of image URLs and the gallery will be generated for you.
-- Inbuilt smart virtualization for improved performance.
+- Generate image grids quickly and easily. Just provide a list of image URLs, and the gallery will be generated for you.
+- Built-in smart virtualization for improved performance.
 - Load thousands of images without worrying about performance.
-- UI Controls for customizing the image sizes on the fly. Image sizes can be changed from 1x to 3x and the sizes are completely customizable.
-- Render images in a grid horizontally or vertically.
-- Built with Typescript
-- Easy to understand API and completely configurable react component.
+- UI controls for adjusting image sizes on the flyImage sizes can be changed from 1x to 3x, and the sizes are completely customizable.
+- Render images horizontally or vertically in a grid.
+- Created with typescript
+- Easy-to-understand API and a completely configurable React component.
 
 ## 🎥 Demo <a name = "demo"></a>
 
@@ -47,9 +47,11 @@
 
 ## 💭 How it works <a name = "working"></a>
 
-`react-visual-grid` works on a bare minimum of props and automatically figures out the best way to render the images in a grid. It does this by calculating the width of the container and the number of images that can be rendered in a row. It then calculates the height of each image based on the width of the image and the aspect ratio of the image. It then renders the images in a grid.
+`react-visual-grid` works with the absolute minimum of properties to determine the optimal method to render images. All that is required is to specify the picture sizes desired, and the component will automatically determine the optimum approach to render the images.
 
-The component also comes with a virtualization feature which allows you to render only the images that are visible on the screen. This allows you to render thousands of images without worrying about performance.
+Because virtualization is built in, you won't have to worry about performance.
+
+The component handles loading 5k+ photos with ease in the example. Both horizontal and vertical virtualization are supported.
 
 ## ⚙️ Installation <a name = "installation"></a>
 
@@ -65,7 +67,7 @@ You can install `react-visual-grid` using npm or yarn.
 
 ## 🍵 Usage <a name = "usage"></a>
 
-Gallery can be generated in two modes: Horizontal and Vertical. Depending on the mode, the images are rendered in col. The default mode is `vertical`
+Grids can be generated in two modes: Horizontal and Vertical. The default mode is `vertical`
 
 ```js
 import { Gallery } from "react-visual-grid";
@@ -85,7 +87,7 @@ const App = () => {
 
 | Name       | Description                                                                               | Type                      | Default                       |
 | :--------- | :---------------------------------------------------------------------------------------- | :------------------------ | :---------------------------- |
-| scrollDir  | Direction to render the images. can be `horizontal` or `vertical`                         | string                    | `vertical`                    |
+| gridLayout | Direction to render the images. can be `horizontal` or `vertical`                         | string                    | `vertical`                    |
 | images     | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                            |
 | width      | Width of the Grid                                                                         | number                    | 1200                          |
 | height     | Height of the Grid                                                                        | number                    | 600                           |
@@ -102,7 +104,7 @@ const App = () => {
   return (
     <Gallery
       images={images}
-      scrollDir="horizontal"
+      gridLayout="horizontal"
       width={1800}
       height={1200}
     />
@@ -117,7 +119,7 @@ import { Gallery } from "react-visual-grid";
 
 const App = () => {
   return (
-    <Gallery images={images} scrollDir="vertical" width={1800} height={1200} />
+    <Gallery images={images} gridLayout="vertical" width={1800} height={1200} />
   );
 };
 ```

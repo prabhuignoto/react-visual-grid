@@ -24,7 +24,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     images = [],
     width = 1200,
     height = 600,
-    scrollDir = "vertical",
+    gridLayout = "vertical",
     gridDimensions = {
       columns: 3,
     },
@@ -63,14 +63,14 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     gridDimensions,
     width,
     height,
-    scrollDir,
+    gridLayout,
     gap,
     totalImages: images.length,
     theme,
   });
 
   const records = useMemo(() => {
-    if (scrollDir === "vertical") {
+    if (gridLayout === "vertical") {
       return imagesRef.current.filter(
         (_, index) =>
           Math.floor(index / columns) >= regionTop &&
@@ -99,18 +99,18 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     }
   }, []);
 
-  const galleryClass = useMemo(() => cx(styles.gallery, styles[scrollDir]), [
-    scrollDir,
+  const galleryClass = useMemo(() => cx(styles.gallery, styles[gridLayout]), [
+    gridLayout,
     hideImages,
   ]);
 
   const wrapperClass = useMemo(
     () =>
       cx(
-        scrollDir === "vertical" ? styles.vertical : styles.horizontal,
+        gridLayout === "vertical" ? styles.vertical : styles.horizontal,
         styles.wrapper
       ),
-    [scrollDir]
+    [gridLayout]
   );
 
   const screenClass = useMemo(

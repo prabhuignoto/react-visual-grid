@@ -36,7 +36,7 @@ export type GalleryProps = {
   // images as array
   images: ImageProps[];
 
-  scrollDir?: "horizontal" | "vertical";
+  gridLayout?: "horizontal" | "vertical";
 
   // dimensions of the grid
   gridDimensions?: GridDimensions;

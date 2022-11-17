@@ -33,7 +33,7 @@ const Controls: FunctionComponent<ControlsProps> = ({
   endReached,
   startReached,
 }) => {
-  const { scrollDir, showProgressBar } = useContext(Context);
+  const { gridLayout, showProgressBar } = useContext(Context);
   const controlButton = useMemo(
     () => cx(styles.control_button, styles.rounded),
     []
@@ -65,8 +65,8 @@ const Controls: FunctionComponent<ControlsProps> = ({
       const { clientHeight: controlHeight, clientWidth: controlWidth } = ele;
 
       let style = {
-        [scrollDir === "vertical" ? "top" : "left"]:
-          scrollDir === "horizontal"
+        [gridLayout === "vertical" ? "top" : "left"]:
+          gridLayout === "horizontal"
             ? `${(scrollLeft + rootWidth) / 2 - controlWidth / 2}px`
             : `${scrollTop + rootHeight - controlHeight}px`,
       };
@@ -94,25 +94,25 @@ const Controls: FunctionComponent<ControlsProps> = ({
 
   const wrapperStyle = useMemo(
     () =>
-      scrollDir === "horizontal" ? { width: containerWidth } : customStyle,
-    [scrollDir, containerWidth, customStyle]
+      gridLayout === "horizontal" ? { width: containerWidth } : customStyle,
+    [gridLayout, containerWidth, customStyle]
   );
 
   const controlsStyle = useMemo(
-    () => (scrollDir === "horizontal" ? customStyle : {}),
-    [scrollDir, customStyle]
+    () => (gridLayout === "horizontal" ? customStyle : {}),
+    [gridLayout, customStyle]
   );
 
   return (
     <div
       className={controlWrapperClass}
       style={wrapperStyle}
-      ref={scrollDir === "vertical" ? onRef : null}
+      ref={gridLayout === "vertical" ? onRef : null}
     >
       <ul
         className={styles.controls}
         style={controlsStyle}
-        ref={scrollDir === "horizontal" ? onRef : null}
+        ref={gridLayout === "horizontal" ? onRef : null}
       >
         <li className={styles.control}>
           <button

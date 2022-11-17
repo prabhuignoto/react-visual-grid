@@ -21,7 +21,7 @@ const useSetup: useSetupFunctionType = ({
   gridDimensions = { columns: 4 },
   width = 0,
   height = 0,
-  scrollDir,
+  gridLayout,
   gap = 10,
   totalImages = 0,
   theme,
@@ -76,13 +76,13 @@ const useSetup: useSetupFunctionType = ({
   } = useScroll({
     ref: galleryRef,
     imageDimensions: imageDims,
-    scrollDir,
+    gridLayout,
   });
 
   const { wrapperStyle, galleryStyle } = useStyle({
     rootDimensions,
     imageDimensions: imageDims,
-    scrollDir,
+    gridLayout,
     region,
     columns,
     rows,
@@ -100,14 +100,14 @@ const useSetup: useSetupFunctionType = ({
       const cols = Math.floor((rootWidth as number) / imageWidth);
       const rows = Math.floor(((rootHeight as number) - 120) / imageHeight);
 
-      if (scrollDir === "vertical") {
+      if (gridLayout === "vertical") {
         setColumns(cols);
         setRows(Math.round(totalImages / cols));
         setRegion((prev) => ({
           ...prev,
           regionBottom: Math.round(rootHeight / imageHeight),
         }));
-      } else if (scrollDir === "horizontal") {
+      } else if (gridLayout === "horizontal") {
         setRows(rows);
         setColumns(Math.round(rootWidth / imageWidth));
         setRegion((prev) => ({
@@ -210,7 +210,7 @@ const useSetup: useSetupFunctionType = ({
     if (galleryRef.current) {
       const { height, width } = imageDims;
 
-      if (scrollDir === "vertical") {
+      if (gridLayout === "vertical") {
         const newHeight = rows * height;
         const addHeight = Math.max(
           ...Object.keys(imageSizes).map((x) => imageSizes[x].height)

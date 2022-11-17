@@ -17,7 +17,7 @@ function App() {
         gap={10}
         width={1200}
         height={900}
-        scrollDir="vertical"
+        gridLayout="vertical"
       />
     </div>
   );

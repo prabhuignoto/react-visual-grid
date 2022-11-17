@@ -6,13 +6,13 @@ import { Region, ScrollPositions } from "./models";
 export type Options = {
   ref: RefObject<HTMLElement>;
   imageDimensions: ImageDimensions;
-  scrollDir?: "vertical" | "horizontal";
+  gridLayout?: "vertical" | "horizontal";
 };
 
 export default function useScroll({
   ref,
   imageDimensions,
-  scrollDir,
+  gridLayout,
 }: Options) {
   const [scrollPositions, setScrollPositions] = useState<ScrollPositions>({
     scrollLeft: 0,
@@ -61,10 +61,10 @@ export default function useScroll({
 
     if (ele) {
       const { scrollHeight, scrollWidth } = ele;
-      const left = scrollDir === "horizontal" ? scrollWidth : 0;
+      const left = gridLayout === "horizontal" ? scrollWidth : 0;
       ele.scrollTo(left, scrollHeight);
     }
-  }, [scrollDir]);
+  }, [gridLayout]);
 
   const handleScroll = useDebouncedCallback((ev: Event) => {
     const target = ev.target as HTMLDivElement;
@@ -84,7 +84,7 @@ export default function useScroll({
       setEndReached(false);
     }
 
-    if (scrollDir === "vertical") {
+    if (gridLayout === "vertical") {
       setScrollPercent((scrollTop + clientHeight) / scrollHeight);
       if (scrollTop + clientHeight >= scrollHeight) {
         setEndReached(true);
@@ -94,7 +94,7 @@ export default function useScroll({
       if (scrollTop === 0) {
         setStartReached(true);
       }
-    } else if (scrollDir === "horizontal") {
+    } else if (gridLayout === "horizontal") {
       setScrollPercent((scrollLeft + clientWidth) / scrollWidth);
       if (scrollLeft + clientWidth > clientWidth) {
         setEndReached(true);
@@ -107,9 +107,9 @@ export default function useScroll({
     }
 
     const regionTop =
-      scrollDir === "vertical" ? scrollTop / height : scrollLeft / width;
+      gridLayout === "vertical" ? scrollTop / height : scrollLeft / width;
     const regionBottom =
-      scrollDir === "vertical"
+      gridLayout === "vertical"
         ? (scrollTop + clientHeight) / height
         : (scrollLeft + clientWidth) / width;
 

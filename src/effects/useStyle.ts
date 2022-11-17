@@ -4,7 +4,7 @@ import { StyleProps } from "./models";
 export function useStyle({
   rootDimensions,
   imageDimensions,
-  scrollDir,
+  gridLayout,
   region,
   columns,
   rows,
@@ -19,7 +19,7 @@ export function useStyle({
     const newHeight = height - gap;
 
     if (mode === "auto") {
-      if (scrollDir === "vertical") {
+      if (gridLayout === "vertical") {
         return {
           gridTemplateColumns: `repeat(${columns}, ${newWidth - gap * 1}px)`,
         };
@@ -43,7 +43,7 @@ export function useStyle({
     const { height, width } = imageDimensions;
     const { regionTop } = region;
 
-    if (scrollDir === "vertical") {
+    if (gridLayout === "vertical") {
       style = {
         gridAutoRows: `${height - gap}px`,
         top: Math.max(regionTop * height, 20) + "px",
@@ -64,7 +64,7 @@ export function useStyle({
     columns,
     gridSettings,
     region.regionTop,
-    scrollDir,
+    gridLayout,
     imageDimensions.width,
     imageDimensions.height,
   ]);
@@ -93,12 +93,12 @@ export function useStyle({
 
     return {
       ...styles,
-      [`overflow${scrollDir === "vertical" ? "Y" : "X"}`]: "auto",
+      [`overflow${gridLayout === "vertical" ? "Y" : "X"}`]: "auto",
     };
   }, [
     rootDimensions.width,
     rootDimensions.height,
-    scrollDir,
+    gridLayout,
     mode,
     isFullScreen,
   ]);

@@ -17,6 +17,10 @@
   ],
   "description": "Highly configurable virtualized image gallery for React",
   "directories": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prabhuignoto/react-visual-grid"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
