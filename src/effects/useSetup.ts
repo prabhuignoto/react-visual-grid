@@ -13,6 +13,7 @@ import {
 import { useSetupFunctionType } from "./models";
 import useScroll from "./useScroll";
 import { useStyle } from "./useStyle";
+import useTheme from "./useTheme";
 
 const useSetup: useSetupFunctionType = ({
   mode,
@@ -23,6 +24,7 @@ const useSetup: useSetupFunctionType = ({
   scrollDir,
   gap = 10,
   totalImages = 0,
+  theme,
 }) => {
   // state for managing the rows and columns of the gallery
   const [columns, setColumns] = useState(0);
@@ -59,6 +61,8 @@ const useSetup: useSetupFunctionType = ({
   // used for temporarily hiding the images
   const [hideImages, setHideImages] = useState<boolean | null>(null);
 
+  useTheme(galleryRef.current, theme);
+
   const {
     scrollPositions,
     region = { regionTop: 0, regionBottom: 0 },
@@ -66,6 +70,8 @@ const useSetup: useSetupFunctionType = ({
     isScrolled,
     endReached,
     scrollPercent,
+    scrollToTop,
+    scrollToBottom,
   } = useScroll({
     ref: galleryRef,
     imageDimensions: imageDims,
@@ -82,7 +88,6 @@ const useSetup: useSetupFunctionType = ({
     gap,
     mode,
     isFullScreen,
-    endReached,
   });
 
   const init = () => {
@@ -139,8 +144,8 @@ const useSetup: useSetupFunctionType = ({
     if (galleryRef.current) {
       galleryRef.current.scrollTo(0, 0);
       setRegion({
-        regionTop: 0,
-        regionBottom: 0,
+        regionTop: -1,
+        regionBottom: -1,
       });
     }
   }, []);
@@ -239,6 +244,9 @@ const useSetup: useSetupFunctionType = ({
     isFullScreen,
     rootDimensions,
     scrollPercent,
+    scrollToTop,
+    scrollToBottom,
+    endReached,
   };
 };
 

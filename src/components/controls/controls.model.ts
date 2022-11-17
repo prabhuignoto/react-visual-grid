@@ -1,15 +1,18 @@
 import { ZoomLevel } from "../gallery/gallery.model";
 
-export type ActionType = "1X" | "2X" | "3X" | "FULL_SCREEN";
+export type ActionType =
+  | "1X"
+  | "2X"
+  | "3X"
+  | "FULL_SCREEN"
+  | "GO_UP"
+  | "GO_DOWN";
 
 export type ControlsProps = {
   onAction: (type: ActionType) => void;
   activeZoom: ZoomLevel;
-  // style: CSSProperties;
   isScrolled: boolean;
   hide: boolean;
-  scrollDir: "vertical" | "horizontal";
-  // wrapperStyle: CSSProperties;
   scrollPositions: {
     scrollLeft: number;
     scrollTop: number;
@@ -20,4 +23,5 @@ export type ControlsProps = {
   containerHeight?: string | number;
   isFullScreen?: boolean;
   scrollPercent?: number;
+  endReached?: boolean;
 };

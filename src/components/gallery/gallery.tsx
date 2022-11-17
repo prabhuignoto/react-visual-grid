@@ -18,6 +18,8 @@ import { defaultImageSizes, GalleryProps, Position } from "./gallery.model";
 import styles from "./gallery.module.scss";
 
 const Gallery: FunctionComponent<GalleryProps> = (props) => {
+  const contextProps = Object.assign({}, defaultProps, props);
+
   const {
     images = [],
     width = 1200,
@@ -29,7 +31,8 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     gap = 20,
     mode = "auto",
     imageSizes = defaultImageSizes,
-  } = Object.assign({}, defaultProps, props);
+    theme,
+  } = contextProps;
 
   const imagesRef = useRef(images.map((image) => ({ ...image, id: nanoid() })));
 
@@ -49,6 +52,9 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     isScrolled,
     isFullScreen,
     scrollPercent,
+    scrollToTop,
+    scrollToBottom,
+    endReached,
     rootDimensions: { height: rootHeight, width: rootWidth },
   } = useSetup({
     mode,
@@ -59,6 +65,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     scrollDir,
     gap,
     totalImages: images.length,
+    theme,
   });
 
   const records = useMemo(() => {
@@ -119,6 +126,10 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
       fullScreen();
     } else if (type === "1X" || type === "2X" || type === "3X") {
       resizeImages(type);
+    } else if (type === "GO_UP") {
+      scrollToTop();
+    } else if (type === "GO_DOWN") {
+      scrollToBottom();
     }
   };
 
@@ -202,7 +213,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
   }, [records.length, regionTop, regionBottom]);
 
   return (
-    <Context.Provider value={props}>
+    <Context.Provider value={contextProps}>
       <div style={wrapperStyleMod} ref={onRef} className={wrapperClass}>
         <div
           className={styles.container}
@@ -216,7 +227,6 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
           onAction={handleAction}
           activeZoom={activeZoomLevel}
           isScrolled={isScrolled}
-          scrollDir={scrollDir}
           rootHeight={getRootDimensions.rootHeight}
           rootWidth={getRootDimensions.rootWidth}
           scrollPositions={scrollPositions}
@@ -225,6 +235,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
           containerHeight={containerHeight}
           isFullScreen={isFullScreen}
           scrollPercent={scrollPercent}
+          endReached={endReached}
         />
         {activeImage ? (
           <ViewerContainer

@@ -3,10 +3,17 @@ import {
   CSSProperties,
   FunctionComponent,
   useCallback,
+  useContext,
   useMemo,
   useRef,
 } from "react";
-import { MaximizeIcon, MinimizeIcon } from "../icons";
+import { Context } from "../context";
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  MaximizeIcon,
+  MinimizeIcon,
+} from "../icons";
 import { ProgressBar } from "../progress-bar/progress-bar";
 import { ActionType, ControlsProps } from "./controls.model";
 import styles from "./controls.module.scss";
@@ -16,7 +23,6 @@ const Controls: FunctionComponent<ControlsProps> = ({
   activeZoom,
   isScrolled,
   hide,
-  scrollDir,
   scrollPositions,
   rootHeight = 0,
   rootWidth = 0,
@@ -24,7 +30,10 @@ const Controls: FunctionComponent<ControlsProps> = ({
   containerHeight,
   isFullScreen,
   scrollPercent,
+  endReached,
 }) => {
+  const { scrollDir, showProgressBar } = useContext(Context);
+  console.log(endReached);
   const controlButton = useMemo(
     () => cx(styles.control_button, styles.rounded),
     []
@@ -105,6 +114,15 @@ const Controls: FunctionComponent<ControlsProps> = ({
         style={controlsStyle}
         ref={scrollDir === "horizontal" ? onRef : null}
       >
+        <li className={styles.control}>
+          <button
+            className={cx(controlButton, styles.nav_button)}
+            aria-label="Go Up"
+            onClick={() => onAction("GO_UP")}
+          >
+            <ChevronUpIcon />
+          </button>
+        </li>
         {["1X", "2X", "3X"].map((item, index) => (
           <li className={styles.control} key={index}>
             <button
@@ -121,20 +139,35 @@ const Controls: FunctionComponent<ControlsProps> = ({
         ))}
         <li className={styles.control}>
           <button
+            className={cx(
+              controlButton,
+              styles.nav_button,
+              endReached ? styles.button_disabled : ""
+            )}
+            aria-label="Go Down"
+            onClick={() => onAction("GO_DOWN")}
+          >
+            <ChevronDownIcon />
+          </button>
+        </li>
+        <li className={cx(styles.control, styles.nav_button)}>
+          <button
             onClick={() => onAction("FULL_SCREEN")}
-            className={controlButton}
+            className={cx(controlButton)}
             aria-label={isFullScreen ? "Minimize" : "Maximize"}
           >
             {isFullScreen ? <MinimizeIcon /> : <MaximizeIcon />}
           </button>
         </li>
       </ul>
-      <ProgressBar
-        percent={scrollPercent || 0}
-        top={scrollPositions.scrollTop}
-        left={scrollPositions.scrollLeft}
-        containerWidth={rootWidth as number}
-      />
+      {showProgressBar ? (
+        <ProgressBar
+          percent={scrollPercent || 0}
+          top={scrollPositions.scrollTop}
+          left={scrollPositions.scrollLeft}
+          containerWidth={rootWidth as number}
+        />
+      ) : null}
     </div>
   );
 };

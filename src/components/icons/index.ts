@@ -1,6 +1,8 @@
 export { default as AlertIcon } from "./alert";
+export { default as ChevronDownIcon } from "./chevron-down";
 export { default as ChevronLeftIcon } from "./chevron-left";
 export { default as ChevronRightIcon } from "./chevron-right";
+export { default as ChevronUpIcon } from "./chevron-up";
 export { default as CloseIcon } from "./close";
 export { default as MaximizeIcon } from "./maximize";
 export { default as MinimizeIcon } from "./minimize";

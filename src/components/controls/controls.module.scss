@@ -1,16 +1,19 @@
 @use "../../common/styles.module.scss";
 
 $primary: #007fff;
+$bg-color: var(--rc-v-grid-bg-color);
+$btn-color: var(--rc-v-grid-control-btn-color);
+$controls-bg-color: var(--rc-v-grid-controls-bg-color);
+$controls-backdrop-color: var(--rc-v-grid-controls-backdrop-color);
 
 .controls {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 300px;
-  border-radius: 4px;
-  background: rgb(255 255 255 / 95%);
-  height: 60px;
-  box-shadow: 0 0 20px 5px rgb(0 0 0 / 50%);
+  min-width: 350px;
+  border-radius: 40px;
+  background: $controls-bg-color;
+  height: 50px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -24,15 +27,16 @@ $primary: #007fff;
 }
 
 .control_button {
-  border: 0;
   @extend %center;
 
+  border: 0;
+  font-size: 0.75rem;
   color: $primary;
   transition: color 0.25s ease, background 0.25s ease;
 
   &:not(.active) {
-    background: #eee;
-    box-shadow: 0 0 1px 1px rgb(0 0 0 / 20%), inset 0 0 6px 1px rgb(0 0 0 / 3%);
+    background: $btn-color;
+    box-shadow: 0 0 1px 1px rgb(0 0 0 / 10%);
   }
 
   &:hover {
@@ -43,14 +47,14 @@ $primary: #007fff;
   }
 
   &.rounded {
-    width: 2rem;
-    height: 2rem;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
   }
 
   &:not(.rounded) {
     border-radius: 4px;
-    height: 2rem;
+    height: 30px;
   }
 
   &.active {
@@ -70,7 +74,7 @@ $primary: #007fff;
   left: 0;
   width: 100%;
   height: 100px;
-  background: rgb(0 0 0 / 85%);
+  background: $controls-backdrop-color;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,4 +87,19 @@ $primary: #007fff;
     visibility: hidden;
     opacity: 0;
   }
+}
+
+.nav_button {
+  margin: 0 1rem;
+}
+
+.full_screen {
+  margin-right: 1rem;
+}
+
+.button_disabled {
+  box-shadow: none;
+  background: #eee;
+  color: #aaa;
+  cursor: not-allowed;
 }

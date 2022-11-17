@@ -48,6 +48,19 @@ export default function useScroll({
     setIsScrolled(true);
   }, []);
 
+  const scrollToTop = useCallback(() => {
+    if (ref.current) {
+      ref.current.scrollTo(0, 0);
+    }
+  }, []);
+
+  const scrollToBottom = useCallback(() => {
+    if (ref.current) {
+      ref.current.scrollTo(0, ref.current.scrollHeight);
+      setEndReached(true);
+    }
+  }, []);
+
   const handleScroll = useDebouncedCallback((ev: Event) => {
     const target = ev.target as HTMLDivElement;
     const { height, width } = imageDimensions;
@@ -112,5 +125,7 @@ export default function useScroll({
     isScrolled,
     endReached,
     scrollPercent,
+    scrollToTop,
+    scrollToBottom,
   };
 }

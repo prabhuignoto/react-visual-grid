@@ -22,6 +22,14 @@ export type Position = {
   y: number;
 };
 
+export type Theme = {
+  backgroundColor: string;
+  thumbnailBgColor: string;
+  controlBgColor: string;
+  controlBtnColor: string;
+  controlsBackDropColor: string;
+};
+
 export type ZoomLevel = "1X" | "2X" | "3X" | "4X";
 
 export type GalleryProps = {
@@ -29,9 +37,6 @@ export type GalleryProps = {
   images: ImageProps[];
 
   scrollDir?: "horizontal" | "vertical";
-
-  // dimensions of the image
-  // imageDimensions?: ImageDimensions;
 
   // dimensions of the grid
   gridDimensions?: GridDimensions;
@@ -47,9 +52,13 @@ export type GalleryProps = {
 
   mode?: "auto" | "manual";
 
+  imageSizes?: ImageSize;
+
+  showProgressBar?: boolean;
+
   totalImages?: number;
 
-  imageSizes?: ImageSize;
+  theme?: Theme;
 };
 
 export const defaultImageSizes = {

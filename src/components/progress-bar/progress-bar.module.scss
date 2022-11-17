@@ -1,9 +1,9 @@
 $primary: #007bff;
+$bg-color: var(--rc-v-grid-bg-color);
 
 .container {
-  // width: 100%;
-  height: 2px;
-  background: rgba($color: #000, $alpha: 85%);
+  height: 4px;
+  background: rgba($color: $bg-color, $alpha: 85%);
   top: 0;
   left: 0;
   position: absolute;

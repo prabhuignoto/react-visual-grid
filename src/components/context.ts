@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { defaultImageSizes, GalleryProps } from "./gallery/gallery.model";
+import { Dark } from "./gallery/themes";
 
 export const defaultProps: GalleryProps = {
   images: [],
@@ -12,6 +13,9 @@ export const defaultProps: GalleryProps = {
   gap: 20,
   mode: "auto",
   imageSizes: defaultImageSizes,
+  showProgressBar: true,
+  // theme: White,
+  theme: Dark,
 };
 
 export const Context = createContext<GalleryProps>(defaultProps);

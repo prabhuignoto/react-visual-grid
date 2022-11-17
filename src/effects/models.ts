@@ -15,6 +15,7 @@ export type Options = Pick<
   | "gap"
   | "totalImages"
   | "imageSizes"
+  | "theme"
 >;
 
 export type Region = { regionTop: number; regionBottom: number };
@@ -43,6 +44,9 @@ export type useSetupFunctionType = (
   isFullScreen: boolean;
   rootDimensions: { width?: number; height?: number };
   scrollPercent: number;
+  scrollToTop: () => void;
+  scrollToBottom: () => void;
+  endReached: boolean;
 };
 
 export type StyleProps = {
@@ -55,5 +59,4 @@ export type StyleProps = {
   gap: number;
   columns: number;
   rows: number;
-  endReached: boolean;
 };
