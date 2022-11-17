@@ -5,6 +5,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import cssnano from "cssnano";
 import { resolve as pathResolve } from "path";
 // import postCSSModules from "postcss-modules";
+import PostCSSPreset from "postcss-preset-env";
 import analyze from "rollup-plugin-analyzer";
 import copy from "rollup-plugin-copy";
 import del from "rollup-plugin-delete";
@@ -13,6 +14,7 @@ import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import pkg from "./package.json" assert { type: "json" };
+import autoprefixer from "autoprefixer";
 
 const banner = `/*
  * ${pkg.name}
@@ -23,7 +25,7 @@ const banner = `/*
 `;
 
 export default {
-  input: "src/react-calleria.ts",
+  input: "src/react-visual-grid.ts",
   output: [
     {
       banner,
@@ -56,6 +58,7 @@ export default {
     PeerDepsExternalPlugin(),
     del({ targets: "dist/*" }),
     typescript(),
+    // eslint(),
     babel({
       babelHelpers: "runtime",
       extensions: ["tsx", "ts"],
@@ -65,10 +68,14 @@ export default {
       ],
     }),
     postcss({
-      extract: pathResolve("dist/react-images.css"),
+      extract: pathResolve("dist/react-visual-grid.css"),
       modules: true,
       syntax: "postcss-scss",
       plugins: [
+        autoprefixer(),
+        PostCSSPreset({
+          browsers: "last 2 versions",
+        }),
         cssnano({
           preset: "default",
         }),

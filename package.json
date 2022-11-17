@@ -1,5 +1,5 @@
 {
-  "name": "react-calleria",
+  "name": "react-visual-grid",
   "version": "0.2.0",
   "type": "module",
   "author": {
@@ -55,9 +55,9 @@
     "not dead",
     "> 5%"
   ],
-  "main": "dist/react-calleria.js",
-  "module": "dist/react-calleria.esm.js",
-  "umd": "dist/react-calleria.umd.js",
+  "main": "dist/react-visual-grid.js",
+  "module": "dist/react-visual-grid.esm.js",
+  "umd": "dist/react-visual-grid.umd.js",
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/plugin-proposal-optional-chaining": "^7.18.9",
@@ -65,6 +65,7 @@
     "@rollup/plugin-babel": "^6.0.2",
     "@rollup/plugin-buble": "^1.0.1",
     "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-eslint": "^9.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.2.3",
@@ -73,6 +74,7 @@
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
     "@vitejs/plugin-react": "^2.2.0",
+    "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
     "eslint": "8.27.0",
     "eslint-config-prettier": "^8.5.0",
@@ -87,6 +89,7 @@
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.19",
     "postcss-modules": "^6.0.0",
+    "postcss-preset-env": "^7.8.3",
     "postcss-scss": "^4.0.5",
     "rollup": "^3.3.0",
     "rollup-plugin-analyzer": "^4.0.0",
