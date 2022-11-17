@@ -7,7 +7,6 @@ export type ImageProps = {
   id?: string;
   onClick?: (
     src: string,
-    // index?: number,
     id?: string,
     rect?: {
       x: number;

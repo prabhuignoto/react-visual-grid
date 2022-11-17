@@ -102,4 +102,5 @@ $controls-backdrop-color: var(--rc-v-grid-controls-backdrop-color);
   background: #eee;
   color: #aaa;
   cursor: not-allowed;
+  pointer-events: none;
 }

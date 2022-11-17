@@ -29,6 +29,8 @@ export default function useScroll({
 
   const [endReached, setEndReached] = useState(false);
 
+  const [startReached, setStartReached] = useState(true);
+
   const [scrollPercent, setScrollPercent] = useState(0);
 
   const checkIfScrolled = useCallback((ev: Event) => {
@@ -55,11 +57,14 @@ export default function useScroll({
   }, []);
 
   const scrollToBottom = useCallback(() => {
-    if (ref.current) {
-      ref.current.scrollTo(0, ref.current.scrollHeight);
-      setEndReached(true);
+    const ele = ref.current;
+
+    if (ele) {
+      const { scrollHeight, scrollWidth } = ele;
+      const left = scrollDir === "horizontal" ? scrollWidth : 0;
+      ele.scrollTo(left, scrollHeight);
     }
-  }, []);
+  }, [scrollDir]);
 
   const handleScroll = useDebouncedCallback((ev: Event) => {
     const target = ev.target as HTMLDivElement;
@@ -83,11 +88,21 @@ export default function useScroll({
       setScrollPercent((scrollTop + clientHeight) / scrollHeight);
       if (scrollTop + clientHeight >= scrollHeight) {
         setEndReached(true);
+        setStartReached(false);
+      }
+
+      if (scrollTop === 0) {
+        setStartReached(true);
       }
     } else if (scrollDir === "horizontal") {
       setScrollPercent((scrollLeft + clientWidth) / scrollWidth);
-      if (scrollLeft + clientWidth >= clientWidth) {
+      if (scrollLeft + clientWidth > clientWidth) {
         setEndReached(true);
+        setStartReached(false);
+      }
+
+      if (scrollLeft === 0) {
+        setStartReached(true);
       }
     }
 
@@ -123,6 +138,7 @@ export default function useScroll({
     region,
     setRegion,
     isScrolled,
+    startReached,
     endReached,
     scrollPercent,
     scrollToTop,

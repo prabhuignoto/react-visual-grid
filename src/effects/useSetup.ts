@@ -68,6 +68,7 @@ const useSetup: useSetupFunctionType = ({
     region = { regionTop: 0, regionBottom: 0 },
     setRegion,
     isScrolled,
+    startReached,
     endReached,
     scrollPercent,
     scrollToTop,
@@ -246,6 +247,7 @@ const useSetup: useSetupFunctionType = ({
     scrollPercent,
     scrollToTop,
     scrollToBottom,
+    startReached,
     endReached,
   };
 };

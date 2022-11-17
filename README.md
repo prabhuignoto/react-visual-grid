@@ -26,6 +26,8 @@
 - [🍫 Props <a name = "props"></a>](#-props-)
 - [🍵 Example 1 (Horizontal) <a name = "horizontal"></a>](#-example-1-horizontal-)
 - [🍵 Example 2 (Vertical) <a name = "vertical"></a>](#-example-2-vertical-)
+- [ImageProps](#imageprops)
+- [Default ImageSize](#default-imagesize)
 - [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
 - [✍️ Authors <a name = "authors"></a>](#️-authors-)
 
@@ -81,15 +83,15 @@ const App = () => {
 
 ## 🍫 Props <a name = "props"></a>
 
-| Name       | Description                                                                               | Type   | Default    |
-| :--------- | :---------------------------------------------------------------------------------------- | :----- | :--------- |
-| scrollDir  | Direction to render the images. can be `horizontal` or `vertical`                         | string | `vertical` |
-| images     | Collection of Images to be rendered                                                       | Object | []         |
-| width      | Width of the Grid                                                                         | number | 1200       |
-| height     | Height of the Grid                                                                        | number | 600        |
-| gap        | Gap in pixels between the images                                                          | number | 20         |
-| mode       | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string | `auto`     |
-| imageSizes | Configures the zoom sizes of the Images                                                   | Object |            |
+| Name       | Description                                                                               | Type                      | Default                       |
+| :--------- | :---------------------------------------------------------------------------------------- | :------------------------ | :---------------------------- |
+| scrollDir  | Direction to render the images. can be `horizontal` or `vertical`                         | string                    | `vertical`                    |
+| images     | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                            |
+| width      | Width of the Grid                                                                         | number                    | 1200                          |
+| height     | Height of the Grid                                                                        | number                    | 600                           |
+| gap        | Gap in pixels between the images                                                          | number                    | 20                            |
+| mode       | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string                    | `auto`                        |
+| imageSizes | Configures the zoom sizes of the Images                                                   | Object                    | [default](#default-imagesize) |
 
 ## 🍵 Example 1 (Horizontal) <a name = "horizontal"></a>
 
@@ -117,6 +119,36 @@ const App = () => {
   return (
     <Gallery images={images} scrollDir="vertical" width={1800} height={1200} />
   );
+};
+```
+
+## ImageProps
+
+| Name    | Description                      | Type     | Default |
+| :------ | :------------------------------- | :------- | :------ |
+| src     | URL of the image                 | string   |         |
+| alt     | Alt text for the image           | string   |         |
+| width   | Width of the image               | number   | 100     |
+| height  | Height of the image              | number   | 100     |
+| id      | Unique of the image              | string   |         |
+| onClick | callback to be executed on click | Function |         |
+
+## Default ImageSize
+
+```js
+export const defaultImageSizes = {
+  "1X": {
+    width: 120,
+    height: 100,
+  },
+  "2X": {
+    width: 200,
+    height: 180,
+  },
+  "3X": {
+    width: 320,
+    height: 280,
+  },
 };
 ```
 

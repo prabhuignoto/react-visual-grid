@@ -31,9 +31,9 @@ const Controls: FunctionComponent<ControlsProps> = ({
   isFullScreen,
   scrollPercent,
   endReached,
+  startReached,
 }) => {
   const { scrollDir, showProgressBar } = useContext(Context);
-  console.log(endReached);
   const controlButton = useMemo(
     () => cx(styles.control_button, styles.rounded),
     []
@@ -116,7 +116,11 @@ const Controls: FunctionComponent<ControlsProps> = ({
       >
         <li className={styles.control}>
           <button
-            className={cx(controlButton, styles.nav_button)}
+            className={cx(
+              controlButton,
+              styles.nav_button,
+              startReached ? styles.button_disabled : ""
+            )}
             aria-label="Go Up"
             onClick={() => onAction("GO_UP")}
           >

@@ -24,4 +24,5 @@ export type ControlsProps = {
   isFullScreen?: boolean;
   scrollPercent?: number;
   endReached?: boolean;
+  startReached?: boolean;
 };

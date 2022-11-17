@@ -55,6 +55,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     scrollToTop,
     scrollToBottom,
     endReached,
+    startReached,
     rootDimensions: { height: rootHeight, width: rootWidth },
   } = useSetup({
     mode,
@@ -236,6 +237,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
           isFullScreen={isFullScreen}
           scrollPercent={scrollPercent}
           endReached={endReached}
+          startReached={startReached}
         />
         {activeImage ? (
           <ViewerContainer

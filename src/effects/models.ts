@@ -47,6 +47,7 @@ export type useSetupFunctionType = (
   scrollToTop: () => void;
   scrollToBottom: () => void;
   endReached: boolean;
+  startReached: boolean;
 };
 
 export type StyleProps = {
