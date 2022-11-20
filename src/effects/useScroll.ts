@@ -117,7 +117,7 @@ export default function useScroll({
       regionTop: Math.floor(regionTop),
       regionBottom: Math.ceil(regionBottom),
     });
-  }, 30);
+  }, 50);
 
   useEffect(() => {
     if (ref.current) {

@@ -101,7 +101,13 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
     );
   },
   (prev, next) => {
-    return prev.url === next.url;
+    return (
+      prev.url === next.url &&
+      prev.dimensions.height === next.dimensions.height &&
+      prev.dimensions.width === next.dimensions.width &&
+      prev.top === next.top &&
+      prev.left === next.left
+    );
   }
 );
 

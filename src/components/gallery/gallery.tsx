@@ -144,8 +144,10 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
 
   const getRootDimensions = useMemo(
     () => ({
-      rootHeight: !isFullScreen ? height : rootHeight,
-      rootWidth: !isFullScreen ? width : rootWidth,
+      // rootHeight: !isFullScreen ? height : rootHeight,
+      // rootWidth: !isFullScreen ? width : rootWidth,
+      rootHeight,
+      rootWidth,
     }),
     [isFullScreen, rootHeight, rootWidth]
   );

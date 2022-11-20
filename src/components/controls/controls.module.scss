@@ -31,12 +31,12 @@ $controls-backdrop-color: var(--rc-v-grid-controls-backdrop-color);
 
   border: 0;
   font-size: 0.75rem;
-  color: $primary;
+  color: #fff;
   transition: color 0.25s ease, background 0.25s ease;
 
   &:not(.active) {
     background: $btn-color;
-    box-shadow: 0 0 1px 1px rgb(0 0 0 / 10%);
+    box-shadow: inset 0 0 2px 1px rgb(0 0 0 / 10%), 0 0 2px 1px rgb(0 0 0 / 5%);
   }
 
   &:hover {
@@ -90,11 +90,11 @@ $controls-backdrop-color: var(--rc-v-grid-controls-backdrop-color);
 }
 
 .nav_button {
-  margin: 0 1rem;
+  // margin: 0 1rem;
 }
 
 .full_screen {
-  margin-right: 1rem;
+  // margin-right: 1rem;
 }
 
 .button_disabled {

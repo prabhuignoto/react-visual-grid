@@ -75,7 +75,7 @@ $primary: #007fff;
 
   &.hide {
     background: rgba($bg-color, 100%);
-    transition: background 0.5s ease-in;
+    transition: background 0.1s ease-in;
     z-index: -1;
   }
 

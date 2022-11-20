@@ -5,7 +5,7 @@ export const Dark: Theme = {
   thumbnailBgColor: "#202020",
   controlBgColor: "#303030",
   controlsBackDropColor: "rgba(0, 0, 0, 0.95)",
-  controlBtnColor: "#eee",
+  controlBtnColor: "#595959",
 };
 
 export const White: Theme = {

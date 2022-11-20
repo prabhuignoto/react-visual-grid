@@ -11,6 +11,7 @@ import {
   ZoomLevel,
 } from "../components/gallery/gallery.model";
 import { useSetupFunctionType } from "./models";
+import useResize from "./useResize";
 import useScroll from "./useScroll";
 import { useStyle } from "./useStyle";
 import useTheme from "./useTheme";
@@ -62,6 +63,32 @@ const useSetup: useSetupFunctionType = ({
   const [hideImages, setHideImages] = useState<boolean | null>(null);
 
   useTheme(galleryRef.current, theme);
+
+  useResize({
+    target: galleryRef.current,
+    onResizeEnded: (d) => {
+      setHideImages(false);
+      const { height, width } = d;
+
+      if (height && width) {
+        setRootDimensions({
+          width,
+          height,
+        });
+        setContainerDimensions({
+          width,
+          height,
+        });
+      }
+    },
+    onResizeStarted: () => {
+      setHideImages(true);
+      setRegion({
+        regionBottom: -1,
+        regionTop: -1,
+      });
+    },
+  });
 
   const {
     scrollPositions,
