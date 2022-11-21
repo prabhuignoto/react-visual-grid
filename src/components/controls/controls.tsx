@@ -110,7 +110,7 @@ const Controls: FunctionComponent<ControlsProps> = ({
       style={wrapperStyle}
     >
       <ul
-        className={styles.controls}
+        className={cx(styles.controls, hide ? styles.hide : "")}
         ref={gridLayout === "horizontal" ? onRef : null}
         style={controlsStyle}
       >

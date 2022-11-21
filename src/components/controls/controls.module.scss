@@ -20,6 +20,10 @@ $controls-backdrop-color: var(--rc-v-grid-controls-backdrop-color);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+
+  &.hide {
+    visibility: hidden;
+  }
 }
 
 .control {

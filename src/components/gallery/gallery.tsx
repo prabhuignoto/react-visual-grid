@@ -14,7 +14,7 @@ import { Controls } from "../controls/controls";
 import { ActionType } from "../controls/controls.model";
 import { Image } from "../image/image";
 import { ViewerContainer } from "../viewer/viewer";
-import { GalleryProps, Position, defaultImageSizes } from "./gallery.model";
+import { defaultImageSizes, GalleryProps, Position } from "./gallery.model";
 import styles from "./gallery.module.scss";
 
 const Gallery: FunctionComponent<GalleryProps> = (props) => {
@@ -57,6 +57,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     endReached,
     startReached,
     rootDimensions: { height: rootHeight, width: rootWidth },
+    isResized,
   } = useSetup({
     gap,
     gridDimensions,
@@ -102,6 +103,7 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
   const galleryClass = useMemo(() => cx(styles.gallery, styles[gridLayout]), [
     gridLayout,
     hideImages,
+    isResized,
   ]);
 
   const wrapperClass = useMemo(
@@ -217,49 +219,59 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
 
   return (
     <Context.Provider value={contextProps}>
-      <div className={wrapperClass} ref={onRef} style={wrapperStyleMod}>
-        <div
-          className={styles.container}
-          ref={onContainerRef}
-          style={containerStyle}
-        >
-          <div className={screenClass}></div>
-          {galleryList}
-        </div>
-        <Controls
-          activeZoom={activeZoomLevel}
-          containerHeight={containerHeight}
-          containerWidth={containerWidth}
-          endReached={endReached}
-          hide={isScrolled}
-          isFullScreen={isFullScreen}
-          isScrolled={isScrolled}
-          onAction={handleAction}
-          rootHeight={getRootDimensions.rootHeight}
-          rootWidth={getRootDimensions.rootWidth}
-          scrollPercent={scrollPercent}
-          scrollPositions={scrollPositions}
-          startReached={startReached}
-        />
-        {activeImage ? (
-          <ViewerContainer
-            activeImageIndex={activeImageIndex}
-            dimensions={{
-              height: getRootDimensions.rootHeight,
-              width: getRootDimensions.rootWidth,
-            }}
-            left={scrollPositions.scrollLeft}
-            node={containerRef.current}
-            onClose={onClose}
-            onNext={handleNextImage}
-            onPrevious={handlePreviousImage}
-            rect={position}
-            show={showViewer}
-            top={scrollPositions.scrollTop}
-            totalImages={images.length}
-            url={activeImage}
+      <div
+        style={{
+          border: "1px solid red",
+          height: getRootDimensions.rootHeight,
+          // margin: "0 auto",
+          position: "relative",
+          width: getRootDimensions.rootWidth,
+        }}
+      >
+        <div className={wrapperClass} ref={onRef} style={wrapperStyleMod}>
+          <div
+            className={styles.container}
+            ref={onContainerRef}
+            style={containerStyle}
+          >
+            <div className={screenClass}></div>
+            {galleryList}
+          </div>
+          <Controls
+            activeZoom={activeZoomLevel}
+            containerHeight={containerHeight}
+            containerWidth={containerWidth}
+            endReached={endReached}
+            hide={isScrolled || isResized}
+            isFullScreen={isFullScreen}
+            isScrolled={isScrolled}
+            onAction={handleAction}
+            rootHeight={getRootDimensions.rootHeight}
+            rootWidth={getRootDimensions.rootWidth}
+            scrollPercent={scrollPercent}
+            scrollPositions={scrollPositions}
+            startReached={startReached}
           />
-        ) : null}
+          {activeImage ? (
+            <ViewerContainer
+              activeImageIndex={activeImageIndex}
+              dimensions={{
+                height: getRootDimensions.rootHeight,
+                width: getRootDimensions.rootWidth,
+              }}
+              left={scrollPositions.scrollLeft}
+              node={containerRef.current}
+              onClose={onClose}
+              onNext={handleNextImage}
+              onPrevious={handlePreviousImage}
+              rect={position}
+              show={showViewer}
+              top={scrollPositions.scrollTop}
+              totalImages={images.length}
+              url={activeImage}
+            />
+          ) : null}
+        </div>
       </div>
     </Context.Provider>
   );

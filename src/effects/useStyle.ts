@@ -95,7 +95,16 @@ export function useStyle({
     if (isResized) {
       styles = {
         ...styles,
+        left: 0,
+        // left: "var(--rc-gallery-left)",
         position: "absolute",
+        top: 0,
+        // top: "var(--rc-gallery-top)",
+      };
+    } else {
+      styles = {
+        ...styles,
+        // position: "stat",
       };
     }
 

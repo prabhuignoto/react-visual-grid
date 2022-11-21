@@ -64,8 +64,8 @@ export default function useResize({
           ele.style.cssText += `
           width: ${newWidth}px;
           height: ${newHeight}px;
-          "--rc-gallery-left": ${left}px;
-          "--rc-gallery-top": ${top}px;`;
+          --rc-gallery-left: ${left}px;
+          --rc-gallery-top: ${top}px;`;
           activeDimension.current = {
             height: newHeight,
             width: newWidth,

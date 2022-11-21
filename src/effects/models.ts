@@ -48,6 +48,7 @@ export type useSetupFunctionType = (
   scrollToBottom: () => void;
   endReached: boolean;
   startReached: boolean;
+  isResized: boolean;
 };
 
 export type StyleOptions = {

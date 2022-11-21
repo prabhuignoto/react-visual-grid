@@ -43,19 +43,19 @@ const useSetup: useSetupFunctionType = ({
   const [containerDimensions, setContainerDimensions] = useState<{
     width?: number;
     height?: number;
-  }>({ width, height });
+  }>({ height, width });
 
   const [rootDimensions, setRootDimensions] = useState<{
     width: number;
     height: number;
   }>({
-    width,
     height,
+    width,
   });
 
   const [imageDims, setImageDims] = useState<ImageDimensions>({
-    width: imageSizes[activeImageZoomLevel].width,
     height: imageSizes[activeImageZoomLevel].height,
+    width: imageSizes[activeImageZoomLevel].width,
   });
 
   // tracks if the gallery is in fullscreen mode
@@ -67,7 +67,6 @@ const useSetup: useSetupFunctionType = ({
   useTheme(galleryRef.current, theme);
 
   useResize({
-    target: galleryRef.current,
     onResizeEnded: (d) => {
       setHideImages(false);
       const { height, width } = d;
@@ -75,12 +74,12 @@ const useSetup: useSetupFunctionType = ({
 
       if (height && width) {
         setRootDimensions({
-          width,
           height,
+          width,
         });
         setContainerDimensions({
-          width,
           height,
+          width,
         });
       }
     },
@@ -92,11 +91,12 @@ const useSetup: useSetupFunctionType = ({
         regionTop: -1,
       });
     },
+    target: galleryRef.current,
   });
 
   const {
     scrollPositions,
-    region = { regionTop: 0, regionBottom: 0 },
+    region = { regionBottom: 0, regionTop: 0 },
     setRegion,
     isScrolled,
     startReached,
@@ -105,21 +105,22 @@ const useSetup: useSetupFunctionType = ({
     scrollToTop,
     scrollToBottom,
   } = useScroll({
-    ref: galleryRef,
-    imageDimensions: imageDims,
     gridLayout,
+    imageDimensions: imageDims,
+    ref: galleryRef,
   });
 
   const { wrapperStyle, galleryStyle } = useStyle({
-    rootDimensions,
-    imageDimensions: imageDims,
-    gridLayout,
-    region,
     columns,
-    rows,
     gap,
-    mode,
+    gridLayout,
+    imageDimensions: imageDims,
     isFullScreen,
+    isResized,
+    mode,
+    region,
+    rootDimensions,
+    rows,
   });
 
   const init = () => {
@@ -176,8 +177,8 @@ const useSetup: useSetupFunctionType = ({
     if (galleryRef.current) {
       galleryRef.current.scrollTo(0, 0);
       setRegion({
-        regionTop: -1,
         regionBottom: -1,
+        regionTop: -1,
       });
     }
   }, []);
@@ -231,8 +232,8 @@ const useSetup: useSetupFunctionType = ({
       setHideImages(true);
       setActiveImageZoomLevel(z);
       setImageDims({
-        width,
         height,
+        width,
       });
     }
   };
@@ -263,23 +264,24 @@ const useSetup: useSetupFunctionType = ({
     activeZoomLevel: activeImageZoomLevel,
     columns,
     containerDimensions,
+    endReached,
     fullScreen,
     hideImages,
+    isFullScreen,
+    isResized,
+    isScrolled,
     onRef,
     resizeImages,
+    rootDimensions,
     rows,
+    scrollPercent,
+    scrollPositions,
+    scrollToBottom,
+    scrollToTop,
+    startReached,
     style: galleryStyle,
     windowRegion: region,
     wrapperStyle,
-    scrollPositions,
-    isScrolled,
-    isFullScreen,
-    rootDimensions,
-    scrollPercent,
-    scrollToTop,
-    scrollToBottom,
-    startReached,
-    endReached,
   };
 };
 
