@@ -106,22 +106,22 @@ const Controls: FunctionComponent<ControlsProps> = ({
   return (
     <div
       className={controlWrapperClass}
-      style={wrapperStyle}
       ref={gridLayout === "vertical" ? onRef : null}
+      style={wrapperStyle}
     >
       <ul
         className={styles.controls}
-        style={controlsStyle}
         ref={gridLayout === "horizontal" ? onRef : null}
+        style={controlsStyle}
       >
         <li className={styles.control}>
           <button
+            aria-label="Go Up"
             className={cx(
               controlButton,
               styles.nav_button,
               startReached ? styles.button_disabled : ""
             )}
-            aria-label="Go Up"
             onClick={() => onAction("GO_UP")}
           >
             <ChevronUpIcon />
@@ -130,12 +130,12 @@ const Controls: FunctionComponent<ControlsProps> = ({
         {["1X", "2X", "3X"].map((item, index) => (
           <li className={styles.control} key={index}>
             <button
-              onClick={() => onAction(item as ActionType)}
+              aria-label={item}
               className={cx(
                 controlButton,
                 activeZoom === item ? styles.active : ""
               )}
-              aria-label={item}
+              onClick={() => onAction(item as ActionType)}
             >
               {item}
             </button>
@@ -143,12 +143,12 @@ const Controls: FunctionComponent<ControlsProps> = ({
         ))}
         <li className={styles.control}>
           <button
+            aria-label="Go Down"
             className={cx(
               controlButton,
               styles.nav_button,
               endReached ? styles.button_disabled : ""
             )}
-            aria-label="Go Down"
             onClick={() => onAction("GO_DOWN")}
           >
             <ChevronDownIcon />
@@ -156,9 +156,9 @@ const Controls: FunctionComponent<ControlsProps> = ({
         </li>
         <li className={cx(styles.control, styles.nav_button)}>
           <button
-            onClick={() => onAction("FULL_SCREEN")}
-            className={cx(controlButton)}
             aria-label={isFullScreen ? "Minimize" : "Maximize"}
+            className={cx(controlButton)}
+            onClick={() => onAction("FULL_SCREEN")}
           >
             {isFullScreen ? <MinimizeIcon /> : <MaximizeIcon />}
           </button>
@@ -166,10 +166,10 @@ const Controls: FunctionComponent<ControlsProps> = ({
       </ul>
       {showProgressBar ? (
         <ProgressBar
+          containerWidth={rootWidth as number}
+          left={scrollPositions.scrollLeft}
           percent={scrollPercent || 0}
           top={scrollPositions.scrollTop}
-          left={scrollPositions.scrollLeft}
-          containerWidth={rootWidth as number}
         />
       ) : null}
     </div>

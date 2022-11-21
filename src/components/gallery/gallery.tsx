@@ -14,7 +14,7 @@ import { Controls } from "../controls/controls";
 import { ActionType } from "../controls/controls.model";
 import { Image } from "../image/image";
 import { ViewerContainer } from "../viewer/viewer";
-import { defaultImageSizes, GalleryProps, Position } from "./gallery.model";
+import { GalleryProps, Position, defaultImageSizes } from "./gallery.model";
 import styles from "./gallery.module.scss";
 
 const Gallery: FunctionComponent<GalleryProps> = (props) => {
@@ -58,15 +58,15 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     startReached,
     rootDimensions: { height: rootHeight, width: rootWidth },
   } = useSetup({
-    mode,
-    imageSizes,
-    gridDimensions,
-    width,
-    height,
-    gridLayout,
     gap,
-    totalImages: images.length,
+    gridDimensions,
+    gridLayout,
+    height,
+    imageSizes,
+    mode,
     theme,
+    totalImages: images.length,
+    width,
   });
 
   const records = useMemo(() => {
@@ -136,8 +136,8 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
 
   const getImageDimensions = useMemo(
     () => ({
-      width: imageSizes[activeZoomLevel].width - gap,
       height: imageSizes[activeZoomLevel].height - gap,
+      width: imageSizes[activeZoomLevel].width - gap,
     }),
     [activeZoomLevel]
   );
@@ -154,8 +154,8 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
 
   const containerStyle = useMemo(() => {
     return {
-      width: `${containerWidth}px`,
       height: `${containerHeight}px`,
+      width: `${containerWidth}px`,
     };
   }, [containerWidth, containerHeight]);
 
@@ -199,15 +199,15 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
     return (
       <ul className={galleryClass} style={style}>
         {records.map((image, index) => (
-          <li key={image.id} className={styles.gallery_item}>
+          <li className={styles.gallery_item} key={image.id}>
             <Image
-              src={image.src}
               alt={image.alt}
-              width={getImageDimensions.width}
               height={getImageDimensions.height}
-              onClick={handleImageClick}
-              index={index}
               id={image.id}
+              index={index}
+              onClick={handleImageClick}
+              src={image.src}
+              width={getImageDimensions.width}
             />
           </li>
         ))}
@@ -217,47 +217,47 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
 
   return (
     <Context.Provider value={contextProps}>
-      <div style={wrapperStyleMod} ref={onRef} className={wrapperClass}>
+      <div className={wrapperClass} ref={onRef} style={wrapperStyleMod}>
         <div
           className={styles.container}
-          style={containerStyle}
           ref={onContainerRef}
+          style={containerStyle}
         >
           <div className={screenClass}></div>
           {galleryList}
         </div>
         <Controls
-          onAction={handleAction}
           activeZoom={activeZoomLevel}
+          containerHeight={containerHeight}
+          containerWidth={containerWidth}
+          endReached={endReached}
+          hide={isScrolled}
+          isFullScreen={isFullScreen}
           isScrolled={isScrolled}
+          onAction={handleAction}
           rootHeight={getRootDimensions.rootHeight}
           rootWidth={getRootDimensions.rootWidth}
-          scrollPositions={scrollPositions}
-          hide={isScrolled}
-          containerWidth={containerWidth}
-          containerHeight={containerHeight}
-          isFullScreen={isFullScreen}
           scrollPercent={scrollPercent}
-          endReached={endReached}
+          scrollPositions={scrollPositions}
           startReached={startReached}
         />
         {activeImage ? (
           <ViewerContainer
-            url={activeImage}
-            node={containerRef.current}
-            onClose={onClose}
+            activeImageIndex={activeImageIndex}
             dimensions={{
               height: getRootDimensions.rootHeight,
               width: getRootDimensions.rootWidth,
             }}
-            show={showViewer}
-            rect={position}
-            top={scrollPositions.scrollTop}
             left={scrollPositions.scrollLeft}
-            onPrevious={handlePreviousImage}
+            node={containerRef.current}
+            onClose={onClose}
             onNext={handleNextImage}
-            activeImageIndex={activeImageIndex}
+            onPrevious={handlePreviousImage}
+            rect={position}
+            show={showViewer}
+            top={scrollPositions.scrollTop}
             totalImages={images.length}
+            url={activeImage}
           />
         ) : null}
       </div>

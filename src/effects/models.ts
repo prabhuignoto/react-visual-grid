@@ -50,7 +50,7 @@ export type useSetupFunctionType = (
   startReached: boolean;
 };
 
-export type StyleProps = {
+export type StyleOptions = {
   imageDimensions: ImageDimensions;
   region: Region;
   gridLayout?: "vertical" | "horizontal";
@@ -60,4 +60,18 @@ export type StyleProps = {
   gap: number;
   columns: number;
   rows: number;
+  isResized?: boolean;
+};
+
+export type Dimension = {
+  width?: number;
+  height?: number;
+};
+
+export type ResizeOptions = {
+  target?: HTMLElement | null;
+  onResizeStarted?: () => void;
+  onResizeEnded?: (d: Dimension) => void;
+  minWidth?: number;
+  minHeight?: number;
 };

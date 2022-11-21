@@ -34,7 +34,7 @@ const ProgressBar: FunctionComponent<ProgressBarProps> = ({
   }, [percent, ref.current]);
 
   return (
-    <div ref={onRef} style={style} className={styles.container}>
+    <div className={styles.container} ref={onRef} style={style}>
       <span className={styles.progress_bar}></span>
     </div>
   );

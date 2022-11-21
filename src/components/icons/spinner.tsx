@@ -2,12 +2,12 @@
 
 export default function spinner() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24">
+    <svg height="24" viewBox="0 0 24 24" width="24">
       <defs>
-        <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
-          <stop stopColor="#fff" stopOpacity="0" offset="0%" />
-          <stop stopColor="#fff" stopOpacity=".631" offset="63.146%" />
-          <stop stopColor="#fff" offset="100%" />
+        <linearGradient id="a" x1="8.042%" x2="65.682%" y1="0%" y2="23.865%">
+          <stop offset="0%" stopColor="#fff" stopOpacity="0" />
+          <stop offset="63.146%" stopColor="#fff" stopOpacity=".631" />
+          <stop offset="100%" stopColor="#fff" />
         </linearGradient>
       </defs>
       <g fill="none" fillRule="evenodd">
@@ -20,21 +20,21 @@ export default function spinner() {
           >
             <animateTransform
               attributeName="transform"
-              type="rotate"
-              from="0 18 18"
-              to="360 18 18"
               dur="0.9s"
+              from="0 18 18"
               repeatCount="indefinite"
+              to="360 18 18"
+              type="rotate"
             />
           </path>
-          <circle fill="#fff" cx="36" cy="18" r="1">
+          <circle cx="36" cy="18" fill="#fff" r="1">
             <animateTransform
               attributeName="transform"
-              type="rotate"
-              from="0 18 18"
-              to="360 18 18"
               dur="0.9s"
+              from="0 18 18"
               repeatCount="indefinite"
+              to="360 18 18"
+              type="rotate"
             />
           </circle>
         </g>

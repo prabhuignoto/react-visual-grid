@@ -28,9 +28,9 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
     const style = useMemo(
       () => ({
         height: `${height}px`,
-        width: `${width}px`,
-        top: `${top}px`,
         left: `${left}px`,
+        top: `${top}px`,
+        width: `${width}px`,
       }),
       [height, width, x, y]
     );
@@ -56,23 +56,23 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
     );
 
     const { onRef } = useKey({
+      escCB: onClose,
       leftCB: onPrevious,
       rightCB: onNext,
-      escCB: onClose,
     });
 
     return (
       <div
         className={styles.container}
-        style={style}
-        role="dialog"
         ref={onRef}
+        role="dialog"
+        style={style}
         tabIndex={0}
       >
         <button
-          onClick={onClose}
-          className={styles.close_btn}
           aria-label="close"
+          className={styles.close_btn}
+          onClick={onClose}
         >
           <CloseIcon />
         </button>
@@ -86,7 +86,7 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
           >
             <ChevronLeftIcon />
           </button>
-          <img src={url} alt="" className={imageClass} />
+          <img alt="" className={imageClass} src={url} />
           <button
             className={cx(
               styles.nav_button,

@@ -1,81 +1,80 @@
 import { useCallback, useEffect, useRef } from "react";
-
-type Dimension = {
-  width?: number;
-  height?: number;
-};
-
-type options = {
-  target?: HTMLElement | null;
-  onResizeStarted?: () => void;
-  onResizeEnded?: (d: Dimension) => void;
-};
+import { Dimension, ResizeOptions } from "./models";
 
 export default function useResize({
   target,
   onResizeEnded,
   onResizeStarted,
-}: options) {
-  const pointerClicked = useRef(false);
+  minWidth = 300,
+  minHeight = 300,
+}: ResizeOptions) {
+  const clicked = useRef(false);
 
-  const targetRef = useRef<HTMLElement | null>(null);
-  const targetRect = useRef<DOMRect>();
+  const ref = useRef<HTMLElement | null>(null);
+  const rect = useRef<DOMRect>();
 
-  const activeDimension = useRef<Dimension>({ width: 0, height: 0 });
+  const activeDimension = useRef<Dimension>({ height: 0, width: 0 });
 
-  const isResizeStarted = useRef<boolean>(false);
+  const resizeStarted = useRef<boolean>(false);
 
   const pointerDown = useCallback((ev: MouseEvent) => {
     ev.preventDefault();
-    pointerClicked.current = true;
+    clicked.current = true;
   }, []);
 
   const pointerUp = useCallback((ev: MouseEvent) => {
     ev.preventDefault();
-    pointerClicked.current = false;
+    clicked.current = false;
 
-    if (isResizeStarted.current) {
+    if (resizeStarted.current) {
       onResizeEnded?.(activeDimension.current);
-      isResizeStarted.current = false;
+      resizeStarted.current = false;
     }
   }, []);
 
   useEffect(() => {
     if (target) {
-      targetRef.current = target;
-      targetRect.current = target.getBoundingClientRect();
+      ref.current = target;
+      rect.current = target.getBoundingClientRect();
 
       target.addEventListener("pointerdown", pointerDown);
       document.addEventListener("pointerup", pointerUp);
     }
   }, [target]);
 
-  const handlePointerMove = useCallback((ev: PointerEvent) => {
-    ev.preventDefault();
-    const { clientX, clientY } = ev;
-    const isClicked = pointerClicked.current;
+  const handlePointerMove = useCallback(
+    (ev: PointerEvent) => {
+      ev.preventDefault();
+      const { clientX, clientY } = ev;
+      const isClicked = clicked.current;
 
-    const resize = targetRect.current;
-    if (isClicked && resize && targetRef.current) {
-      const width = resize.width - (resize.right - clientX);
-      const height = resize.height - (resize.bottom - clientY);
+      if (isClicked && rect.current) {
+        const { right, bottom, width, height, left, top } = rect.current;
+        const newWidth = width - (right - clientX);
+        const newHeight = height - (bottom - clientY);
 
-      if (!isResizeStarted.current) {
-        onResizeStarted?.();
-        isResizeStarted.current = true;
+        if (!resizeStarted.current) {
+          onResizeStarted?.();
+          resizeStarted.current = true;
+        }
+
+        if (ref.current && newWidth > minWidth && newHeight > minHeight) {
+          const ele = ref.current;
+
+          ele.style.cssText += `
+          width: ${newWidth}px;
+          height: ${newHeight}px;
+          "--rc-gallery-left": ${left}px;
+          "--rc-gallery-top": ${top}px;`;
+          activeDimension.current = {
+            height: newHeight,
+            width: newWidth,
+          };
+        }
       }
-
-      if (targetRef.current && width > 400 && height > 400) {
-        const ele = targetRef.current;
-
-        ele.style.cssText += `position: absolute;width: ${width}px;height: ${height}px;left: ${resize.left}px;top: ${resize.top}px;`;
-        activeDimension.current = {
-          width,
-          height,
-        };
-      }
-    }
-  }, []);
+    },
+    [minWidth, minHeight]
+  );
 
   useEffect(() => {
     window.addEventListener("pointermove", handlePointerMove);
@@ -83,8 +82,8 @@ export default function useResize({
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
 
-      if (targetRef.current) {
-        const node = targetRef.current;
+      if (ref.current) {
+        const node = ref.current;
         node.removeEventListener("pointerdown", pointerDown);
         node.removeEventListener("pointerup", pointerUp);
       }

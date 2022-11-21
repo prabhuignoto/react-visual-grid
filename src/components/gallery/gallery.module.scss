@@ -20,6 +20,9 @@ $primary: #007fff;
     flex-direction: row;
     overflow-x: hidden;
   }
+
+  left: var(--rc-gallery-left);
+  top: var(--rc-gallery-top);
 }
 
 .gallery {

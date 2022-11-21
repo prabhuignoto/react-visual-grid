@@ -23,9 +23,19 @@ module.exports = {
       version: "detect",
     },
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    "sort-keys-fix",
+    "simple-import-sort",
+  ],
   rules: {
     "react/prop-types": "off",
     "jsx-a11y/no-noninteractive-tabindex": "off",
+    "react/jsx-sort-props": "warn",
+    "sort-keys": "warn",
+    "sort-vars": "warn",
+    "sort-keys-fix/sort-keys-fix": "warn",
+    "simple-import-sort/exports": "error",
   },
 };

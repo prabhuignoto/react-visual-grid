@@ -49,10 +49,10 @@ const Image: FunctionComponent<ImageProps> = React.memo(
     return (
       <div
         className={styles.wrapper}
-        style={{ width, height }}
-        role="button"
         onClick={(ev) => handleOpen(ev, src)}
         onKeyUp={(ev) => handleOpen(ev, src)}
+        role="button"
+        style={{ height, width }}
         tabIndex={0}
       >
         {error && (
@@ -62,11 +62,11 @@ const Image: FunctionComponent<ImageProps> = React.memo(
         )}
         {!error && (
           <img
-            src={src}
             alt={alt}
             className={imageClass}
-            onLoad={onLoaded}
             onError={onError}
+            onLoad={onLoaded}
+            src={src}
           />
         )}
       </div>

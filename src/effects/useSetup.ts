@@ -38,6 +38,8 @@ const useSetup: useSetupFunctionType = ({
   // reference to the gallery container
   const galleryRef = useRef<HTMLElement | null>(null);
 
+  const [isResized, setIsResized] = useState(false);
+
   const [containerDimensions, setContainerDimensions] = useState<{
     width?: number;
     height?: number;
@@ -69,6 +71,7 @@ const useSetup: useSetupFunctionType = ({
     onResizeEnded: (d) => {
       setHideImages(false);
       const { height, width } = d;
+      setIsResized(false);
 
       if (height && width) {
         setRootDimensions({
@@ -83,6 +86,7 @@ const useSetup: useSetupFunctionType = ({
     },
     onResizeStarted: () => {
       setHideImages(true);
+      setIsResized(true);
       setRegion({
         regionBottom: -1,
         regionTop: -1,

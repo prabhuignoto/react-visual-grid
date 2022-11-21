@@ -1,5 +1,5 @@
 import { CSSProperties, useMemo } from "react";
-import { StyleProps } from "./models";
+import { StyleOptions } from "./models";
 
 export function useStyle({
   rootDimensions,
@@ -11,7 +11,8 @@ export function useStyle({
   gap,
   mode,
   isFullScreen,
-}: StyleProps) {
+  isResized,
+}: StyleOptions) {
   // core grid settings
   const gridSettings = useMemo<CSSProperties>(() => {
     const { width, height } = imageDimensions;
@@ -25,9 +26,9 @@ export function useStyle({
         };
       } else {
         return {
+          gridAutoFlow: "column",
           gridTemplateColumns: `repeat(${columns}, ${newWidth}px)`,
           gridTemplateRows: `repeat(${rows}, ${newHeight}px)`,
-          gridAutoFlow: "column",
         };
       }
     } else {
@@ -76,18 +77,25 @@ export function useStyle({
 
     if (mode === "auto") {
       styles = {
-        width: `${width}px`,
         height: `${height}px`,
+        width: `${width}px`,
       };
     }
 
     if (isFullScreen) {
       styles = {
         ...styles,
-        position: "fixed",
         left: "50%",
+        position: "fixed",
         top: "50%",
         transform: "translateX(-50%) translateY(-50%)",
+      };
+    }
+
+    if (isResized) {
+      styles = {
+        ...styles,
+        position: "absolute",
       };
     }
 
@@ -101,11 +109,12 @@ export function useStyle({
     gridLayout,
     mode,
     isFullScreen,
+    isResized,
   ]);
 
   // return the new styles
   return {
-    wrapperStyle,
     galleryStyle,
+    wrapperStyle,
   };
 }
