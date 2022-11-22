@@ -87,15 +87,16 @@ const App = () => {
 
 | Name            | Description                                                                               | Type                      | Default                       |
 | :-------------- | :---------------------------------------------------------------------------------------- | :------------------------ | :---------------------------- |
-| gridLayout      | Sets up the layout of the grid. can be `horizontal` or `vertical`                         | string                    | `vertical`                    |
-| images          | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                            |
-| width           | Width of the Grid                                                                         | number                    | 1200                          |
-| height          | Height of the Grid                                                                        | number                    | 600                           |
+| enableResize    | Allows the grid to be freely resized                                                      | boolean                   | true                          |
 | gap             | Gap in pixels between the images                                                          | number                    | 20                            |
+| gridLayout      | Sets up the layout of the grid. can be `horizontal` or `vertical`                         | string                    | `vertical`                    |
+| height          | Height of the Grid                                                                        | number                    | 600                           |
+| imageSizes      | Configures the zoom sizes of the Images                                                   | Object                    | [default](#default-imagesize) |
+| images          | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                            |
 | mode            | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string                    | `auto`                        |
 | showProgressBar | Prop to show the progress bar                                                             | boolean                   | true                          |
 | theme           | Prop to apply different color scheme for the component                                    | Object                    |                               |
-| imageSizes      | Configures the zoom sizes of the Images                                                   | Object                    | [default](#default-imagesize) |
+| width           | Width of the Grid                                                                         | number                    | 1200                          |
 
 ## 🍵 Example 1 (Horizontal) <a name = "horizontal"></a>
 
