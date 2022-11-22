@@ -3,19 +3,19 @@ import { defaultImageSizes, GridProps } from "./grid/grid.model";
 import { Dark } from "./grid/themes";
 
 export const defaultProps: GridProps = {
-  images: [],
-  width: 1200,
-  height: 600,
-  gridLayout: "vertical",
+  enableResize: true,
+  gap: 20,
   gridDimensions: {
     columns: 3,
   },
-  gap: 20,
-  mode: "auto",
+  gridLayout: "vertical",
+  height: 600,
   imageSizes: defaultImageSizes,
+  images: [],
+  mode: "auto",
   showProgressBar: true,
-  // theme: White,
   theme: Dark,
+  width: 1200,
 };
 
 export const Context = createContext<GridProps>(defaultProps);

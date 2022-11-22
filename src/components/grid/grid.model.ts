@@ -59,6 +59,8 @@ export type GridProps = {
   totalImages?: number;
 
   theme?: Theme;
+
+  enableResize?: boolean;
 };
 
 export const defaultImageSizes = {

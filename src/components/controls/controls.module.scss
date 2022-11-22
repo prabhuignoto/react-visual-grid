@@ -93,18 +93,31 @@ $controls-backdrop-color: var(--rc-v-grid-controls-backdrop-color);
   }
 }
 
-.nav_button {
-  // margin: 0 1rem;
-}
-
-.full_screen {
-  // margin-right: 1rem;
-}
-
 .button_disabled {
   box-shadow: none;
   background: #eee;
   color: #aaa;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.resize_btn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  background: rgba(#fff, 0.1);
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $primary;
+  transform: rotate(-90deg);
+  border-radius: 4px;
+
+  svg {
+    width: 80%;
+    height: 80%;
+  }
 }

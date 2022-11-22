@@ -11,6 +11,7 @@ export type ButtonProps = {
   endReached?: boolean;
   startReached?: boolean;
   children?: ReactNode;
+  active?: boolean;
 };
 
 const Button: FunctionComponent<ButtonProps> = ({
@@ -21,11 +22,14 @@ const Button: FunctionComponent<ButtonProps> = ({
   type,
   children,
   actionType,
+  active,
 }) => {
   const controlButton = useMemo(
     () => cx(styles.control_button, styles.rounded),
     []
   );
+
+  console.log("start reached", startReached);
 
   const controlClass = useMemo(
     () =>
@@ -33,9 +37,10 @@ const Button: FunctionComponent<ButtonProps> = ({
         type === "control" ? controlButton : "",
         styles.nav_button,
         endReached && actionType === "GO_DOWN" ? styles.button_disabled : "",
-        startReached && actionType === "GO_UP" ? styles.button_disabled : ""
+        startReached && actionType === "GO_UP" ? styles.button_disabled : "",
+        active ? styles.active : ""
       ),
-    [endReached, startReached]
+    [endReached, startReached, active]
   );
 
   return (

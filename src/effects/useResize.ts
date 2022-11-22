@@ -7,6 +7,7 @@ export default function useResize({
   onResizeStarted,
   minWidth = 300,
   minHeight = 300,
+  dragRef,
 }: ResizeOptions) {
   const clicked = useRef(false);
 
@@ -37,44 +38,48 @@ export default function useResize({
       ref.current = target;
       rect.current = target.getBoundingClientRect();
 
-      target.addEventListener("pointerdown", pointerDown);
       document.addEventListener("pointerup", pointerUp);
     }
   }, [target]);
 
-  const handlePointerMove = useCallback(
-    (ev: PointerEvent) => {
-      ev.preventDefault();
-      const { clientX, clientY } = ev;
-      const isClicked = clicked.current;
+  useEffect(() => {
+    if (dragRef) {
+      dragRef.addEventListener("pointerdown", pointerDown);
+    }
+  }, [dragRef]);
 
-      if (isClicked && rect.current) {
-        const { right, bottom, width, height, left, top } = rect.current;
-        const newWidth = width - (right - clientX);
-        const newHeight = height - (bottom - clientY);
+  const handlePointerMove = useCallback((ev: PointerEvent) => {
+    ev.preventDefault();
+    const { clientX, clientY } = ev;
+    const isClicked = clicked.current;
 
-        if (!resizeStarted.current) {
-          onResizeStarted?.();
-          resizeStarted.current = true;
-        }
+    if (isClicked && rect.current) {
+      const { right, bottom, width, height, left, top } = rect.current;
+      const newWidth = width - (right - clientX);
+      const newHeight = height - (bottom - clientY);
 
-        if (ref.current && newWidth > minWidth && newHeight > minHeight) {
-          const ele = ref.current;
+      if (!resizeStarted.current) {
+        onResizeStarted?.();
+        resizeStarted.current = true;
+      }
 
-          ele.style.cssText += `
-          width: ${newWidth}px;
-          height: ${newHeight}px;
+      if (ref.current && newWidth > minWidth && newHeight > minHeight) {
+        const ele = ref.current;
+
+        ele.style.width = `${newWidth}px`;
+        ele.style.height = `${newHeight}px`;
+
+        ele.style.cssText += `
           --rc-gallery-left: ${left}px;
           --rc-gallery-top: ${top}px;`;
-          activeDimension.current = {
-            height: newHeight,
-            width: newWidth,
-          };
-        }
+
+        activeDimension.current = {
+          height: newHeight,
+          width: newWidth,
+        };
       }
-    },
-    [minWidth, minHeight]
-  );
+    }
+  }, []);
 
   useEffect(() => {
     window.addEventListener("pointermove", handlePointerMove);
@@ -86,6 +91,10 @@ export default function useResize({
         const node = ref.current;
         node.removeEventListener("pointerdown", pointerDown);
         node.removeEventListener("pointerup", pointerUp);
+      }
+
+      if (dragRef) {
+        dragRef.removeEventListener("pointerdown", pointerDown);
       }
     };
   }, []);

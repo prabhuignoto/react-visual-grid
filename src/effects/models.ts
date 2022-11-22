@@ -16,7 +16,10 @@ export type Options = Pick<
   | "totalImages"
   | "imageSizes"
   | "theme"
->;
+  | "enableResize"
+> & {
+  dragRef: HTMLElement | null;
+};
 
 export type Region = { regionTop: number; regionBottom: number };
 
@@ -71,6 +74,7 @@ export type Dimension = {
 
 export type ResizeOptions = {
   target?: HTMLElement | null;
+  dragRef?: HTMLElement | null;
   onResizeStarted?: () => void;
   onResizeEnded?: (d: Dimension) => void;
   minWidth?: number;

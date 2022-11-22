@@ -14,11 +14,13 @@ import { Controls } from "../controls/controls";
 import { ActionType } from "../controls/controls.model";
 import { Image } from "../image/image";
 import { ViewerContainer } from "../viewer/viewer";
-import styles from "./grid.module.scss";
 import { defaultImageSizes, GridProps, Position } from "./grid.model";
+import styles from "./grid.module.scss";
 
 const Grid: FunctionComponent<GridProps> = (props) => {
   const contextProps = Object.assign({}, defaultProps, props);
+
+  const resizeRef = useRef<HTMLElement>(null);
 
   const {
     images = [],
@@ -32,6 +34,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     mode = "auto",
     imageSizes = defaultImageSizes,
     theme,
+    enableResize,
   } = contextProps;
 
   const imagesRef = useRef(images.map((image) => ({ ...image, id: nanoid() })));
@@ -59,6 +62,8 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     rootDimensions: { height: rootHeight, width: rootWidth },
     isResized,
   } = useSetup({
+    dragRef: resizeRef.current,
+    enableResize,
     gap,
     gridDimensions,
     gridLayout,
@@ -146,8 +151,6 @@ const Grid: FunctionComponent<GridProps> = (props) => {
 
   const getRootDimensions = useMemo(
     () => ({
-      // rootHeight: !isFullScreen ? height : rootHeight,
-      // rootWidth: !isFullScreen ? width : rootWidth,
       rootHeight,
       rootWidth,
     }),
@@ -221,9 +224,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     <Context.Provider value={contextProps}>
       <div
         style={{
-          border: "1px solid red",
           height: getRootDimensions.rootHeight,
-          // margin: "0 auto",
           position: "relative",
           width: getRootDimensions.rootWidth,
         }}
@@ -246,6 +247,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
             isFullScreen={isFullScreen}
             isScrolled={isScrolled}
             onAction={handleAction}
+            ref={resizeRef}
             rootHeight={getRootDimensions.rootHeight}
             rootWidth={getRootDimensions.rootWidth}
             scrollPercent={scrollPercent}

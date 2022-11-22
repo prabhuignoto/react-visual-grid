@@ -19,8 +19,8 @@ export default function useScroll({
     scrollTop: 0,
   });
   const [region, setRegion] = useState<Region>({
-    regionTop: 0,
     regionBottom: 0,
+    regionTop: 0,
   });
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -93,6 +93,8 @@ export default function useScroll({
 
       if (scrollTop === 0) {
         setStartReached(true);
+      } else {
+        setStartReached(false);
       }
     } else if (gridLayout === "horizontal") {
       setScrollPercent((scrollLeft + clientWidth) / scrollWidth);
@@ -103,6 +105,8 @@ export default function useScroll({
 
       if (scrollLeft === 0) {
         setStartReached(true);
+      } else {
+        setStartReached(false);
       }
     }
 
@@ -114,8 +118,8 @@ export default function useScroll({
         : (scrollLeft + clientWidth) / width;
 
     setRegion({
-      regionTop: Math.floor(regionTop),
       regionBottom: Math.ceil(regionBottom),
+      regionTop: Math.floor(regionTop),
     });
   }, 50);
 
@@ -134,14 +138,14 @@ export default function useScroll({
   }, [ref]);
 
   return {
-    scrollPositions,
-    region,
-    setRegion,
-    isScrolled,
-    startReached,
     endReached,
+    isScrolled,
+    region,
     scrollPercent,
-    scrollToTop,
+    scrollPositions,
     scrollToBottom,
+    scrollToTop,
+    setRegion,
+    startReached,
   };
 }

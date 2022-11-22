@@ -26,6 +26,7 @@ const useSetup: useSetupFunctionType = ({
   gap = 10,
   totalImages = 0,
   theme,
+  dragRef,
 }) => {
   // state for managing the rows and columns of the gallery
   const [columns, setColumns] = useState(0);
@@ -67,6 +68,7 @@ const useSetup: useSetupFunctionType = ({
   useTheme(galleryRef.current, theme);
 
   useResize({
+    dragRef,
     onResizeEnded: (d) => {
       setHideImages(false);
       const { height, width } = d;
