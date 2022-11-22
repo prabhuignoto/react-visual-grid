@@ -1,4 +1,4 @@
-import { ZoomLevel } from "../gallery/gallery.model";
+import { ZoomLevel } from "../grid/grid.model";
 
 export type ActionType =
   | "1X"

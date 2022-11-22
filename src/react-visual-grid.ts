@@ -1,11 +1,11 @@
-export { Gallery } from "./components/gallery/gallery";
+export { Gallery } from "./components/grid/grid";
 export type {
   defaultImageSizes,
-  GalleryProps,
   GridDimensions,
+  GridProps,
   ImageDimensions,
   ImageSize,
   Position,
   Theme,
   ZoomLevel,
-} from "./components/gallery/gallery.model";
+} from "./components/grid/grid.model";

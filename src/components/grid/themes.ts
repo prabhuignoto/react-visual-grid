@@ -1,4 +1,4 @@
-import { Theme } from "./gallery.model";
+import { Theme } from "./grid.model";
 
 export const Dark: Theme = {
   backgroundColor: "#000",

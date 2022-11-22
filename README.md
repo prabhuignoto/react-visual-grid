@@ -18,18 +18,18 @@
     <br> 
 </p>
 
-- [⚡ Features <a name = "about"></a>](#-features-)
-- [🎥 Demo <a name = "demo"></a>](#-demo-)
-- [💭 How it works <a name = "working"></a>](#-how-it-works-)
-- [⚙️ Installation <a name = "installation"></a>](#️-installation-)
-- [🍵 Usage <a name = "usage"></a>](#-usage-)
-- [🍫 Props <a name = "props"></a>](#-props-)
-- [🍵 Example 1 (Horizontal) <a name = "horizontal"></a>](#-example-1-horizontal-)
-- [🍵 Example 2 (Vertical) <a name = "vertical"></a>](#-example-2-vertical-)
+- [⚡ Features ](#-features-)
+- [🎥 Demo ](#-demo-)
+- [💭 How it works ](#-how-it-works-)
+- [⚙️ Installation ](#️-installation-)
+- [🍵 Usage ](#-usage-)
+- [🍫 Props ](#-props-)
+- [🍵 Example 1 (Horizontal) ](#-example-1-horizontal-)
+- [🍵 Example 2 (Vertical) ](#-example-2-vertical-)
 - [ImageProps](#imageprops)
 - [Default ImageSize](#default-imagesize)
-- [⛏️ Built Using <a name = "built_using"></a>](#️-built-using-)
-- [✍️ Authors <a name = "authors"></a>](#️-authors-)
+- [⛏️ Built Using ](#️-built-using-)
+- [✍️ Authors ](#️-authors-)
 
 ## ⚡ Features <a name = "about"></a>
 
@@ -85,15 +85,17 @@ const App = () => {
 
 ## 🍫 Props <a name = "props"></a>
 
-| Name       | Description                                                                               | Type                      | Default                       |
-| :--------- | :---------------------------------------------------------------------------------------- | :------------------------ | :---------------------------- |
-| gridLayout | Direction to render the images. can be `horizontal` or `vertical`                         | string                    | `vertical`                    |
-| images     | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                            |
-| width      | Width of the Grid                                                                         | number                    | 1200                          |
-| height     | Height of the Grid                                                                        | number                    | 600                           |
-| gap        | Gap in pixels between the images                                                          | number                    | 20                            |
-| mode       | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string                    | `auto`                        |
-| imageSizes | Configures the zoom sizes of the Images                                                   | Object                    | [default](#default-imagesize) |
+| Name            | Description                                                                               | Type                      | Default                       |
+| :-------------- | :---------------------------------------------------------------------------------------- | :------------------------ | :---------------------------- |
+| gridLayout      | Sets up the layout of the grid. can be `horizontal` or `vertical`                         | string                    | `vertical`                    |
+| images          | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                            |
+| width           | Width of the Grid                                                                         | number                    | 1200                          |
+| height          | Height of the Grid                                                                        | number                    | 600                           |
+| gap             | Gap in pixels between the images                                                          | number                    | 20                            |
+| mode            | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string                    | `auto`                        |
+| showProgressBar | Prop to show the progress bar                                                             | boolean                   | true                          |
+| theme           | Prop to apply different color scheme for the component                                    | Object                    |                               |
+| imageSizes      | Configures the zoom sizes of the Images                                                   | Object                    | [default](#default-imagesize) |
 
 ## 🍵 Example 1 (Horizontal) <a name = "horizontal"></a>
 

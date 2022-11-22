@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { ImageDimensions } from "../components/gallery/gallery.model";
+import { ImageDimensions } from "../components/grid/grid.model";
 import { Region, ScrollPositions } from "./models";
 
 export type Options = {

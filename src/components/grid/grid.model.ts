@@ -32,7 +32,7 @@ export type Theme = {
 
 export type ZoomLevel = "1X" | "2X" | "3X" | "4X";
 
-export type GalleryProps = {
+export type GridProps = {
   // images as array
   images: ImageProps[];
 
@@ -63,15 +63,15 @@ export type GalleryProps = {
 
 export const defaultImageSizes = {
   "1X": {
-    width: 120,
     height: 100,
+    width: 120,
   },
   "2X": {
-    width: 200,
     height: 180,
+    width: 200,
   },
   "3X": {
-    width: 320,
     height: 280,
+    width: 320,
   },
 };

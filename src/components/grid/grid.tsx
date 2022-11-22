@@ -14,10 +14,10 @@ import { Controls } from "../controls/controls";
 import { ActionType } from "../controls/controls.model";
 import { Image } from "../image/image";
 import { ViewerContainer } from "../viewer/viewer";
-import { defaultImageSizes, GalleryProps, Position } from "./gallery.model";
-import styles from "./gallery.module.scss";
+import styles from "./grid.module.scss";
+import { defaultImageSizes, GridProps, Position } from "./grid.model";
 
-const Gallery: FunctionComponent<GalleryProps> = (props) => {
+const Grid: FunctionComponent<GridProps> = (props) => {
   const contextProps = Object.assign({}, defaultProps, props);
 
   const {
@@ -277,4 +277,4 @@ const Gallery: FunctionComponent<GalleryProps> = (props) => {
   );
 };
 
-export { Gallery };
+export { Grid };

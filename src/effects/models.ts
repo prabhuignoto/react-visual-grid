@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
 import {
-  GalleryProps,
+  GridProps,
   ImageDimensions,
   ZoomLevel,
-} from "../components/gallery/gallery.model";
+} from "../components/grid/grid.model";
 
 export type Options = Pick<
-  GalleryProps,
+  GridProps,
   | "mode"
   | "gridDimensions"
   | "width"

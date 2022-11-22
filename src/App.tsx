@@ -1,5 +1,5 @@
 import "./app.css";
-import { Gallery } from "./components/gallery/gallery";
+import { Grid } from "./components/grid/grid";
 
 // generate random images array using lorem picsum api
 const images = Array.from({ length: 2500 }, (_, i) => ({
@@ -10,7 +10,7 @@ const images = Array.from({ length: 2500 }, (_, i) => ({
 function App() {
   return (
     <div className="app">
-      <Gallery
+      <Grid
         gap={10}
         gridDimensions={{ columns: 8 }}
         gridLayout="vertical"

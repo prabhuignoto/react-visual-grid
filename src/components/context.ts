@@ -1,8 +1,8 @@
 import { createContext } from "react";
-import { defaultImageSizes, GalleryProps } from "./gallery/gallery.model";
-import { Dark } from "./gallery/themes";
+import { defaultImageSizes, GridProps } from "./grid/grid.model";
+import { Dark } from "./grid/themes";
 
-export const defaultProps: GalleryProps = {
+export const defaultProps: GridProps = {
   images: [],
   width: 1200,
   height: 600,
@@ -18,4 +18,4 @@ export const defaultProps: GalleryProps = {
   theme: Dark,
 };
 
-export const Context = createContext<GalleryProps>(defaultProps);
+export const Context = createContext<GridProps>(defaultProps);

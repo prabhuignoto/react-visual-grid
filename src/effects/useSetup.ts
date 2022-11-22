@@ -9,7 +9,7 @@ import {
   defaultImageSizes,
   ImageDimensions,
   ZoomLevel,
-} from "../components/gallery/gallery.model";
+} from "../components/grid/grid.model";
 import { useSetupFunctionType } from "./models";
 import useResize from "./useResize";
 import useScroll from "./useScroll";
