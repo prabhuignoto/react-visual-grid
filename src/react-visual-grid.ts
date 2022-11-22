@@ -1,4 +1,4 @@
-export { Gallery } from "./components/grid/grid";
+export { Grid } from "./components/grid/grid";
 export type {
   defaultImageSizes,
   GridDimensions,
