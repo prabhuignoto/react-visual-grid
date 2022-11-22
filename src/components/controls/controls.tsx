@@ -15,6 +15,7 @@ import {
   MinimizeIcon,
 } from "../icons";
 import { ProgressBar } from "../progress-bar/progress-bar";
+import { Button } from "./button";
 import { ActionType, ControlsProps } from "./controls.model";
 import styles from "./controls.module.scss";
 
@@ -34,10 +35,6 @@ const Controls: FunctionComponent<ControlsProps> = ({
   startReached,
 }) => {
   const { gridLayout, showProgressBar } = useContext(Context);
-  const controlButton = useMemo(
-    () => cx(styles.control_button, styles.rounded),
-    []
-  );
 
   const controlWrapperRef = useRef<HTMLDivElement | HTMLUListElement | null>(
     null
@@ -115,53 +112,48 @@ const Controls: FunctionComponent<ControlsProps> = ({
         style={controlsStyle}
       >
         <li className={styles.control}>
-          <button
-            aria-label="Go Up"
-            className={cx(
-              controlButton,
-              styles.nav_button,
-              startReached ? styles.button_disabled : ""
-            )}
-            onClick={() => onAction("GO_UP")}
+          <Button
+            actionType="GO_UP"
+            label="Go Up"
+            onAction={() => onAction("GO_UP")}
+            startReached={startReached}
+            type="control"
           >
             <ChevronUpIcon />
-          </button>
+          </Button>
         </li>
         {["1X", "2X", "3X"].map((item, index) => (
           <li className={styles.control} key={index}>
-            <button
-              aria-label={item}
-              className={cx(
-                controlButton,
-                activeZoom === item ? styles.active : ""
-              )}
-              onClick={() => onAction(item as ActionType)}
+            <Button
+              actionType={item as ActionType}
+              label={item}
+              onAction={onAction}
+              type="control"
             >
               {item}
-            </button>
+            </Button>
           </li>
         ))}
         <li className={styles.control}>
-          <button
-            aria-label="Go Down"
-            className={cx(
-              controlButton,
-              styles.nav_button,
-              endReached ? styles.button_disabled : ""
-            )}
-            onClick={() => onAction("GO_DOWN")}
+          <Button
+            actionType="GO_DOWN"
+            endReached={endReached}
+            label={"Go Down"}
+            onAction={onAction}
+            type="control"
           >
             <ChevronDownIcon />
-          </button>
+          </Button>
         </li>
         <li className={cx(styles.control, styles.nav_button)}>
-          <button
-            aria-label={isFullScreen ? "Minimize" : "Maximize"}
-            className={cx(controlButton)}
-            onClick={() => onAction("FULL_SCREEN")}
+          <Button
+            actionType="FULL_SCREEN"
+            label={isFullScreen ? "Minimize" : "Maximize"}
+            onAction={onAction}
+            type="control"
           >
             {isFullScreen ? <MinimizeIcon /> : <MaximizeIcon />}
-          </button>
+          </Button>
         </li>
       </ul>
       {showProgressBar ? (
