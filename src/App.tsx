@@ -35,7 +35,7 @@ function App() {
         height={900}
         images={images}
         mode="auto"
-        width={1200}
+        width={900}
       />
       <p>
         Contrary to popular belief, Lorem Ipsum is not simply random text. It
