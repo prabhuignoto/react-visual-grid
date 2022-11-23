@@ -11,7 +11,7 @@ export const Dark: Theme = {
 export const White: Theme = {
   backgroundColor: "#fff",
   controlBgColor: "#cdcdcd",
-  controlBtnColor: "#fff",
+  controlBtnColor: "#595959",
   controlsBackDropColor: "rgba(255, 255, 255, 0.95)",
   thumbnailBgColor: "#eee",
 };

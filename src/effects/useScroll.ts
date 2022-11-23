@@ -7,12 +7,15 @@ export type Options = {
   ref: RefObject<HTMLElement>;
   imageDimensions: ImageDimensions;
   gridLayout?: "vertical" | "horizontal";
+  resizeStarted?: boolean;
+  resizeEnded?: boolean;
 };
 
 export default function useScroll({
   ref,
   imageDimensions,
   gridLayout,
+  resizeStarted,
 }: Options) {
   const [scrollPositions, setScrollPositions] = useState<ScrollPositions>({
     scrollLeft: 0,
@@ -80,6 +83,10 @@ export default function useScroll({
 
     setScrollPositions({ scrollLeft, scrollTop });
 
+    if (resizeStarted) {
+      return;
+    }
+
     if (setEndReached) {
       setEndReached(false);
     }
@@ -136,6 +143,12 @@ export default function useScroll({
       }
     };
   }, [ref]);
+
+  useEffect(() => {
+    if (resizeStarted) {
+      ref.current?.scrollTo(0, 0);
+    }
+  }, [resizeStarted]);
 
   return {
     endReached,

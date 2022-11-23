@@ -2,7 +2,18 @@ import { createContext } from "react";
 import { defaultImageSizes, GridProps } from "./grid/grid.model";
 import { Dark } from "./grid/themes";
 
-export const defaultProps: GridProps = {
+type ContextType = GridProps & {
+  display: {
+    width: number;
+    height: number;
+  };
+};
+
+export const defaultProps: ContextType = {
+  display: {
+    height: 0,
+    width: 0,
+  },
   enableResize: true,
   gap: 20,
   gridDimensions: {

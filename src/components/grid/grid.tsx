@@ -13,6 +13,7 @@ import { Context, defaultProps } from "../context";
 import { Controls } from "../controls/controls";
 import { ActionType } from "../controls/controls.model";
 import { Image } from "../image/image";
+import { Screen } from "../screen/screen";
 import { ViewerContainer } from "../viewer/viewer";
 import { defaultImageSizes, GridProps, Position } from "./grid.model";
 import styles from "./grid.module.scss";
@@ -115,18 +116,10 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     () =>
       cx(
         gridLayout === "vertical" ? styles.vertical : styles.horizontal,
-        styles.wrapper
+        styles.wrapper,
+        isResized ? styles.resized : ""
       ),
-    [gridLayout]
-  );
-
-  const screenClass = useMemo(
-    () =>
-      cx(
-        styles.screen,
-        hideImages !== null ? (hideImages ? styles.show : styles.hide) : ""
-      ),
-    [hideImages]
+    [gridLayout, isResized]
   );
 
   const handleAction = (type: ActionType) => {
@@ -201,6 +194,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     [showViewer, wrapperStyle]
   );
 
+  // memoized gallery list
   const galleryList = useMemo(() => {
     return (
       <ul className={galleryClass} style={style}>
@@ -231,14 +225,21 @@ const Grid: FunctionComponent<GridProps> = (props) => {
         }}
       >
         <div className={wrapperClass} ref={onRef} style={wrapperStyleMod}>
+          {/* Gallery */}
           <div
             className={styles.container}
             ref={onContainerRef}
             style={containerStyle}
           >
-            <div className={screenClass}></div>
+            {/* <div className={screenClass}></div> */}
+            <Screen
+              height={getRootDimensions.rootHeight}
+              show={hideImages || isResized}
+              width={getRootDimensions.rootWidth}
+            />
             {galleryList}
           </div>
+          {/* Controls here */}
           <Controls
             activeZoom={activeZoomLevel}
             containerHeight={containerHeight}
@@ -255,6 +256,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
             scrollPositions={scrollPositions}
             startReached={startReached}
           />
+          {/* Image viewer */}
           {activeImage ? (
             <ViewerContainer
               activeImageIndex={activeImageIndex}

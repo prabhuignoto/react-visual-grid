@@ -110,6 +110,7 @@ const useSetup: useSetupFunctionType = ({
     gridLayout,
     imageDimensions: imageDims,
     ref: galleryRef,
+    resizeStarted: isResized,
   });
 
   const { wrapperStyle, galleryStyle } = useStyle({

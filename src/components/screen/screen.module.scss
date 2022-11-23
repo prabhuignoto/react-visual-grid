@@ -1,0 +1,29 @@
+@use "../../common/styles.module.scss";
+
+$bg-color: var(--rc-v-grid-bg-color);
+
+.screen {
+  @extend %center;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba($bg-color, 100%);
+  z-index: 10000;
+
+  &.hide {
+    background: rgba($bg-color, 100%);
+    transition: background 0.1s ease-in;
+    z-index: -1;
+  }
+
+  &.show {
+    background: rgba($bg-color, 99%);
+  }
+}
+
+.message {
+  @extend %center;
+
+  font-size: 2rem;
+}

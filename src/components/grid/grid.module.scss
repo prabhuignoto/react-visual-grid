@@ -20,6 +20,10 @@ $primary: #007fff;
     flex-direction: row;
     overflow-x: hidden;
   }
+
+  &.resized {
+    box-shadow: inset 0 0 1px 4px $primary;
+  }
 }
 
 .gallery {
@@ -62,24 +66,4 @@ $primary: #007fff;
   width: 100%;
   height: 100%;
   position: relative;
-}
-
-.screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: rgba($bg-color, 100%);
-  z-index: 10000;
-
-  &.hide {
-    background: rgba($bg-color, 100%);
-    transition: background 0.1s ease-in;
-    z-index: -1;
-  }
-
-  &.show {
-    background: rgba($bg-color, 99%);
-  }
 }
