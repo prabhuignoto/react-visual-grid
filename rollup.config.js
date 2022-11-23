@@ -52,7 +52,7 @@ export default {
         react: "React",
         "react-dom": "ReactDOM",
       },
-      name: "ReactImages",
+      name: "ReactVisualGrid",
       strict: true,
     },
   ],
