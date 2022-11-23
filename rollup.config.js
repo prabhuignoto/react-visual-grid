@@ -15,6 +15,8 @@ import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
 import pkg from "./package.json" assert { type: "json" };
 import autoprefixer from "autoprefixer";
+import eslint from "@rollup/plugin-eslint";
+import strip from "@rollup/plugin-strip";
 
 const banner = `/*
  * ${pkg.name}
@@ -67,10 +69,11 @@ export default {
         "@babel/plugin-proposal-optional-chaining",
       ],
     }),
+    eslint(),
+    strip(),
     postcss({
       extract: pathResolve("dist/react-visual-grid.css"),
       modules: true,
-      syntax: "postcss-scss",
       plugins: [
         autoprefixer(),
         PostCSSPreset({
@@ -80,6 +83,7 @@ export default {
           preset: "default",
         }),
       ],
+      syntax: "postcss-scss",
     }),
     common(),
     resolve(),

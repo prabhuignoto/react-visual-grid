@@ -165,8 +165,9 @@ const Grid: FunctionComponent<GridProps> = (props) => {
   }, [containerWidth, containerHeight]);
 
   const handleImageClick = (src: string, id?: string, pos?: Position) => {
-    setShowViewer(true);
     const index = imagesRef.current.findIndex((image) => image.id === id);
+
+    setShowViewer(true);
     setActiveImageIndex(index || 0);
     pos && setPosition(pos);
   };

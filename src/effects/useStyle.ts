@@ -85,10 +85,9 @@ export function useStyle({
     if (isFullScreen) {
       styles = {
         ...styles,
-        left: "50%",
+        left: 0,
         position: "fixed",
-        top: "50%",
-        transform: "translateX(-50%) translateY(-50%)",
+        top: 0,
       };
     }
 
@@ -96,15 +95,12 @@ export function useStyle({
       styles = {
         ...styles,
         left: 0,
-        // left: "var(--rc-gallery-left)",
         position: "absolute",
         top: 0,
-        // top: "var(--rc-gallery-top)",
       };
     } else {
       styles = {
         ...styles,
-        // position: "stat",
       };
     }
 

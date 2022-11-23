@@ -14,10 +14,10 @@ export default function useTheme(target: HTMLElement | null, theme?: Theme) {
 
       const style: { [key: string]: string } = {
         "--rc-v-grid-bg-color": backgroundColor,
-        "--rc-v-grid-thumbnail-bg-color": thumbnailBgColor,
-        "--rc-v-grid-controls-bg-color": controlBgColor,
         "--rc-v-grid-control-btn-color": controlBtnColor,
         "--rc-v-grid-controls-backdrop-color": controlsBackDropColor,
+        "--rc-v-grid-controls-bg-color": controlBgColor,
+        "--rc-v-grid-thumbnail-bg-color": thumbnailBgColor,
       };
 
       target.style.cssText += Object.keys(style)
