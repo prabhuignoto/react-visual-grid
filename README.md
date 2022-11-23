@@ -35,12 +35,13 @@
 
 ## ⚡ Features <a name = "about"></a>
 
-- Generate image grids quickly and easily. Just provide a list of image URLs, and the gallery will be generated for you.
-- Built-in smart virtualization for improved performance.
+- Generate image grids quickly and easily.
+- Built-in virtualization for improved performance.
 - Load thousands of images without worrying about performance.
-- UI controls for adjusting image sizes on the flyImage sizes can be changed from 1x to 3x, and the sizes are completely customizable.
+- UI controls for adjusting image sizes.
 - Render images horizontally or vertically in a grid.
-- Created with typescript
+- Resizable Grid
+- Built with typescript.
 - Easy-to-understand API and a completely configurable React component.
 
 <!-- ## 🎥 Demo <a name = "demo"></a> -->
@@ -117,6 +118,8 @@ const App = () => {
 };
 ```
 
+[CodeSandbox Playground](https://codesandbox.io/s/react-visual-grid-vertical-bn7yrf?file=/src/App.tsx)
+
 ## 🍵 Example 2 (Vertical) <a name = "vertical"></a>
 
 ```js
@@ -128,6 +131,8 @@ const App = () => {
   );
 };
 ```
+
+[CodeSandbox Playground](https://codesandbox.io/s/react-visual-grid-vertical-bn7yrf?file=/src/App.tsx)
 
 ## ImageProps
 
@@ -191,6 +196,8 @@ Here is the list of all the colors that can be customized:
   }}
 />
 ```
+
+[Custom Theme](https://codesandbox.io/s/react-visual-grid-vertical-theme-9vc6y3?file=/src/App.tsx)
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
