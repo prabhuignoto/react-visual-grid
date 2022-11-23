@@ -176,7 +176,7 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
           />
         ) : null}
 
-        {enableResize ? (
+        {enableResize && !isFullScreen ? (
           <span className={styles.resize_btn} ref={resizeRef}>
             <MaximizeIcon />
           </span>
