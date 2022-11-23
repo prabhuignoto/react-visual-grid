@@ -72,7 +72,7 @@ You can install `react-visual-grid` using npm or yarn.
 Grids can be generated in two modes: Horizontal and Vertical. The default mode is `vertical`
 
 ```js
-import { Gallery } from "react-visual-grid";
+import { Grid } from "react-visual-grid";
 
 // generate random images using lorem picsum service
 const images = Array.from({ length: 50 }, (_, i) => ({
@@ -81,7 +81,7 @@ const images = Array.from({ length: 50 }, (_, i) => ({
 }));
 
 const App = () => {
-  return <Gallery images={images} mode="auto" width={1800} height={1200} />;
+  return <Grid images={images} mode="auto" width={1800} height={1200} />;
 };
 ```
 
@@ -103,11 +103,11 @@ const App = () => {
 ## 🍵 Example 1 (Horizontal) <a name = "horizontal"></a>
 
 ```js
-import { Gallery } from "react-visual-grid";
+import { Grid } from "react-visual-grid";
 
 const App = () => {
   return (
-    <Gallery
+    <Grid
       images={images}
       gridLayout="horizontal"
       width={1800}
@@ -120,11 +120,11 @@ const App = () => {
 ## 🍵 Example 2 (Vertical) <a name = "vertical"></a>
 
 ```js
-import { Gallery } from "react-visual-grid";
+import { Grid } from "react-visual-grid";
 
 const App = () => {
   return (
-    <Gallery images={images} gridLayout="vertical" width={1800} height={1200} />
+    <Grid images={images} gridLayout="vertical" width={1800} height={1200} />
   );
 };
 ```
