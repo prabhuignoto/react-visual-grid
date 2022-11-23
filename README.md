@@ -19,7 +19,6 @@
 </p>
 
 - [⚡ Features ](#-features-)
-- [🎥 Demo ](#-demo-)
 - [💭 How it works ](#-how-it-works-)
 - [⚙️ Installation ](#️-installation-)
 - [🍵 Usage ](#-usage-)
@@ -27,7 +26,8 @@
 - [🍵 Example 1 (Horizontal) ](#-example-1-horizontal-)
 - [🍵 Example 2 (Vertical) ](#-example-2-vertical-)
 - [ImageProps](#imageprops)
-- [Default ImageSize](#default-imagesize)
+- [ImageSizes](#imagesizes)
+- [Theme](#theme)
 - [⛏️ Built Using ](#️-built-using-)
 - [✍️ Authors ](#️-authors-)
 
@@ -41,7 +41,7 @@
 - Created with typescript
 - Easy-to-understand API and a completely configurable React component.
 
-## 🎥 Demo <a name = "demo"></a>
+<!-- ## 🎥 Demo <a name = "demo"></a> -->
 
 ![demo](demo.png)
 
@@ -85,18 +85,18 @@ const App = () => {
 
 ## 🍫 Props <a name = "props"></a>
 
-| Name            | Description                                                                               | Type                      | Default                       |
-| :-------------- | :---------------------------------------------------------------------------------------- | :------------------------ | :---------------------------- |
-| enableResize    | Allows the grid to be freely resized                                                      | boolean                   | true                          |
-| gap             | Gap in pixels between the images                                                          | number                    | 20                            |
-| gridLayout      | Sets up the layout of the grid. can be `horizontal` or `vertical`                         | string                    | `vertical`                    |
-| height          | Height of the Grid                                                                        | number                    | 600                           |
-| imageSizes      | Configures the zoom sizes of the Images                                                   | Object                    | [default](#default-imagesize) |
-| images          | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                            |
-| mode            | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string                    | `auto`                        |
-| showProgressBar | Prop to show the progress bar                                                             | boolean                   | true                          |
-| theme           | Prop to apply different color scheme for the component                                    | Object                    |                               |
-| width           | Width of the Grid                                                                         | number                    | 1200                          |
+| Name            | Description                                                                               | Type                      | Default                   |
+| :-------------- | :---------------------------------------------------------------------------------------- | :------------------------ | :------------------------ |
+| enableResize    | Allows the grid to be freely resized                                                      | boolean                   | true                      |
+| gap             | Gap in pixels between the images                                                          | number                    | 20                        |
+| gridLayout      | Sets up the layout of the grid. can be `horizontal` or `vertical`                         | string                    | `vertical`                |
+| height          | Height of the Grid                                                                        | number                    | 600                       |
+| imageSizes      | Configures the zoom sizes of the Images                                                   | Object                    | [read more](#image-sizes) |
+| images          | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                        |
+| mode            | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string                    | `auto`                    |
+| showProgressBar | Prop to show the progress bar                                                             | boolean                   | true                      |
+| theme           | Prop to apply different color scheme for the component                                    | Object                    | [read more](#theme)       |
+| width           | Width of the Grid                                                                         | number                    | 1200                      |
 
 ## 🍵 Example 1 (Horizontal) <a name = "horizontal"></a>
 
@@ -138,7 +138,11 @@ const App = () => {
 | id      | Unique of the image              | string   |         |
 | onClick | callback to be executed on click | Function |         |
 
-## Default ImageSize
+## ImageSizes
+
+`react-visual-grid` currently supports 3 zoom levels for the images. The default zoom level is 2x. The zoom levels can be configured using the `imageSizes` prop.
+
+The component comes with a default configuration for the image sizes. The default configuration is as follows:
 
 ```js
 export const defaultImageSizes = {
@@ -155,6 +159,35 @@ export const defaultImageSizes = {
     height: 280,
   },
 };
+```
+
+you should be able to easily customize the desired dimensions for each zoom level.
+
+## Theme
+
+Customize the colors of the component with the `theme` prop.
+
+Here is the list of all the colors that can be customized:
+
+| Name                  | Description                           | Type   | Default             |
+| :-------------------- | :------------------------------------ | :----- | :------------------ |
+| backgroundColor       | Background color of the gallery       | string | #000                |
+| controlBgColor        | Background color of the control strip | string | #303030             |
+| controlBtnColor       | Button color of the controls          | string | #595959             |
+| controlsBackDropColor | Backdrop color of the controls        | string | rgba(0, 0, 0, 0.95) |
+| thumbnailBgColor      | Background color of the Thumbnails    | string | #202020             |
+
+```jsx
+<Grid
+  gridLayout="vertical"
+  theme={{
+    backgroundColor: "#000",
+    controlBgColor: "#303030",
+    controlBtnColor: "#595959",
+    controlsBackDropColor: "rgba(0, 0, 0, 0.95)",
+    thumbnailBgColor: "#202020",
+  }}
+/>
 ```
 
 ## ⛏️ Built Using <a name = "built_using"></a>
