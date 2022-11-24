@@ -10,6 +10,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![codebeat badge](https://codebeat.co/badges/4e12cb98-713b-4835-a118-338f1615ccab)](https://codebeat.co/projects/github-com-prabhuignoto-react-visual-grid-main)
 [![CodeFactor](https://www.codefactor.io/repository/github/prabhuignoto/react-visual-grid/badge)](https://www.codefactor.io/repository/github/prabhuignoto/react-visual-grid)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-visual-grid)
 
 </div>
 
@@ -34,15 +35,18 @@
 - [Theme](#theme)
 - [⛏️ Built Using ](#️-built-using-)
 - [✍️ Authors ](#️-authors-)
+- [🤝Contributing](#contributing)
+- [Meta](#meta)
 
 ## ⚡ Features <a name = "about"></a>
 
-- 🪟 Generate image grids quickly and easily.
+- 🪟 Generate grids easily.
+- ➡️ Render images horizontally or vertically in a grid.
 - ⚡ Built-in virtualization for improved performance.
 - 🖼️ Load thousands of images without worrying about performance.
 - 🎛️ UI controls for adjusting image sizes.
-- ➡️ Render images horizontally or vertically in a grid.
 - 💡 Resizable Grid
+- 📦 Lightweight (7kb gzipped)
 - 💪 Built with typescript.
 - 💡 Easy-to-understand API and a completely configurable React component.
 
@@ -52,11 +56,11 @@
 
 ## 💭 How it works <a name = "working"></a>
 
-`react-visual-grid` works with the absolute minimum of properties to determine the optimal method to render images. All that is required is to specify the picture sizes desired, and the component will automatically determine the optimum approach to render the images.
+`react-visual-grid` works with the absolute minimum of properties to determine the optimal method to render images. Specify the desired picture sizes and the layout, the component will automatically determine the optimum approach to rendering the images.
 
-Because virtualization is built in, you won't have to worry about performance.
+Comes with two different layouts (horizontal and vertical) for rendering images. The in-built virtualization ensures that the component renders only the images that are visible on the screen. This ensures that the component is able to render thousands of images without any performance issues.
 
-The component handles loading 5k+ photos with ease in the example. Both horizontal and vertical virtualization are supported.
+Resize the grid or go full screen, and the component will automatically adjust the image sizes to fit the new grid size.
 
 ## ⚙️ Installation <a name = "installation"></a>
 
@@ -65,6 +69,8 @@ You can install `react-visual-grid` using npm or yarn.
 ```bash
   npm install react-visual-grid
 ```
+
+or
 
 ```bash
   yarn add react-visual-grid
@@ -144,9 +150,9 @@ const App = () => {
 
 ## ImageSizes
 
-`react-visual-grid` currently supports 3 zoom levels for the images. The default zoom level is 2x. The zoom levels can be configured using the `imageSizes` prop.
+`react-visual-grid` currently supports 3 zoom levels and the default level is 2x. The zoom levels can be configured using the `imageSizes` prop.
 
-The component comes with a default configuration for the image sizes. The default configuration is as follows:
+The component comes with a default configuration for the image sizes.
 
 ```js
 export const defaultImageSizes = {
@@ -175,6 +181,7 @@ Here is the list of all the colors that can be customized:
 
 | Name                  | Description                           | Type   | Default             |
 | :-------------------- | :------------------------------------ | :----- | :------------------ |
+| primaryColor          | Primary color of the gallery          | string | #007fff             |
 | backgroundColor       | Background color of the gallery       | string | #000                |
 | controlBgColor        | Background color of the control strip | string | #303030             |
 | controlBtnColor       | Button color of the controls          | string | #595959             |
@@ -206,3 +213,18 @@ Here is the list of all the colors that can be customized:
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@prabhuignoto](https://github.com/prabhuignoto) - Idea & Initial work
+
+## 🤝Contributing
+
+1. [Fork it](https://github.com/prabhuignoto/react-chrono/fork)
+2. Create your feature branch (`git checkout -b new-feature`)
+3. Commit your changes (`git commit -am 'Add feature'`)
+4. Push to the branch (`git push origin new-feature`)
+5. Create a new Pull Request
+
+## Meta
+
+Distributed under the MIT license. See `LICENSE` for more information.
+
+Prabhu Murthy – [@prabhumurthy2](https://twitter.com/prabhumurthy2) – prabhu.m.murthy@gmail.com
+[https://github.com/prabhuignoto](https://github.com/prabhuignoto)
