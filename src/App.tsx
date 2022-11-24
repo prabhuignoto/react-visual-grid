@@ -31,11 +31,11 @@ function App() {
       <Grid
         gap={10}
         gridDimensions={{ columns: 8 }}
-        gridLayout="horizontal"
-        height={900}
+        gridLayout="vertical"
+        height={600}
         images={images}
         mode="auto"
-        width={1200}
+        width={900}
       />
       <p>
         Contrary to popular belief, Lorem Ipsum is not simply random text. It

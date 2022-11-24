@@ -17,7 +17,10 @@
 
 <p align="center"> ⚡ The Powerful Visual grid / Gallery generator you always wanted
 </p>
- <img width=600px height=500px src="logo.svg" alt="react-visual-grid logo"></a>
+
+<div align="center">
+  <img width=640 height=320 src="logo_new.png" alt="react-visual-grid logo" style="margin:0 auto"></a>
+</div>
 
 - [⚡ Features ](#-features-)
 - [💭 How it works ](#-how-it-works-)
@@ -34,14 +37,14 @@
 
 ## ⚡ Features <a name = "about"></a>
 
-- Generate image grids quickly and easily.
-- Built-in virtualization for improved performance.
-- Load thousands of images without worrying about performance.
-- UI controls for adjusting image sizes.
-- Render images horizontally or vertically in a grid.
-- Resizable Grid
-- Built with typescript.
-- Easy-to-understand API and a completely configurable React component.
+- 🪟 Generate image grids quickly and easily.
+- ⚡ Built-in virtualization for improved performance.
+- 🖼️ Load thousands of images without worrying about performance.
+- 🎛️ UI controls for adjusting image sizes.
+- ➡️ Render images horizontally or vertically in a grid.
+- 💡 Resizable Grid
+- 💪 Built with typescript.
+- 💡 Easy-to-understand API and a completely configurable React component.
 
 <!-- ## 🎥 Demo <a name = "demo"></a> -->
 
