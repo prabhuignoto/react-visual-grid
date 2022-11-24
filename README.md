@@ -33,10 +33,10 @@
 - [⚡ Features ](#-features-)
 - [💭 How it works ](#-how-it-works-)
 - [⚙️ Installation ](#️-installation-)
-- [🍵 Usage ](#-usage-)
+- [🧋 Usage ](#-usage-)
 - [🍫 Props ](#-props-)
-- [🍵 Example 1 (Horizontal) ](#-example-1-horizontal-)
-- [🍵 Example 2 (Vertical) ](#-example-2-vertical-)
+- [🍭 Example 1 (Horizontal) ](#-example-1-horizontal-)
+- [🍭 Example 2 (Vertical) ](#-example-2-vertical-)
 - [ImageProps](#imageprops)
 - [ImageSizes](#imagesizes)
 - [Theme](#theme)
@@ -83,7 +83,7 @@ or
   yarn add react-visual-grid
 ```
 
-## 🍵 Usage <a name = "usage"></a>
+## 🧋 Usage <a name = "usage"></a>
 
 Grids can be generated in two modes: Horizontal and Vertical. The default mode is `vertical`
 
@@ -116,7 +116,7 @@ const App = () => {
 | theme           | Prop to apply different color scheme for the component                                    | Object                    | [read more](#theme)       |
 | width           | Width of the Grid                                                                         | number                    | 1200                      |
 
-## 🍵 Example 1 (Horizontal) <a name = "horizontal"></a>
+## 🍭 Example 1 (Horizontal) <a name = "horizontal"></a>
 
 ```js
 import { Grid } from "react-visual-grid";
@@ -130,7 +130,7 @@ const App = () => {
 
 [CodeSandbox Playground](https://codesandbox.io/s/react-visual-grid-vertical-bn7yrf?file=/src/App.tsx)
 
-## 🍵 Example 2 (Vertical) <a name = "vertical"></a>
+## 🍭 Example 2 (Vertical) <a name = "vertical"></a>
 
 ```js
 import { Grid } from "react-visual-grid";
