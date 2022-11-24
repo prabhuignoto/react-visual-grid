@@ -118,6 +118,7 @@ $white: colors.$white;
   color: $primary;
   transform: rotate(-90deg);
   border-radius: 4px;
+  touch-action: none;
 
   svg {
     width: 80%;

@@ -20,6 +20,7 @@ export default function useResize({
 
   const pointerDown = useCallback((ev: MouseEvent) => {
     ev.preventDefault();
+    ev.stopPropagation();
     clicked.current = true;
   }, []);
 
@@ -50,6 +51,8 @@ export default function useResize({
 
   const handlePointerMove = useCallback((ev: PointerEvent) => {
     ev.preventDefault();
+    ev.stopPropagation();
+
     const { clientX, clientY } = ev;
     const isClicked = clicked.current;
 
