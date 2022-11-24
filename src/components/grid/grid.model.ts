@@ -28,6 +28,7 @@ export type Theme = {
   controlBgColor: string;
   controlBtnColor: string;
   controlsBackDropColor: string;
+  primaryColor: string;
 };
 
 export type ZoomLevel = "1X" | "2X" | "3X" | "4X";

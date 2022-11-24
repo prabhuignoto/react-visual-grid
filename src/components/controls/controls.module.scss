@@ -1,11 +1,13 @@
 @use "../../common/styles.module.scss";
+@use "../../common/colors.module.scss";
 
-$primary: #007fff;
+$primary: var(--rc-v-grid-primary-color);
 $bg-color: var(--rc-v-grid-bg-color);
 $btn-color: var(--rc-v-grid-control-btn-color);
 $controls-bg-color: var(--rc-v-grid-controls-bg-color);
 $controls-backdrop-color: var(--rc-v-grid-controls-backdrop-color);
 $btn-color: var(--rc-v-grid-control-btn-color);
+$white: colors.$white;
 
 .controls {
   display: flex;
@@ -36,7 +38,7 @@ $btn-color: var(--rc-v-grid-control-btn-color);
 
   border: 0;
   font-size: 0.75rem;
-  color: #fff;
+  color: $white;
   transition: color 0.25s ease, background 0.25s ease;
 
   &:not(.active) {
@@ -46,7 +48,7 @@ $btn-color: var(--rc-v-grid-control-btn-color);
 
   &:hover {
     background: $primary;
-    color: white;
+    color: $white;
     cursor: pointer;
     box-shadow: none;
   }
@@ -64,7 +66,7 @@ $btn-color: var(--rc-v-grid-control-btn-color);
 
   &.active {
     background: $primary;
-    color: white;
+    color: $white;
   }
 
   svg {
@@ -96,8 +98,8 @@ $btn-color: var(--rc-v-grid-control-btn-color);
 
 .button_disabled {
   box-shadow: none;
-  background: #eee;
-  color: #aaa;
+  background: colors.$gallery;
+  color: colors.$silver-chalice;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -106,7 +108,7 @@ $btn-color: var(--rc-v-grid-control-btn-color);
   position: absolute;
   right: 1rem;
   bottom: 1rem;
-  background: rgba(#fff, 0.1);
+  background: rgba($white, 0.1);
   width: 2rem;
   height: 2rem;
   display: flex;

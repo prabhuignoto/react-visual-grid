@@ -1,12 +1,14 @@
 @use "../../common/styles.module.scss";
+@use "../../common/colors.module.scss";
 
-$primary: #007fff;
-$white: #fff;
+$primary: var(--rc-v-grid-primary-color);
+$white: colors.$white;
+$black: colors.$black;
 
 .container {
   @extend %center;
 
-  background: rgba($color: #000, $alpha: 97%);
+  background: rgba($color: $black, $alpha: 97%);
   position: absolute;
   z-index: 999;
 }
@@ -63,7 +65,7 @@ $white: #fff;
 
   &:hover {
     color: $primary;
-    background: rgba($color: #fff, $alpha: 4%);
+    background: rgba($color: $white, $alpha: 4%);
   }
 
   svg {
@@ -106,7 +108,7 @@ $white: #fff;
 
   &:hover {
     color: $primary;
-    background: rgba($color: #fff, $alpha: 4%);
+    background: rgba($color: $white, $alpha: 4%);
   }
 
   svg {

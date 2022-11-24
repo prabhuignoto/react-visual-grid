@@ -5,6 +5,7 @@ export const Dark: Theme = {
   controlBgColor: "#303030",
   controlBtnColor: "#595959",
   controlsBackDropColor: "rgba(0, 0, 0, 0.95)",
+  primaryColor: "#007fff",
   thumbnailBgColor: "#202020",
 };
 
@@ -13,5 +14,6 @@ export const White: Theme = {
   controlBgColor: "#cdcdcd",
   controlBtnColor: "#595959",
   controlsBackDropColor: "rgba(255, 255, 255, 0.95)",
+  primaryColor: "#007fff",
   thumbnailBgColor: "#eee",
 };
