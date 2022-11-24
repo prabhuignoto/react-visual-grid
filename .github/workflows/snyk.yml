@@ -19,4 +19,4 @@ jobs:
       - name: snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: npx pnpm snyk monitor
+        run: npx snyk monitor
