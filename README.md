@@ -1,6 +1,5 @@
 <p align="center">
   <a href="" rel="noopener">
- <!-- <img width=200px height=200px src="https://i.imgur.com/FxL5qM0.jpg" alt="Bot logo"></a> -->
 </p>
 
 <h3 align="center">react-visual-grid</h3>
@@ -17,8 +16,8 @@
 ---
 
 <p align="center"> ⚡ The Powerful Visual grid / Gallery generator you always wanted
-    <br> 
 </p>
+ <img width=600px height=500px src="logo.svg" alt="react-visual-grid logo"></a>
 
 - [⚡ Features ](#-features-)
 - [💭 How it works ](#-how-it-works-)
