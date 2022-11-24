@@ -17,11 +17,11 @@
 
 ---
 
-<p align="center"> ⚡ The Powerful Visual grid / Gallery generator you always wanted
+<p align="center"> ⚡ The Powerful Image Grid / Gallery for React
 </p>
 
 <div align="center">
-  <img width=640 height=320 src="logo_new.png" alt="react-visual-grid logo" style="margin:0 auto"></a>
+  <img width=640 height=320 src="logo_new.png" alt="react-visual-grid logo" style="margin:0 auto; border-radius: 10px"></a>
 </div>
 
 - [⚡ Features ](#-features-)
