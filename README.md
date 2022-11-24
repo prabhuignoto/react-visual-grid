@@ -2,7 +2,10 @@
   <a href="" rel="noopener">
 </p>
 
-<h3 align="center">react-visual-grid</h3>
+<div align="center">
+  <img width=500 height=250 src="logo_new.png" alt="react-visual-grid logo" style="margin:0 auto; border-radius: 10px"></a>
+</div>
+<!-- <h3 align="center">react-visual-grid</h3> -->
 
 <div align="center">
 
@@ -17,12 +20,9 @@
 
 ---
 
-<p align="center"> ⚡ The Powerful Image Grid / Gallery for React
+<p align="center"> ⚡ The Powerful Image Grid / Gallery builder for React
 </p>
 
-<div align="center">
-  <img width=640 height=320 src="logo_new.png" alt="react-visual-grid logo" style="margin:0 auto; border-radius: 10px"></a>
-</div>
 
 - [⚡ Features ](#-features-)
 - [💭 How it works ](#-how-it-works-)
