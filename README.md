@@ -5,7 +5,7 @@
 <br />
 
 <div align="center">
-  <img width=900 height=500 src="logo_new.png" alt="react-visual-grid logo" style="margin:0 auto; border-radius: 10px"></a>
+  <img src="logo.png" alt="react-visual-grid logo" style="margin:0 auto; border-radius: 10px"></a>
 </div>
 
 <br />
