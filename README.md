@@ -2,9 +2,14 @@
   <a href="" rel="noopener">
 </p>
 
+<br />
+
 <div align="center">
-  <img width=500 height=250 src="logo_new.png" alt="react-visual-grid logo" style="margin:0 auto; border-radius: 10px"></a>
+  <img width=1280 height=640 src="logo_new.png" alt="react-visual-grid logo" style="margin:0 auto; border-radius: 10px"></a>
 </div>
+
+<br />
+
 <!-- <h3 align="center">react-visual-grid</h3> -->
 
 <div align="center">
@@ -15,6 +20,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/prabhuignoto/react-visual-grid/badge)](https://www.codefactor.io/repository/github/prabhuignoto/react-visual-grid)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-visual-grid)
 ![Known Vulnerabilities](https://snyk.io/test/github/prabhuignoto/react-visual-grid/badge.svg)
+![Follow on Twitter](https://badgen.net/twitter/follow/prabhumurthy2)
 
 </div>
 
