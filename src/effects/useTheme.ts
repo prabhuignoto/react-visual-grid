@@ -10,6 +10,7 @@ export default function useTheme(target: HTMLElement | null, theme?: Theme) {
         controlBgColor,
         controlBtnColor,
         controlsBackDropColor,
+        primaryColor,
       } = theme;
 
       const style: { [key: string]: string } = {
@@ -17,6 +18,7 @@ export default function useTheme(target: HTMLElement | null, theme?: Theme) {
         "--rc-v-grid-control-btn-color": controlBtnColor,
         "--rc-v-grid-controls-backdrop-color": controlsBackDropColor,
         "--rc-v-grid-controls-bg-color": controlBgColor,
+        "--rc-v-grid-primary-color": primaryColor,
         "--rc-v-grid-thumbnail-bg-color": thumbnailBgColor,
       };
 

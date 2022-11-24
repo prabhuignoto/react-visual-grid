@@ -110,12 +110,7 @@ import { Grid } from "react-visual-grid";
 
 const App = () => {
   return (
-    <Grid
-      images={images}
-      gridLayout="horizontal"
-      width={1800}
-      height={1200}
-    />
+    <Grid images={images} gridLayout="horizontal" width={1800} height={1200} />
   );
 };
 ```

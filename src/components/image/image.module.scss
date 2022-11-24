@@ -1,6 +1,7 @@
 @use "../../common/styles.module.scss";
+@use "../../common/colors.module.scss";
 
-$warning: #ff6700;
+$warning: colors.$amber;
 
 .image {
   @extend %center;
