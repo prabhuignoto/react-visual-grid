@@ -1,9 +1,9 @@
 @use "../../common/styles.module.scss";
 
 $ease-in-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
-$bg-color: var(--rc-v-grid-bg-color);
-$thumbnail-bg-color: var(--rc-v-grid-thumbnail-bg-color);
-$primary: var(--rc-v-grid-primary-color);
+$bg-color: var(--rcvg-bg-color);
+$thumbnail-bg-color: var(--rcvg-thumbnail-bg-color);
+$primary: var(--rcvg-primary-color);
 
 .wrapper {
   position: relative;

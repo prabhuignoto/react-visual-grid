@@ -1,6 +1,6 @@
 @use "../../common/styles.module.scss";
 
-$bg-color: var(--rc-v-grid-bg-color);
+$bg-color: var(--rcvg-bg-color);
 
 .screen {
   @extend %center;
