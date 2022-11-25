@@ -1,12 +1,12 @@
 @use "../../common/styles.module.scss";
 @use "../../common/colors.module.scss";
 
-$primary: var(--rc-v-grid-primary-color);
-$bg-color: var(--rc-v-grid-bg-color);
-$btn-color: var(--rc-v-grid-control-btn-color);
-$controls-bg-color: var(--rc-v-grid-controls-bg-color);
-$controls-backdrop-color: var(--rc-v-grid-controls-backdrop-color);
-$btn-color: var(--rc-v-grid-control-btn-color);
+$primary: var(--rcvg-primary-color);
+$bg-color: var(--rcvg-bg-color);
+$btn-color: var(--rcvg-control-btn-color);
+$controls-bg-color: var(--rcvg-controls-bg-color);
+$controls-backdrop-color: var(--rcvg-controls-backdrop-color);
+$btn-color: var(--rcvg-control-btn-color);
 $white: colors.$white;
 
 .controls {
