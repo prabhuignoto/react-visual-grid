@@ -24,8 +24,6 @@
 
 </div>
 
----g
-
 <p align="center" style="font-size: 2rem;color: #007fff">
   ⚡ Powerful Image Grid / Gallery for React </br>
 </p>
