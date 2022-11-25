@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, RefObject } from "react";
 import {
   GridProps,
   ImageDimensions,
@@ -26,6 +26,16 @@ export type Region = { regionTop: number; regionBottom: number };
 export type ScrollPositions = {
   scrollLeft: number;
   scrollTop: number;
+};
+
+export type ScrollOptions = {
+  ref: RefObject<HTMLElement>;
+  imageDimensions: ImageDimensions;
+  gridLayout?: "vertical" | "horizontal";
+  resizeStarted?: boolean;
+  resizeEnded?: boolean;
+  fullScreen?: boolean;
+  zoomLevel?: ZoomLevel;
 };
 
 export type useSetupFunctionType = (

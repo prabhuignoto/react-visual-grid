@@ -1,22 +1,15 @@
-import { RefObject, useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { ImageDimensions } from "../components/grid/grid.model";
-import { Region, ScrollPositions } from "./models";
-
-export type Options = {
-  ref: RefObject<HTMLElement>;
-  imageDimensions: ImageDimensions;
-  gridLayout?: "vertical" | "horizontal";
-  resizeStarted?: boolean;
-  resizeEnded?: boolean;
-};
+import { Region, ScrollOptions, ScrollPositions } from "./models";
 
 export default function useScroll({
   ref,
   imageDimensions,
   gridLayout,
   resizeStarted,
-}: Options) {
+  fullScreen,
+  zoomLevel,
+}: ScrollOptions) {
   const [scrollPositions, setScrollPositions] = useState<ScrollPositions>({
     scrollLeft: 0,
     scrollTop: 0,
@@ -145,11 +138,20 @@ export default function useScroll({
   }, [ref]);
 
   useEffect(() => {
-    if (resizeStarted) {
-      ref.current?.scrollTo(0, 0);
-    }
+    ref.current?.scrollTo(0, 0);
+    setScrollPercent(0);
   }, [resizeStarted]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      ref.current?.scrollTo(0, 0);
+      setScrollPositions({
+        scrollLeft: 0,
+        scrollTop: 0,
+      });
+      setScrollPercent(0);
+    }, 100);
+  }, [fullScreen, zoomLevel]);
   return {
     endReached,
     isScrolled,

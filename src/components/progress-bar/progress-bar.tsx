@@ -31,7 +31,7 @@ const ProgressBar: FunctionComponent<ProgressBarProps> = ({
         width: `${width}px`,
       } as CSSProperties;
     }
-  }, [percent, ref.current]);
+  }, [percent, ref.current, left]);
 
   return (
     <div className={styles.container} ref={onRef} style={style}>
