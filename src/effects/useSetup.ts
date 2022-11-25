@@ -1,10 +1,4 @@
-import {
-  startTransition,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   defaultImageSizes,
   ImageDimensions,
@@ -107,10 +101,12 @@ const useSetup: useSetupFunctionType = ({
     scrollToTop,
     scrollToBottom,
   } = useScroll({
+    fullScreen: isFullScreen,
     gridLayout,
     imageDimensions: imageDims,
     ref: galleryRef,
     resizeStarted: isResized,
+    zoomLevel: activeImageZoomLevel,
   });
 
   const { wrapperStyle, galleryStyle } = useStyle({
@@ -193,29 +189,25 @@ const useSetup: useSetupFunctionType = ({
       if (!isFullScreen) {
         const { innerHeight: height, innerWidth: width } = window;
         setIsFullScreen(true);
-        startTransition(() => {
-          setRootDimensions({
-            height,
-            width,
-          });
-          setContainerDimensions({
-            height,
-            width,
-          });
+        setRootDimensions({
+          height,
+          width,
+        });
+        setContainerDimensions({
+          height,
+          width,
         });
 
         document.body.style.overflow = "hidden";
       } else {
         setIsFullScreen(false);
-        startTransition(() => {
-          setRootDimensions({
-            height,
-            width,
-          });
-          setContainerDimensions({
-            height,
-            width,
-          });
+        setRootDimensions({
+          height,
+          width,
+        });
+        setContainerDimensions({
+          height,
+          width,
         });
 
         document.body.style.overflow = "auto";

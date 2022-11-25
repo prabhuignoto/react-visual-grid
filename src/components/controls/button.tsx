@@ -1,18 +1,7 @@
 import cx from "classnames";
-import { FunctionComponent, ReactNode, useMemo } from "react";
-import { ActionType } from "./controls.model";
+import { FunctionComponent, useMemo } from "react";
+import { ButtonProps } from "./button.model";
 import styles from "./controls.module.scss";
-
-export type ButtonProps = {
-  label: string;
-  type: "control" | "default";
-  actionType: ActionType;
-  onAction: (type: ActionType) => void;
-  endReached?: boolean;
-  startReached?: boolean;
-  children?: ReactNode;
-  active?: boolean;
-};
 
 const Button: FunctionComponent<ButtonProps> = ({
   onAction,
@@ -28,8 +17,6 @@ const Button: FunctionComponent<ButtonProps> = ({
     () => cx(styles.control_button, styles.rounded),
     []
   );
-
-  console.log("start reached", startReached);
 
   const controlClass = useMemo(
     () =>

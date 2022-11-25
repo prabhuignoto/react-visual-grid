@@ -29,7 +29,6 @@
 <p align="center"> ⚡ The Powerful Image Grid / Gallery builder for React
 </p>
 
-
 - [⚡ Features ](#-features-)
 - [💭 How it works ](#-how-it-works-)
 - [⚙️ Installation ](#️-installation-)
