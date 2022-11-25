@@ -35,6 +35,7 @@ const Button: FunctionComponent<ButtonProps> = ({
       aria-label={label}
       className={controlClass}
       onClick={() => onAction(actionType)}
+      title={label}
     >
       {children}
     </button>
