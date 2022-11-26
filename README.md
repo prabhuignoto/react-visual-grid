@@ -70,7 +70,7 @@
 
 Comes with two different layouts (horizontal and vertical) for rendering images. The in-built virtualization ensures that the component renders only the images that are visible on the screen. This ensures that the component is able to render thousands of images without any performance issues.
 
-Resize the grid or go full screen, and the component will automatically adjust the image sizes to fit the new grid size.
+Resize the grid or go full screen, and the component will automatically adjust the ideal number of images to be displayed in the new grid size.
 
 ## ⚙️ Installation <a name = "installation"></a>
 
