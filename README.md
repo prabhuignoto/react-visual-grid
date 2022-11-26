@@ -58,9 +58,11 @@
 - 💪 Built with typescript.
 - 💡 Easy-to-understand API and a completely configurable React component.
 
-<!-- ## 🎥 Demo <a name = "demo"></a> -->
+<br />
 
-![demo](demo.png)
+![demo](demo.gif)
+
+<br />
 
 ## 💭 How it works <a name = "working"></a>
 
