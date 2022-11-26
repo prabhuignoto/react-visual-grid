@@ -36,8 +36,8 @@
 - [⚙️ Installation ](#️-installation-)
 - [🧋 Usage ](#-usage-)
 - [🍫 Props ](#-props-)
-- [🍭 Example 1 (Horizontal) ](#-example-1-horizontal-)
-- [🍭 Example 2 (Vertical) ](#-example-2-vertical-)
+- [🍭 Demo 1 (Horizontal) ](#-demo-1-horizontal-)
+- [🍭 Demo 2 (Vertical) ](#-demo-2-vertical-)
 - [ImageProps](#imageprops)
 - [ImageSizes](#imagesizes)
 - [Theme](#theme)
@@ -119,7 +119,7 @@ const App = () => {
 | theme           | Prop to apply different color scheme for the component                                    | Object                    | [read more](#theme)       |
 | width           | Width of the Grid                                                                         | number                    | 1200                      |
 
-## 🍭 Example 1 (Horizontal) <a name = "horizontal"></a>
+## 🍭 Demo 1 (Horizontal) <a name = "horizontal"></a>
 
 ```js
 import { Grid } from "react-visual-grid";
@@ -133,7 +133,7 @@ const App = () => {
 
 [CodeSandbox Playground](https://codesandbox.io/s/react-visual-grid-vertical-bn7yrf?file=/src/App.tsx)
 
-## 🍭 Example 2 (Vertical) <a name = "vertical"></a>
+## 🍭 Demo 2 (Vertical) <a name = "vertical"></a>
 
 ```js
 import { Grid } from "react-visual-grid";
