@@ -131,7 +131,7 @@ const App = () => {
 };
 ```
 
-[CodeSandbox Playground](https://codesandbox.io/s/react-visual-grid-vertical-bn7yrf?file=/src/App.tsx)
+[CodeSandbox Playground](https://codesandbox.io/s/react-visual-grid-horizontal-e217ix)
 
 ## 🍭 Demo 2 (Vertical) <a name = "vertical"></a>
 
