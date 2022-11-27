@@ -131,7 +131,7 @@ const App = () => {
 };
 ```
 
-[CodeSandbox Playground](https://codesandbox.io/s/react-visual-grid-vertical-bn7yrf?file=/src/App.tsx)
+[Horizontal Grid rendering 1k+ images](https://codesandbox.io/s/react-visual-grid-horizontal-e217ix)
 
 ## 🍭 Demo 2 (Vertical) <a name = "vertical"></a>
 
@@ -145,7 +145,7 @@ const App = () => {
 };
 ```
 
-[CodeSandbox Playground](https://codesandbox.io/s/react-visual-grid-vertical-bn7yrf?file=/src/App.tsx)
+[Vertical Grid rendering 1k+ images](https://codesandbox.io/s/react-visual-grid-vertical-bn7yrf?file=/src/App.tsx)
 
 ## ImageProps
 
