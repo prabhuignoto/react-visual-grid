@@ -100,7 +100,17 @@ const images = Array.from({ length: 50 }, (_, i) => ({
 }));
 
 const App = () => {
-  return <Grid images={images} mode="auto" width={1800} height={1200} />;
+  return <Grid images={images} width={1800} height={1200} />;
+};
+```
+
+The dimensions of the grid can be also specified as percentages.
+
+```js
+import { Grid } from "react-visual-grid";
+
+const App = () => {
+  return <Grid images={images} width="90%" height="80%" />;
 };
 ```
 
@@ -111,13 +121,13 @@ const App = () => {
 | enableResize    | Allows the grid to be freely resized                                                      | boolean                   | true                      |
 | gap             | Gap in pixels between the images                                                          | number                    | 20                        |
 | gridLayout      | Sets up the layout of the grid. can be `horizontal` or `vertical`                         | string                    | `vertical`                |
-| height          | Height of the Grid                                                                        | number                    | 600                       |
+| height          | Height of the Grid                                                                        | number or string          | 600                       |
 | imageSizes      | Configures the zoom sizes of the Images                                                   | Object                    | [read more](#image-sizes) |
 | images          | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                        |
 | mode            | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string                    | `auto`                    |
 | showProgressBar | Prop to show the progress bar                                                             | boolean                   | true                      |
 | theme           | Prop to apply different color scheme for the component                                    | Object                    | [read more](#theme)       |
-| width           | Width of the Grid                                                                         | number                    | 1200                      |
+| width           | Width of the Grid                                                                         | number or string          | 1200                      |
 
 ## 🍭 Demo 1 (Horizontal) <a name = "horizontal"></a>
 

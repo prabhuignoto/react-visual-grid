@@ -43,10 +43,10 @@ export type GridProps = {
   gridDimensions?: GridDimensions;
 
   // width of the gallery
-  width?: number;
+  width?: number | string;
 
   // height of the gallery
-  height?: number;
+  height?: number | string;
 
   // vertical and horizontal gap/spacing between images
   gap?: number;

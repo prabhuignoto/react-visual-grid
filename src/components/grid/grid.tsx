@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { isStringPercent, stringToNumber } from "../../common/utils";
 import useSetup from "../../effects/useSetup";
 import { Context, defaultProps } from "../context";
 import { Controls } from "../controls/controls";
@@ -40,6 +41,25 @@ const Grid: FunctionComponent<GridProps> = (props) => {
 
   const imagesRef = useRef(images.map((image) => ({ ...image, id: nanoid() })));
 
+  const [transfDimensions] = useState<{ height: number; width: number }>(() => {
+    if (isStringPercent(width) && isStringPercent(height)) {
+      const { innerHeight, innerWidth } = window;
+
+      const widthNum = stringToNumber(width as string);
+      const heightNum = stringToNumber(height as string);
+
+      return {
+        height: Math.round(innerHeight * (heightNum / 100)),
+        width: Math.round(innerWidth * (widthNum / 100)),
+      };
+    }
+
+    return {
+      height: +height,
+      width: +width,
+    };
+  });
+
   const {
     activeZoomLevel,
     columns,
@@ -68,12 +88,12 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     gap,
     gridDimensions,
     gridLayout,
-    height,
+    height: transfDimensions.height,
     imageSizes,
     mode,
     theme,
     totalImages: images.length,
-    width,
+    width: transfDimensions.width,
   });
 
   const records = useMemo(() => {
