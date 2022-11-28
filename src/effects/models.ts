@@ -9,8 +9,6 @@ export type Options = Pick<
   GridProps,
   | "mode"
   | "gridDimensions"
-  | "width"
-  | "height"
   | "gridLayout"
   | "gap"
   | "totalImages"
@@ -19,6 +17,8 @@ export type Options = Pick<
   | "enableResize"
 > & {
   dragRef: HTMLElement | null;
+  width: number;
+  height: number;
 };
 
 export type Region = { regionTop: number; regionBottom: number };

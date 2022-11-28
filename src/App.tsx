@@ -14,10 +14,10 @@ function App() {
         gap={10}
         gridDimensions={{ columns: 8 }}
         gridLayout="vertical"
-        height={1200}
+        height={"80%"}
         images={images}
         mode="auto"
-        width={1900}
+        width={"50%"}
       />
     </div>
   );
