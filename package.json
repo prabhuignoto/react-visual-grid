@@ -39,7 +39,7 @@
   "dependencies": {
     "classnames": "^2.3.2",
     "nanoid": "^4.0.0",
-    "use-debounce": "^8.0.4"
+    "use-debounce": "^9.0.2"
   },
   "peerDependencies": {
     "react": "^18.1.0",
@@ -62,7 +62,7 @@
   "module": "dist/react-visual-grid.esm.js",
   "umd": "dist/react-visual-grid.umd.js",
   "devDependencies": {
-    "@babel/core": "^7.20.2",
+    "@babel/core": "^7.20.5",
     "@babel/plugin-proposal-optional-chaining": "^7.18.9",
     "@babel/plugin-transform-runtime": "^7.19.6",
     "@rollup/plugin-babel": "^6.0.3",
@@ -75,8 +75,8 @@
     "@types/jest": "^29.2.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
-    "@typescript-eslint/eslint-plugin": "^5.44.0",
-    "@typescript-eslint/parser": "^5.44.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
@@ -99,7 +99,7 @@
     "postcss-scss": "^4.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup": "^3.5.0",
+    "rollup": "^3.5.1",
     "rollup-plugin-analyzer": "^4.0.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
