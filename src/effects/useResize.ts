@@ -10,12 +10,10 @@ export default function useResize({
   dragRef,
 }: ResizeOptions) {
   const clicked = useRef(false);
-
   const ref = useRef<HTMLElement | null>(null);
   const rect = useRef<DOMRect>();
 
   const activeDimension = useRef<Dimension>({ height: 0, width: 0 });
-
   const resizeStarted = useRef<boolean>(false);
 
   const pointerDown = useCallback((ev: MouseEvent) => {
