@@ -33,6 +33,7 @@ $primary: var(--rcvg-primary-color);
   justify-content: center;
   position: absolute;
   background: $bg-color;
+  grid-column: span 1 / 3;
 
   &.hide {
     visibility: hidden;
