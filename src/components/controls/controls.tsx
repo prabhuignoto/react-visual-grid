@@ -15,6 +15,8 @@ import {
   DefaultScreen,
   FullScreenIcon,
   MaximizeIcon,
+  MoonIcon,
+  SunIcon,
 } from "../icons";
 import { ProgressBar } from "../progress-bar/progress-bar";
 import { Button } from "./button";
@@ -37,6 +39,7 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
       scrollPercent,
       endReached,
       startReached,
+      isDark,
     }: ControlsProps,
     ref
   ) => {
@@ -164,6 +167,16 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
               type="control"
             >
               {isFullScreen ? <DefaultScreen /> : <FullScreenIcon />}
+            </Button>
+          </li>
+          <li className={cx(styles.control, styles.nav_button)}>
+            <Button
+              actionType="TOGGLE_THEME"
+              label={isDark ? "white" : "dark"}
+              onAction={onAction}
+              type="control"
+            >
+              {isDark ? <SunIcon /> : <MoonIcon />}
             </Button>
           </li>
         </ul>

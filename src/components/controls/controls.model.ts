@@ -6,12 +6,14 @@ export type ActionType =
   | "3X"
   | "FULL_SCREEN"
   | "GO_UP"
+  | "TOGGLE_THEME"
   | "GO_DOWN";
 
 export type ControlsProps = {
   onAction: (type: ActionType) => void;
   activeZoom: ZoomLevel;
   isScrolled: boolean;
+  isDark?: boolean;
   hide: boolean;
   scrollPositions: {
     scrollLeft: number;

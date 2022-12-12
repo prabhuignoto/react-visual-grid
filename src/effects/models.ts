@@ -62,6 +62,8 @@ export type useSetupFunctionType = (
   endReached: boolean;
   startReached: boolean;
   isResized: boolean;
+  toggleTheme: () => void;
+  isDark?: boolean;
 };
 
 export type StyleOptions = {

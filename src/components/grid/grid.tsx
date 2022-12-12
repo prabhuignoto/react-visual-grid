@@ -18,6 +18,7 @@ import { Screen } from "../screen/screen";
 import { ViewerContainer } from "../viewer/viewer";
 import { defaultImageSizes, GridProps, Position } from "./grid.model";
 import styles from "./grid.module.scss";
+import { Dark } from "./themes";
 
 const Grid: FunctionComponent<GridProps> = (props) => {
   const contextProps = Object.assign({}, defaultProps, props);
@@ -37,6 +38,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     imageSizes = defaultImageSizes,
     theme,
     enableResize,
+    enableDarkMode = false,
   } = contextProps;
 
   const imagesRef = useRef(images.map((image) => ({ ...image, id: nanoid() })));
@@ -82,6 +84,8 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     startReached,
     rootDimensions: { height: rootHeight, width: rootWidth },
     isResized,
+    toggleTheme,
+    isDark,
   } = useSetup({
     dragRef: resizeRef.current,
     enableResize,
@@ -91,7 +95,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     height: transfDimensions.height,
     imageSizes,
     mode,
-    theme,
+    theme: enableDarkMode ? Dark : theme,
     totalImages: images.length,
     width: transfDimensions.width,
   });
@@ -151,6 +155,8 @@ const Grid: FunctionComponent<GridProps> = (props) => {
       scrollToTop();
     } else if (type === "GO_DOWN") {
       scrollToBottom();
+    } else if (type === "TOGGLE_THEME") {
+      toggleTheme();
     }
   };
 
@@ -266,6 +272,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
             containerWidth={containerWidth}
             endReached={endReached}
             hide={isScrolled || isResized}
+            isDark={isDark}
             isFullScreen={isFullScreen}
             isScrolled={isScrolled}
             onAction={handleAction}
