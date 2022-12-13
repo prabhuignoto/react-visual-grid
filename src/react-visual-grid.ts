@@ -9,3 +9,4 @@ export type {
   Theme,
   ZoomLevel,
 } from "./components/grid/grid.model";
+export { Masonry } from "./components/masonry/masonry";
