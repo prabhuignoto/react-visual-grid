@@ -48,6 +48,36 @@ function App() {
           <img alt="Image 3" src="https://picsum.photos/id/4/400/600" />
         </span>
       </Masonry>
+
+      <Masonry fillMode="HORIZONTAL" height={1200} width={1800}>
+        <span className="rc-w-600 rc-h-400">
+          <img alt="Image 1" src="https://picsum.photos/id/1/600/400" />
+        </span>
+        <span className="rc-w-500 rc-h-400">
+          <img alt="Image 2" src="https://picsum.photos/id/20/500/400" />
+        </span>
+        <span className="rc-w-700 rc-h-400">
+          <img alt="Image 3" src="https://picsum.photos/id/35/700/400" />
+        </span>
+        <span className="rc-w-1800 rc-h-250">
+          <img alt="Image 3" src="https://picsum.photos/id/4/1800/250" />
+        </span>
+        <span className="rc-w-200 rc-h-350">
+          <img alt="Image 3" src="https://picsum.photos/id/6/200/350" />
+        </span>
+        <span className="rc-w-500 rc-h-350">
+          <img alt="Image 3" src="https://picsum.photos/id/8/500/350" />
+        </span>
+        <span className="rc-w-1100 rc-h-350">
+          <img alt="Image 3" src="https://picsum.photos/id/8/1100/350" />
+        </span>
+        <span className="rc-w-900 rc-h-200">
+          <img alt="Image 3" src="https://picsum.photos/id/35/900/200" />
+        </span>
+        <span className="rc-w-900 rc-h-200">
+          <img alt="Image 3" src="https://picsum.photos/id/4/900/200" />
+        </span>
+      </Masonry>
     </div>
   );
 }

@@ -13,6 +13,7 @@ export function useMasonry(
       const children = Array.from(ele.children);
       const availWidth = clientWidth;
       const availHeight = clientHeight;
+
       let filledWidth = 0;
       let filledHeight = 0;
       let nextLeft = 0;
@@ -52,9 +53,6 @@ export function useMasonry(
               maxHeight = 0;
             }
 
-            style += `width: ${actualWidth}px; height: ${actualHeight}px; visibility: visible;`;
-
-            (<HTMLElement>child).style.cssText = style;
             maxHeight = Math.max(maxHeight, actualHeight);
           } else if (fillMode === "VERTICAL") {
             if (filledHeight + actualHeight <= availHeight) {
@@ -69,11 +67,11 @@ export function useMasonry(
               maxWidth = 0;
             }
 
-            style += `width: ${actualWidth}px; height: ${actualHeight}px; visibility: visible;`;
-
-            (<HTMLElement>child).style.cssText = style;
             maxWidth = Math.max(maxWidth, actualWidth);
           }
+
+          style += `width: ${actualWidth}px; height: ${actualHeight}px; visibility: visible;`;
+          (<HTMLElement>child).style.cssText = style;
           style = "";
         }
       });
