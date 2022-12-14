@@ -19,33 +19,33 @@ function App() {
         mode="auto"
         width={"50%"}
       /> */}
-      <Masonry height={1200} width={1200}>
+      <Masonry fillMode="VERTICAL" height={1200} width={1200}>
         <span className="rc-w-400 rc-h-300">
-          <img src="https://picsum.photos/id/1/400/300" alt="Image 1" />
+          <img alt="Image 1" src="https://picsum.photos/id/1/400/300" />
         </span>
-        <span className="rc-w-200 rc-h-300">
-          <img src="https://picsum.photos/id/20/200/300" alt="Image 2" />
+        <span className="rc-w-400 rc-h-500">
+          <img alt="Image 2" src="https://picsum.photos/id/20/400/500" />
         </span>
         <span className="rc-w-400 rc-h-300">
-          <img src="https://picsum.photos/id/35/400/300" alt="Image 3" />
-        </span>
-        <span className="rc-w-600 rc-h-350">
-          <img src="https://picsum.photos/id/4/600/350" alt="Image 3" />
+          <img alt="Image 3" src="https://picsum.photos/id/35/400/300" />
         </span>
         <span className="rc-w-400 rc-h-350">
-          <img src="https://picsum.photos/id/6/400/350" alt="Image 3" />
-        </span>
-        <span className="rc-w-800 rc-h-200">
-          <img src="https://picsum.photos/id/8/800/200" alt="Image 3" />
-        </span>
-        <span className="rc-w-200 rc-h-200">
-          <img src="https://picsum.photos/id/8/200/200" alt="Image 3" />
+          <img alt="Image 3" src="https://picsum.photos/id/4/400/350" />
         </span>
         <span className="rc-w-400 rc-h-350">
-          <img src="https://picsum.photos/id/35/400/350" alt="Image 3" />
+          <img alt="Image 3" src="https://picsum.photos/id/6/400/350" />
         </span>
-        <span className="rc-w-600 rc-h-350">
-          <img src="https://picsum.photos/id/4/600/350" alt="Image 3" />
+        <span className="rc-w-400 rc-h-400">
+          <img alt="Image 3" src="https://picsum.photos/id/8/400/400" />
+        </span>
+        <span className="rc-w-400 rc-h-150">
+          <img alt="Image 3" src="https://picsum.photos/id/8/400/150" />
+        </span>
+        <span className="rc-w-400 rc-h-350">
+          <img alt="Image 3" src="https://picsum.photos/id/35/400/350" />
+        </span>
+        <span className="rc-w-400 rc-h-600">
+          <img alt="Image 3" src="https://picsum.photos/id/4/400/600" />
         </span>
       </Masonry>
     </div>

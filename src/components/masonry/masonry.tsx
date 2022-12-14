@@ -6,12 +6,18 @@ export type MasonryProps = {
   children: ReactNode[];
   height?: number;
   width?: number;
+  fillMode?: "HORIZONTAL" | "VERTICAL";
 };
 
-const Masonry = ({ children, height = 500, width = 700 }: MasonryProps) => {
+const Masonry = ({
+  children,
+  height = 500,
+  width = 700,
+  fillMode,
+}: MasonryProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useMasonry(ref.current);
+  useMasonry(ref, fillMode);
 
   const style = useMemo(
     () => ({ height: `${height}px`, width: `${width}px` }),
