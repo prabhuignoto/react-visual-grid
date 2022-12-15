@@ -1,9 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   defaultImageSizes,
   ImageDimensions,
+  Theme,
   ZoomLevel,
 } from "../components/grid/grid.model";
+import { Dark, White } from "./../components/grid/themes";
 import { useSetupFunctionType } from "./models";
 import useResize from "./useResize";
 import useScroll from "./useScroll";
@@ -59,7 +61,9 @@ const useSetup: useSetupFunctionType = ({
   // used for temporarily hiding the images
   const [hideImages, setHideImages] = useState<boolean | null>(null);
 
-  useTheme(galleryRef.current, theme);
+  const [activeTheme, setActiveTheme] = useState<Theme | undefined>(theme);
+
+  useTheme(galleryRef.current, activeTheme);
 
   useResize({
     dragRef,
@@ -182,6 +186,14 @@ const useSetup: useSetupFunctionType = ({
     }
   }, []);
 
+  const toggleTheme = useCallback(() => {
+    if (activeTheme?.backgroundColor === "#000") {
+      setActiveTheme(White);
+    } else {
+      setActiveTheme(Dark);
+    }
+  }, [activeTheme?.backgroundColor]);
+
   const fullScreen = () => {
     resetPosition();
 
@@ -255,6 +267,10 @@ const useSetup: useSetupFunctionType = ({
     }
   }, [rows, columns, imageDims.width, imageDims.height]);
 
+  const isDarkMode = useMemo(() => activeTheme?.backgroundColor === "#000", [
+    activeTheme?.backgroundColor,
+  ]);
+
   return {
     activeZoomLevel: activeImageZoomLevel,
     columns,
@@ -262,6 +278,7 @@ const useSetup: useSetupFunctionType = ({
     endReached,
     fullScreen,
     hideImages,
+    isDark: isDarkMode,
     isFullScreen,
     isResized,
     isScrolled,
@@ -275,6 +292,7 @@ const useSetup: useSetupFunctionType = ({
     scrollToTop,
     startReached,
     style: galleryStyle,
+    toggleTheme,
     windowRegion: region,
     wrapperStyle,
   };

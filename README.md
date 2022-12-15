@@ -25,10 +25,10 @@
 </div>
 
 <p align="center" style="font-size: 2rem;color: #007fff">
-  ⚡ Powerful Image Grid / Gallery for React </br>
+  ⚡ Powerful Image Grid for React </br>
 </p>
 <p align="center" style="background: #f5f5f5;padding: 1rem;font-weight:bold;font-size:1.25rem">
-  ⚡In built Virtualization | 💪 Built with Typescript | 🚀 Customizable | 📦 7.5kb gzipped
+  ⚡In built Virtualization | 🧱 Masonry Layout | 💪 Built with Typescript | 🚀 Customizable | 📦 7.5kb gzipped
 </p>
 
 - [⚡ Features ](#-features-)
@@ -41,6 +41,8 @@
 - [ImageProps](#imageprops)
 - [ImageSizes](#imagesizes)
 - [Theme](#theme)
+- [🧱 Masonry](#-masonry)
+- [🍫 Masonry Props](#-masonry-props)
 - [⛏️ Built Using ](#️-built-using-)
 - [✍️ Authors ](#️-authors-)
 - [🤝Contributing](#contributing)
@@ -49,6 +51,7 @@
 ## ⚡ Features <a name = "about"></a>
 
 - 🪟 Generate grids easily.
+- 🧱 Build beautiful [Masonry](#-masonry) grids using the Masonry component
 - ➡️ Render images horizontally or vertically in a grid.
 - ⚡ Built-in virtualization for improved performance.
 - 🖼️ Load thousands of images without worrying about performance.
@@ -56,7 +59,7 @@
 - 💡 Resizable Grid
 - 📦 Lightweight (7kb gzipped)
 - 💪 Built with typescript.
-- 💡 Easy-to-understand API and a completely configurable React component.
+- 💡 Intuitive API.
 
 <br />
 
@@ -116,18 +119,19 @@ const App = () => {
 
 ## 🍫 Props <a name = "props"></a>
 
-| Name            | Description                                                                               | Type                      | Default                   |
-| :-------------- | :---------------------------------------------------------------------------------------- | :------------------------ | :------------------------ |
-| enableResize    | Allows the grid to be freely resized                                                      | boolean                   | true                      |
-| gap             | Gap in pixels between the images                                                          | number                    | 20                        |
-| gridLayout      | Sets up the layout of the grid. can be `horizontal` or `vertical`                         | string                    | `vertical`                |
-| height          | Height of the Grid                                                                        | number or string          | 600                       |
-| imageSizes      | Configures the zoom sizes of the Images                                                   | Object                    | [read more](#image-sizes) |
-| images          | Collection of Images to be rendered                                                       | [ImageProps](#imageprops) | []                        |
-| mode            | Configures the rendering mode. set mode to `manual` to render the columns / rows manually | string                    | `auto`                    |
-| showProgressBar | Prop to show the progress bar                                                             | boolean                   | true                      |
-| theme           | Prop to apply different color scheme for the component                                    | Object                    | [read more](#theme)       |
-| width           | Width of the Grid                                                                         | number or string          | 1200                      |
+| Name            | Description                                                               | Type                      | Default                   |
+| :-------------- | :------------------------------------------------------------------------ | :------------------------ | :------------------------ |
+| enableResize    | Allows the grid to be freely resized                                      | boolean                   | true                      |
+| enableDarkMode  | Displays a toggle switch for switching between dark mode and default mode | boolean                   | false                     |
+| gap             | Gap in pixels between the images                                          | number                    | 20                        |
+| gridLayout      | Sets up the layout of the grid. can be `horizontal` or `vertical`         | string                    | `vertical`                |
+| height          | Height of the Grid                                                        | number or string          | 600                       |
+| imageSizes      | Configures the zoom sizes of the Images                                   | Object                    | [read more](#image-sizes) |
+| images          | Collection of Images to be rendered                                       | [ImageProps](#imageprops) | []                        |
+| mode            | Configures the rendering mode. can be `auto` or `manual`                  | string                    | `auto`                    |
+| showProgressBar | Prop to show the progress bar                                             | boolean                   | true                      |
+| theme           | Prop to apply different color scheme for the component                    | Object                    | [read more](#theme)       |
+| width           | Width of the Grid                                                         | number or string          | 1200                      |
 
 ## 🍭 Demo 1 (Horizontal) <a name = "horizontal"></a>
 
@@ -222,6 +226,45 @@ Here is the list of all the colors that can be customized:
 ```
 
 [Custom Theme](https://codesandbox.io/s/react-visual-grid-vertical-theme-9vc6y3?file=/src/App.tsx)
+
+## 🧱 Masonry
+
+The masonry layout is a great choice for displaying images of different sizes. You can choose to fill the images horizontally or vertically, and choose how big you want them to be. The `Masonry` component sets the height and width of each image using class names. Class names should be formatted `rc-w-[width]`, where [width] corresponds to an integer length value measured in pixels; similarly, class names should be formatted `rc-h-[height]`, with correspondingly formatted values.
+
+The layout honors the dimensions of the parent container, and the images will be automatically wrapped to the next row or column depending on the `fill` mode. In vertical fill mode, the images are arranged in columns, and in horizontal fill mode, the images are arranged in rows.
+
+The `Masonry` Component exports as its own React Component, with documentation available at the following URL
+
+```jsx
+<Masonry fillMode="HORIZONTAL" height={1200} width={300}>
+  <span className={`rc-w-100 rc-h-100`}>
+    <img alt="Image 1" src={`https://picsum.photos/id/10/100/100`} />
+  </span>
+  <span className={`rc-w-200 rc-h-100`}>
+    <img alt="Image 1" src={`https://picsum.photos/id/11/100/100`} />
+  </span>
+  <span className={`rc-w-200 rc-h-100`}>
+    <img alt="Image 1" src={`https://picsum.photos/id/13/200/100`} />
+  </span>
+  <span className={`rc-w-100 rc-h-100`}>
+    <img alt="Image 1" src={`https://picsum.photos/id/14/100/100`} />
+  </span>
+  <span className={`rc-w-300 rc-h-150`}>
+    <img alt="Image 1" src={`https://picsum.photos/id/15/200/100`} />
+  </span>
+</Masonry>
+```
+
+![masonry_demo](masonry_demo.png)
+
+## 🍫 Masonry Props
+
+| Name     | Description                                                                        | Type   | Default |
+| :------- | :--------------------------------------------------------------------------------- | :----- | :------ |
+| height   | height of the grid                                                                 | Number | 1200    |
+| width    | width of the grid                                                                  | Number | 800     |
+| gutter   | spacing between the images                                                         | Number | 4       |
+| fillMode | prop that controls the filling direction. can be either `HORIZONTAL` or `VERTICAL` | String | 4       |
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 

@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  overflow-y: auto;
+
+  & > * {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+  }
+
+  img {
+    width: calc(100% - 0px);
+    height: calc(100% - 0px);
+    object-fit: fill;
+    border-radius: 8px;
+  }
+}
