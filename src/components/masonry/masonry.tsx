@@ -7,6 +7,7 @@ export type MasonryProps = {
   height?: number;
   width?: number;
   fillMode?: "HORIZONTAL" | "VERTICAL";
+  gutter?: number;
 };
 
 const Masonry = ({
@@ -14,10 +15,11 @@ const Masonry = ({
   height = 500,
   width = 700,
   fillMode,
+  gutter = 4,
 }: MasonryProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useMasonry(ref, fillMode);
+  useMasonry(ref, fillMode, gutter);
 
   const style = useMemo(
     () => ({ height: `${height}px`, width: `${width}px` }),
