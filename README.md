@@ -28,7 +28,7 @@
   ⚡ Powerful Image Grid for React </br>
 </p>
 <p align="center" style="background: #f5f5f5;padding: 1rem;font-weight:bold;font-size:1.25rem">
-  ⚡In built Virtualization | 🧱 Masonry Layout | 💪 Built with Typescript | 🚀 Customizable | 📦 7.5kb gzipped
+  ⚡In built Virtualization 🔷 🧱 Masonry Layout 🔷 🚀 Customizable 🔷 🪶 Lightweight
 </p>
 
 - [⚡ Features ](#-features-)
@@ -74,6 +74,8 @@
 Comes with two different layouts (horizontal and vertical) for rendering images. The in-built virtualization ensures that the component renders only the images that are visible on the screen. This ensures that the component is able to render thousands of images without any performance issues.
 
 Resize the grid or go full screen, and the component will automatically adjust the ideal number of images to be displayed in the new grid size.
+
+In addition to the traditional grid, the library also comes with a [masonry layout](#-masonry). The [masonry layout](#-masonry) is used to display images in a grid with varying heights/widths.
 
 ## ⚙️ Installation <a name = "installation"></a>
 
@@ -256,6 +258,8 @@ The `Masonry` Component exports as its own React Component, with documentation a
 ```
 
 ![masonry_demo](masonry_demo.png)
+
+[Masonry CodeSandbox](https://codesandbox.io/s/react-visual-grid-masonry-c7x5ws?file=/src/App.tsx)
 
 ## 🍫 Masonry Props
 
