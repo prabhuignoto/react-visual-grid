@@ -12,8 +12,8 @@ export type MasonryProps = {
 
 const Masonry = ({
   children,
-  height = 500,
-  width = 700,
+  height = 800,
+  width = 1200,
   fillMode,
   gutter = 4,
 }: MasonryProps) => {

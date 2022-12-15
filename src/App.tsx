@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import "./app.css";
-import { Grid, Masonry } from "./react-visual-grid";
+import { Masonry } from "./react-visual-grid";
 
 // generate random images array using lorem picsum api
 const images = Array.from({ length: 400 }, (_, i) => ({
@@ -35,7 +35,7 @@ const horizontalImages = [
 function App() {
   return (
     <div className="app">
-      <Grid
+      {/* <Grid
         gap={10}
         gridDimensions={{ columns: 8 }}
         gridLayout="vertical"
@@ -43,7 +43,7 @@ function App() {
         images={images}
         mode="auto"
         width={"50%"}
-      />
+      /> */}
       {/* <Masonry fillMode="VERTICAL" height={1200} width={1200}>
         {verticalImages.map(([w, h], index) => (
           <span className={`rc-w-${w} rc-h-${h}`} key={index}>
@@ -65,6 +65,23 @@ function App() {
           </span>
         ))}
       </Masonry> */}
+      <Masonry fillMode="HORIZONTAL" height={1200} width={300}>
+        <span className={`rc-w-100 rc-h-100`}>
+          <img alt="Image 1" src={`https://picsum.photos/id/10/100/100`} />
+        </span>
+        <span className={`rc-w-200 rc-h-100`}>
+          <img alt="Image 1" src={`https://picsum.photos/id/11/100/100`} />
+        </span>
+        <span className={`rc-w-200 rc-h-100`}>
+          <img alt="Image 1" src={`https://picsum.photos/id/13/200/100`} />
+        </span>
+        <span className={`rc-w-100 rc-h-100`}>
+          <img alt="Image 1" src={`https://picsum.photos/id/14/100/100`} />
+        </span>
+        <span className={`rc-w-300 rc-h-150`}>
+          <img alt="Image 1" src={`https://picsum.photos/id/15/200/100`} />
+        </span>
+      </Masonry>
     </div>
   );
 }
