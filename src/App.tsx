@@ -4,7 +4,7 @@ import "./app.css";
 import { Masonry } from "./react-visual-grid";
 
 // generate random images array using lorem picsum api
-const images = Array.from({ length: 400 }, (_, i) => ({
+const images = Array.from({ length: 50 }, (_, i) => ({
   alt: `Image ${i + 1}`,
   src: `https://picsum.photos/id/${Math.round(Math.random() * 110)}/800/600`,
 }));
@@ -65,7 +65,7 @@ function App() {
           </span>
         ))}
       </Masonry> */}
-      <Masonry fillMode="HORIZONTAL" height={1200} width={300}>
+      {/* <Masonry fillMode="HORIZONTAL" height={500} width={300}>
         <span className={`rc-w-100 rc-h-100`}>
           <img alt="Image 1" src={`https://picsum.photos/id/10/100/100`} />
         </span>
@@ -81,6 +81,24 @@ function App() {
         <span className={`rc-w-300 rc-h-150`}>
           <img alt="Image 1" src={`https://picsum.photos/id/15/200/100`} />
         </span>
+      </Masonry> */}
+
+      {/* generate a random mason grid using the Masonry react component with same image width but different height*/}
+
+      <Masonry fillMode="VERTICAL" height={1200} width={1200}>
+        {images.map((image, index) => {
+          const height = Math.round(Math.random() * 500);
+          return (
+            <span className={`rc-w-350 rc-h-${height}`} key={index}>
+              <img
+                alt={image.alt}
+                src={`https://picsum.photos/id/${Math.round(
+                  Math.random() * 110
+                )}/350/${height}`}
+              />
+            </span>
+          );
+        })}
       </Masonry>
     </div>
   );

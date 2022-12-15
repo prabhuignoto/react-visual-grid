@@ -253,6 +253,8 @@ The `Masonry` Component exports as its own React Component, with documentation a
 </Masonry>
 ```
 
+> In vertical fill mode, the images are arranged in columns, and in horizontal fill mode, the images are arranged in rows.
+
 ![masonry_demo](masonry_demo.png)
 
 ## 🍫 Masonry Props
