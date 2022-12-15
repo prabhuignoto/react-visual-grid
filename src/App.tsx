@@ -1,41 +1,41 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import "./app.css";
-import { Masonry } from "./react-visual-grid";
+import { Grid, Masonry } from "./react-visual-grid";
 
 // generate random images array using lorem picsum api
-// const images = Array.from({ length: 400 }, (_, i) => ({
-//   alt: `Image ${i + 1}`,
-//   src: `https://picsum.photos/id/${Math.round(Math.random() * 110)}/800/600`,
-// }));
+const images = Array.from({ length: 400 }, (_, i) => ({
+  alt: `Image ${i + 1}`,
+  src: `https://picsum.photos/id/${Math.round(Math.random() * 110)}/800/600`,
+}));
 
 const verticalImages = [
-  [400, 300],
-  [400, 500],
-  [400, 350],
-  [400, 350],
-  [400, 400],
-  [400, 400],
-  [400, 350],
-  [400, 800],
+  [200, 200],
+  [200, 400],
+  [200, 250],
+  [200, 250],
+  [200, 300],
+  [200, 300],
+  [200, 500],
+  [200, 1100],
 ];
 
 const horizontalImages = [
-  [600, 400],
-  [500, 400],
+  [400, 400],
+  [400, 400],
   [700, 400],
-  [1800, 250],
+  [1700, 250],
   [200, 350],
-  [500, 350],
-  [1100, 350],
-  [900, 200],
-  [900, 200],
+  [400, 350],
+  [900, 350],
+  [700, 200],
+  [800, 200],
 ];
 
 function App() {
   return (
     <div className="app">
-      {/* <Grid
+      <Grid
         gap={10}
         gridDimensions={{ columns: 8 }}
         gridLayout="vertical"
@@ -43,8 +43,8 @@ function App() {
         images={images}
         mode="auto"
         width={"50%"}
-      /> */}
-      <Masonry fillMode="VERTICAL" height={1200} width={1200}>
+      />
+      {/* <Masonry fillMode="VERTICAL" height={1200} width={1200}>
         {verticalImages.map(([w, h], index) => (
           <span className={`rc-w-${w} rc-h-${h}`} key={index}>
             <img
@@ -64,7 +64,7 @@ function App() {
             />
           </span>
         ))}
-      </Masonry>
+      </Masonry> */}
     </div>
   );
 }
