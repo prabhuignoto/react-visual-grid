@@ -231,7 +231,10 @@ Here is the list of all the colors that can be customized:
 
 The masonry layout is a great choice for displaying images of different sizes. You can choose to fill the images horizontally or vertically, and choose how big you want them to be. The `Masonry` component sets the height and width of each image using class names. Class names should be formatted `rc-w-[width]`, where [width] corresponds to an integer length value measured in pixels; similarly, class names should be formatted `rc-h-[height]`, with correspondingly formatted values.
 
+The layout honors the dimensions of the parent container, and the images will be automatically wrapped to the next row or column depending on the `fill` mode. In vertical fill mode, the images are arranged in columns, and in horizontal fill mode, the images are arranged in rows.
+
 The `Masonry` Component exports as its own React Component, with documentation available at the following URL
+
 
 ```jsx
 <Masonry fillMode="HORIZONTAL" height={1200} width={300}>
@@ -253,8 +256,6 @@ The `Masonry` Component exports as its own React Component, with documentation a
 </Masonry>
 ```
 
-> In vertical fill mode, the images are arranged in columns, and in horizontal fill mode, the images are arranged in rows.
-
 ![masonry_demo](masonry_demo.png)
 
 ## 🍫 Masonry Props
@@ -265,6 +266,8 @@ The `Masonry` Component exports as its own React Component, with documentation a
 | width    | width of the grid                                                                  | Number | 800     |
 | gutter   | spacing between the images                                                         | Number | 4       |
 | fillMode | prop that controls the filling direction. can be either `HORIZONTAL` or `VERTICAL` | String | 4       |
+
+
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
