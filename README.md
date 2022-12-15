@@ -235,7 +235,6 @@ The layout honors the dimensions of the parent container, and the images will be
 
 The `Masonry` Component exports as its own React Component, with documentation available at the following URL
 
-
 ```jsx
 <Masonry fillMode="HORIZONTAL" height={1200} width={300}>
   <span className={`rc-w-100 rc-h-100`}>
@@ -266,8 +265,6 @@ The `Masonry` Component exports as its own React Component, with documentation a
 | width    | width of the grid                                                                  | Number | 800     |
 | gutter   | spacing between the images                                                         | Number | 4       |
 | fillMode | prop that controls the filling direction. can be either `HORIZONTAL` or `VERTICAL` | String | 4       |
-
-
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
