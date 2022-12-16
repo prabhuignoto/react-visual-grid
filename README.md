@@ -28,7 +28,7 @@
   ⚡ Powerful Image Grid for React </br>
 </p>
 <p align="center" style="background: #f5f5f5;padding: 1rem;font-weight:bold;font-size:1.25rem">
-  ⚡In built Virtualization 🔷 🧱 Masonry Layout 🔷 🚀 Customizable 🔷 🪶 Lightweight
+  ⚡Virtualized by Default 🔷 💡Multiple Layouts 🔷 🧱 Masonry Layout 🔷 🪶 Lightweight
 </p>
 
 - [⚡ Features ](#-features-)
@@ -54,7 +54,7 @@
 - 🧱 Build beautiful [Masonry](#-masonry) grids using the Masonry component
 - ➡️ Render images horizontally or vertically in a grid.
 - ⚡ Built-in virtualization for improved performance.
-- 🖼️ Load thousands of images without worrying about performance.
+- 🖼️ Load **1000's** of images without worrying about performance.
 - 🎛️ UI controls for adjusting image sizes.
 - 💡 Resizable Grid
 - 📦 Lightweight (7kb gzipped)
