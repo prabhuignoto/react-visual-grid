@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import "./app.css";
-import { Masonry } from "./react-visual-grid";
+import { Grid, Masonry } from "./react-visual-grid";
 
 // generate random images array using lorem picsum api
 const images = Array.from({ length: 50 }, (_, i) => ({
@@ -18,18 +18,25 @@ const verticalImages = [
   [200, 300],
   [200, 500],
   [200, 1100],
+  [300, 400],
+  [300, 700],
+  [300, 800],
+  [300, 300],
+  [500, 1100],
 ];
 
 const horizontalImages = [
   [400, 400],
   [400, 400],
   [700, 400],
-  [1700, 250],
+  [300, 400],
+  [1800, 250],
   [200, 350],
   [400, 350],
   [900, 350],
+  [300, 350],
   [700, 200],
-  [800, 200],
+  [1100, 200],
 ];
 
 function App() {
@@ -44,8 +51,19 @@ function App() {
         mode="auto"
         width={"50%"}
       /> */}
-      {/* <Masonry fillMode="VERTICAL" height={1200} width={1200}>
+      {/* <Masonry fillMode="VERTICAL" height={1200} width={1800}>
         {verticalImages.map(([w, h], index) => (
+          <span className={`rc-w-${w} rc-h-${h}`} key={index}>
+            <img
+              alt="Image 1"
+              src={`https://picsum.photos/id/${index * 10 + 1}/${w}/${h}`}
+            />
+          </span>
+        ))}
+      </Masonry> */}
+
+      <Masonry fillMode="HORIZONTAL" height={1200} width={1800} gutter={0}>
+        {horizontalImages.map(([w, h], index) => (
           <span className={`rc-w-${w} rc-h-${h}`} key={index}>
             <img
               alt="Image 1"
@@ -55,18 +73,8 @@ function App() {
         ))}
       </Masonry>
 
-      <Masonry fillMode="HORIZONTAL" height={1200} width={1800}>
-        {horizontalImages.map(([w, h], index) => (
-          <span className={`rc-w-${w} rc-h-${h}`} key={index}>
-            <img
-              alt="Image 1"
-              src={`https://picsum.photos/id/${index * 10 + 1}/${w}/${h}`}
-            />
-          </span>
-        ))}
-      </Masonry> */}
-      <Masonry fillMode="HORIZONTAL" height={700} width={600}>
-        <span className={`rc-w-100 rc-h-100`}>
+      {/* <Masonry fillMode="HORIZONTAL" height={700} width={600}>
+        <span className={`rc-w-100 rc-h-`}>
           <img alt="Image 1" src={`https://picsum.photos/id/10/100/100`} />
         </span>
         <span className={`rc-w-200 rc-h-100`}>
@@ -93,10 +101,10 @@ function App() {
         <span className={`rc-w-440 rc-h-200`}>
           <img alt="Image 1" src={`https://picsum.photos/id/77/440/200`} />
         </span>
-        <span className={`rc-w-600 rc-h-200`}>
+        <span className={`rc-w-600 rc-h-`}>
           <img alt="Image 1" src={`https://picsum.photos/id/162/600/200`} />
         </span>
-      </Masonry>
+      </Masonry> */}
 
       {/* generate a random mason grid using the Masonry react component with same image width but different height*/}
 

@@ -8,7 +8,7 @@ $warning: colors.$amber;
 
   max-width: 90%;
   max-height: 90%;
-  transition: visibility 0s, opacity 0.25s linear;
+  transition: visibility 0s, opacity 0.25s linear, clip-path 0.25s linear;
   cursor: pointer;
 }
 

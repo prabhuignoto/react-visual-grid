@@ -1,3 +1,4 @@
+import cx from "classnames";
 import { ReactNode, useMemo, useRef } from "react";
 import { useMasonry } from "../../effects/useMasonry";
 import styles from "./masonry.module.scss";
@@ -26,8 +27,14 @@ const Masonry = ({
     [height, width]
   );
 
+  const containerClass = cx(
+    styles.container,
+    !gutter ? styles.no_gutter : "",
+    []
+  );
+
   return (
-    <div className={styles.container} ref={ref} style={style}>
+    <div className={containerClass} ref={ref} style={style}>
       {children}
     </div>
   );

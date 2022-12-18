@@ -1,4 +1,5 @@
 import { RefObject, useEffect } from "react";
+import styles from "./effects.module.scss";
 
 type FillMode = "HORIZONTAL" | "VERTICAL";
 
@@ -26,6 +27,16 @@ export function useMasonry(
         const classList = Array.from(child.classList).filter((cls) =>
           cls.includes("rc-")
         );
+        const image = (<HTMLElement>child).firstChild as HTMLElement;
+        const className = styles[`veil_${fillMode.toLowerCase()}`];
+        image.classList.add(className);
+
+        image.addEventListener("load", () => {
+          setTimeout(() => {
+            image.classList.remove(className);
+            image.classList.add(styles.unveil);
+          }, 100);
+        });
 
         if (classList) {
           const [width, height] = [
@@ -38,6 +49,10 @@ export function useMasonry(
 
           const actualWidth = width - gutter;
           const actualHeight = height - gutter;
+
+          if (!actualWidth || !actualHeight) {
+            return;
+          }
 
           let style = "";
 
@@ -71,8 +86,13 @@ export function useMasonry(
             maxWidth = Math.max(maxWidth, actualWidth);
           }
 
-          style += `width: ${actualWidth}px; height: ${actualHeight}px; visibility: visible;`;
+          style += `
+            width: ${actualWidth}px;
+            height: ${actualHeight}px;
+            visibility: visible;
+          `;
           (<HTMLElement>child).style.cssText = style;
+
           style = "";
         }
       });
