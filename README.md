@@ -293,7 +293,9 @@ The `Masonry` Component exports as its own React Component, with documentation a
 5. Create a new Pull Request
 
 ## Meta
+
 ## Meta
+
 ## Meta
 
 Distributed under the MIT license. See `LICENSE` for more information.
