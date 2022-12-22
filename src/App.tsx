@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import "./app.css";
-import { Grid, Masonry } from "./react-visual-grid";
+import { Masonry } from "./react-visual-grid";
 
 // generate random images array using lorem picsum api
 const images = Array.from({ length: 50 }, (_, i) => ({
@@ -46,10 +46,10 @@ function App() {
         gap={10}
         gridDimensions={{ columns: 8 }}
         gridLayout="vertical"
-        height={"80%"}
+        height={"70%"}
         images={images}
         mode="auto"
-        width={"50%"}
+        width={"90%"}
       /> */}
       {/* <Masonry fillMode="VERTICAL" height={1200} width={1800}>
         {verticalImages.map(([w, h], index) => (

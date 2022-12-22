@@ -47,6 +47,8 @@
 - [✍️ Authors ](#️-authors-)
 - [🤝Contributing](#contributing)
 - [Meta](#meta)
+- [Meta](#meta-1)
+- [Meta](#meta-2)
 
 ## ⚡ Features <a name = "about"></a>
 
@@ -263,12 +265,13 @@ The `Masonry` Component exports as its own React Component, with documentation a
 
 ## 🍫 Masonry Props
 
-| Name     | Description                                                                        | Type   | Default |
-| :------- | :--------------------------------------------------------------------------------- | :----- | :------ |
-| height   | height of the grid                                                                 | Number | 1200    |
-| width    | width of the grid                                                                  | Number | 800     |
-| gutter   | spacing between the images                                                         | Number | 4       |
-| fillMode | prop that controls the filling direction. can be either `HORIZONTAL` or `VERTICAL` | String | 4       |
+| Name            | Description                                                                        | Type    | Default |
+| :-------------- | :--------------------------------------------------------------------------------- | :------ | :------ |
+| height          | height of the grid                                                                 | Number  | 1200    |
+| width           | width of the grid                                                                  | Number  | 800     |
+| enableAnimation | enable / disable the animation on load                                             | Boolean | true    |
+| gutter          | spacing between the images                                                         | Number  | 4       |
+| fillMode        | prop that controls the filling direction. can be either `HORIZONTAL` or `VERTICAL` | String  | 4       |
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -289,6 +292,8 @@ The `Masonry` Component exports as its own React Component, with documentation a
 4. Push to the branch (`git push origin new-feature`)
 5. Create a new Pull Request
 
+## Meta
+## Meta
 ## Meta
 
 Distributed under the MIT license. See `LICENSE` for more information.

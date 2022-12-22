@@ -2,12 +2,19 @@ import { RefObject, useEffect } from "react";
 import styles from "./effects.module.scss";
 
 type FillMode = "HORIZONTAL" | "VERTICAL";
+type masonryOptions = {
+  target?: RefObject<HTMLElement>;
+  fillMode?: FillMode;
+  gutter?: number;
+  enableAnimation?: boolean;
+};
 
-export function useMasonry(
-  target?: RefObject<HTMLElement>,
-  fillMode: FillMode = "VERTICAL",
-  gutter: number = 2
-) {
+export function useMasonry({
+  target,
+  fillMode = "HORIZONTAL",
+  gutter = 2,
+  enableAnimation = true,
+}: masonryOptions) {
   useEffect(() => {
     if (target && target.current) {
       const ele = target.current;
@@ -29,14 +36,17 @@ export function useMasonry(
         );
         const image = (<HTMLElement>child).firstChild as HTMLElement;
         const className = styles[`veil_${fillMode.toLowerCase()}`];
-        image.classList.add(className);
 
-        image.addEventListener("load", () => {
-          setTimeout(() => {
-            image.classList.remove(className);
-            image.classList.add(styles.unveil);
-          }, 100);
-        });
+        if (enableAnimation) {
+          image.classList.add(className);
+
+          image.addEventListener("load", () => {
+            setTimeout(() => {
+              image.classList.remove(className);
+              image.classList.add(styles.unveil);
+            }, 100);
+          });
+        }
 
         if (classList) {
           const [width, height] = [
