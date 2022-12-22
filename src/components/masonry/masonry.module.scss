@@ -13,7 +13,12 @@
   img {
     width: calc(100% - 0px);
     height: calc(100% - 0px);
-    object-fit: fill;
-    border-radius: 8px;
+    transition: clip-path 0.75s ease-in-out;
+  }
+
+  &:not(.no_gutter) {
+    img {
+      border-radius: 8px;
+    }
   }
 }

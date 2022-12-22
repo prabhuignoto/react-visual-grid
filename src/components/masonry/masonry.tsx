@@ -1,3 +1,4 @@
+import cx from "classnames";
 import { ReactNode, useMemo, useRef } from "react";
 import { useMasonry } from "../../effects/useMasonry";
 import styles from "./masonry.module.scss";
@@ -8,6 +9,7 @@ export type MasonryProps = {
   width?: number;
   fillMode?: "HORIZONTAL" | "VERTICAL";
   gutter?: number;
+  enableAnimation?: boolean;
 };
 
 const Masonry = ({
@@ -16,18 +18,25 @@ const Masonry = ({
   width = 1200,
   fillMode,
   gutter = 4,
+  enableAnimation = true,
 }: MasonryProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
-  useMasonry(ref, fillMode, gutter);
+  useMasonry({ enableAnimation, fillMode, gutter, target: ref });
 
   const style = useMemo(
     () => ({ height: `${height}px`, width: `${width}px` }),
     [height, width]
   );
 
+  const containerClass = cx(
+    styles.container,
+    !gutter ? styles.no_gutter : "",
+    []
+  );
+
   return (
-    <div className={styles.container} ref={ref} style={style}>
+    <div className={containerClass} ref={ref} style={style}>
       {children}
     </div>
   );
