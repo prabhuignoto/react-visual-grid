@@ -7,7 +7,7 @@ export const GridHorizontal = () => {
       gap={10}
       gridDimensions={{ columns: 8 }}
       gridLayout="horizontal"
-      height={1000}
+      height={1200}
       images={images}
       mode="auto"
       width={1200}

@@ -7,7 +7,7 @@ export const GridVertical = () => {
       gap={10}
       gridDimensions={{ columns: 8 }}
       gridLayout="vertical"
-      height={900}
+      height={1200}
       images={images}
       mode="auto"
       width={1200}
