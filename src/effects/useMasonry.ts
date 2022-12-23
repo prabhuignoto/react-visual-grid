@@ -1,12 +1,12 @@
 import { RefObject, useEffect } from "react";
+import { MasonryProps } from "../react-visual-grid";
 import styles from "./effects.module.scss";
 
-type FillMode = "HORIZONTAL" | "VERTICAL";
-type masonryOptions = {
+type masonryOptions = Pick<
+  MasonryProps,
+  "fillMode" | "gutter" | "enableAnimation" | "animationDelay"
+> & {
   target?: RefObject<HTMLElement>;
-  fillMode?: FillMode;
-  gutter?: number;
-  enableAnimation?: boolean;
 };
 
 export function useMasonry({
@@ -14,6 +14,7 @@ export function useMasonry({
   fillMode = "HORIZONTAL",
   gutter = 2,
   enableAnimation = true,
+  animationDelay = 200,
 }: masonryOptions) {
   useEffect(() => {
     if (target && target.current) {
@@ -44,7 +45,7 @@ export function useMasonry({
             setTimeout(() => {
               image.classList.remove(className);
               image.classList.add(styles.unveil);
-            }, 100);
+            }, animationDelay);
           });
         }
 
