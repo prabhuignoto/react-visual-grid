@@ -10,6 +10,7 @@ export type MasonryProps = {
   fillMode?: "HORIZONTAL" | "VERTICAL";
   gutter?: number;
   enableAnimation?: boolean;
+  animationDelay?: number;
 };
 
 const Masonry = ({
