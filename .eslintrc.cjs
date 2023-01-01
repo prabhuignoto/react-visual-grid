@@ -18,11 +18,6 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
   plugins: [
     "react",
     "@typescript-eslint",
@@ -30,12 +25,17 @@ module.exports = {
     "simple-import-sort",
   ],
   rules: {
-    "react/prop-types": "off",
     "jsx-a11y/no-noninteractive-tabindex": "off",
     "react/jsx-sort-props": "warn",
-    "sort-keys": "warn",
-    "sort-vars": "warn",
-    "sort-keys-fix/sort-keys-fix": "warn",
+    "react/prop-types": "off",
     "simple-import-sort/exports": "error",
+    "sort-keys": "warn",
+    "sort-keys-fix/sort-keys-fix": "warn",
+    "sort-vars": "warn",
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
   },
 };
