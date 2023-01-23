@@ -1,4 +1,4 @@
-export const images = Array.from({ length: 50 }, (_, i) => ({
+export const images = Array.from({ length: 450 }, (_, i) => ({
   alt: `Image ${i + 1}`,
   src: `https://picsum.photos/id/${Math.round(Math.random() * 110)}/800/600`,
 }));
