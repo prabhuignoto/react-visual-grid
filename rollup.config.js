@@ -1,5 +1,8 @@
 import babel from "@rollup/plugin-babel";
 import common from "@rollup/plugin-commonjs";
+import eslint from "@rollup/plugin-eslint";
+import strip from "@rollup/plugin-strip";
+import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import { resolve as pathResolve } from "path";
 import PostCSSPreset from "postcss-preset-env";
@@ -10,10 +13,8 @@ import PeerDepsExternalPlugin from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
+
 import pkg from "./package.json" assert { type: "json" };
-import autoprefixer from "autoprefixer";
-import eslint from "@rollup/plugin-eslint";
-import strip from "@rollup/plugin-strip";
 
 const banner = `/*
  * ${pkg.name}
