@@ -28,9 +28,8 @@ const useSetup: useSetupFunctionType = ({
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
 
-  const [activeImageZoomLevel, setActiveImageZoomLevel] = useState<ZoomLevel>(
-    "2X"
-  );
+  const [activeImageZoomLevel, setActiveImageZoomLevel] =
+    useState<ZoomLevel>("2X");
 
   // reference to the gallery container
   const galleryRef = useRef<HTMLElement | null>(null);
@@ -252,7 +251,9 @@ const useSetup: useSetupFunctionType = ({
       if (gridLayout === "vertical") {
         const newHeight = rows * height;
         const addHeight = Math.max(
-          ...Object.keys(imageSizes).map((x) => imageSizes[x].height)
+          ...Object.keys(imageSizes).map(
+            (x) => imageSizes[x as ZoomLevel].height
+          )
         );
 
         setContainerDimensions({
@@ -267,9 +268,10 @@ const useSetup: useSetupFunctionType = ({
     }
   }, [rows, columns, imageDims.width, imageDims.height]);
 
-  const isDarkMode = useMemo(() => activeTheme?.backgroundColor === "#000", [
-    activeTheme?.backgroundColor,
-  ]);
+  const isDarkMode = useMemo(
+    () => activeTheme?.backgroundColor === "#000",
+    [activeTheme?.backgroundColor]
+  );
 
   return {
     activeZoomLevel: activeImageZoomLevel,

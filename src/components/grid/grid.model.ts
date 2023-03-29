@@ -10,8 +10,11 @@ export type GridDimensions = {
   rows?: number;
 };
 
+export type ZoomLevel = "1X" | "2X" | "3X";
+
 export type ImageSize = {
-  [key: string]: {
+  // eslint-disable-next-line no-unused-vars
+  [key in ZoomLevel]: {
     width: number;
     height: number;
   };
@@ -30,8 +33,6 @@ export type Theme = {
   controlsBackDropColor: string;
   primaryColor: string;
 };
-
-export type ZoomLevel = "1X" | "2X" | "3X" | "4X";
 
 export type GridProps = {
   // images as array

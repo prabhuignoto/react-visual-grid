@@ -25,8 +25,7 @@ export default function useKey({ escCB, leftCB, rightCB }: options) {
     if (node) {
       ref.current = node;
       node.focus();
-      node.addEventListener("keyup", handleKeyUp
-      );
+      node.addEventListener("keyup", handleKeyUp);
     }
   }, []);
 

@@ -1,10 +1,7 @@
 import babel from "@rollup/plugin-babel";
-// import buble from "@rollup/plugin-buble";
 import common from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
 import cssnano from "cssnano";
 import { resolve as pathResolve } from "path";
-// import postCSSModules from "postcss-modules";
 import PostCSSPreset from "postcss-preset-env";
 import analyze from "rollup-plugin-analyzer";
 import copy from "rollup-plugin-copy";
@@ -86,7 +83,7 @@ export default {
       syntax: "postcss-scss",
     }),
     common(),
-    resolve(),
+    // resolve(),
     terser({
       compress: {
         drop_console: true,
