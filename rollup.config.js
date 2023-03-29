@@ -1,10 +1,10 @@
 import babel from "@rollup/plugin-babel";
-// import buble from "@rollup/plugin-buble";
 import common from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
+import eslint from "@rollup/plugin-eslint";
+import strip from "@rollup/plugin-strip";
+import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import { resolve as pathResolve } from "path";
-// import postCSSModules from "postcss-modules";
 import PostCSSPreset from "postcss-preset-env";
 import analyze from "rollup-plugin-analyzer";
 import copy from "rollup-plugin-copy";
@@ -13,10 +13,8 @@ import PeerDepsExternalPlugin from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import typescript from "rollup-plugin-typescript2";
+
 import pkg from "./package.json" assert { type: "json" };
-import autoprefixer from "autoprefixer";
-import eslint from "@rollup/plugin-eslint";
-import strip from "@rollup/plugin-strip";
 
 const banner = `/*
  * ${pkg.name}
@@ -86,7 +84,7 @@ export default {
       syntax: "postcss-scss",
     }),
     common(),
-    resolve(),
+    // resolve(),
     terser({
       compress: {
         drop_console: true,
