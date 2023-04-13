@@ -15,7 +15,7 @@ export const MasonryVertical = () => {
         <span className={`rc-w-${w} rc-h-${h}`} key={index}>
           <img
             alt="Image 1"
-            src={`https://picsum.photos/id/${index * 10 + 1}/${w}/${h}`}
+            src={`https://source.unsplash.com/random/${w}x${h}?nature`}
           />
         </span>
       ))}
@@ -36,12 +36,7 @@ export const MasonryVerticalSimple = () => {
         const height = Math.round(Math.random() * 500);
         return (
           <span className={`rc-w-350 rc-h-${height}`} key={index}>
-            <img
-              alt={image.alt}
-              src={`https://picsum.photos/id/${Math.round(
-                Math.random() * 110
-              )}/350/${height}`}
-            />
+            <img alt={image.alt} src={image.src} />
           </span>
         );
       })}

@@ -240,26 +240,43 @@ The layout honors the dimensions of the parent container, and the images will be
 The `Masonry` Component exports as its own React Component, with documentation available at the following URL
 
 ```jsx
-<Masonry fillMode="HORIZONTAL" height={1200} width={300}>
-  <span className={`rc-w-100 rc-h-100`}>
-    <img alt="Image 1" src={`https://picsum.photos/id/10/100/100`} />
-  </span>
-  <span className={`rc-w-200 rc-h-100`}>
-    <img alt="Image 1" src={`https://picsum.photos/id/11/100/100`} />
-  </span>
-  <span className={`rc-w-200 rc-h-100`}>
-    <img alt="Image 1" src={`https://picsum.photos/id/13/200/100`} />
-  </span>
-  <span className={`rc-w-100 rc-h-100`}>
-    <img alt="Image 1" src={`https://picsum.photos/id/14/100/100`} />
-  </span>
-  <span className={`rc-w-300 rc-h-150`}>
-    <img alt="Image 1" src={`https://picsum.photos/id/15/200/100`} />
-  </span>
-</Masonry>
+const App = () => {
+  const dimensions = [
+    [400, 300],
+    [950, 300],
+    [450, 300],
+    [700, 400],
+    [500, 400],
+    [600, 400],
+    [1800, 250],
+    [200, 350],
+    [400, 350],
+    [900, 350],
+    [300, 350],
+    [700, 200],
+    [1100, 200],
+  ];
+
+  return <Masonry
+    animationDelay={500}
+    fillMode="HORIZONTAL"
+    gutter={0}
+    height={1200}
+    width={1800}
+  >
+    {dimensions.map(([w, h], index) => (
+      <span className={`rc-w-${w} rc-h-${h}`} key={index}>
+        <img
+          alt="Image 1"
+          src={`https://source.unsplash.com/random/${w}x${h}?space`}
+        />
+      </span>
+    ))}
+  </Masonry>
+}
 ```
 
-![masonry_demo](masonry_demo.png)
+![masonry_demo_2](masonry_demo_2.png)
 
 [Masonry CodeSandbox](https://codesandbox.io/s/react-visual-grid-masonry-c7x5ws?file=/src/App.tsx)
 
