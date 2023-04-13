@@ -28,8 +28,9 @@ const useSetup: useSetupFunctionType = ({
   const [columns, setColumns] = useState(0);
   const [rows, setRows] = useState(0);
 
-  const [activeImageZoomLevel, setActiveImageZoomLevel] =
-    useState<ZoomLevel>("2X");
+  const [activeImageZoomLevel, setActiveImageZoomLevel] = useState<ZoomLevel>(
+    "2X"
+  );
 
   // reference to the gallery container
   const galleryRef = useRef<HTMLElement | null>(null);
@@ -268,10 +269,9 @@ const useSetup: useSetupFunctionType = ({
     }
   }, [rows, columns, imageDims.width, imageDims.height]);
 
-  const isDarkMode = useMemo(
-    () => activeTheme?.backgroundColor === "#000",
-    [activeTheme?.backgroundColor]
-  );
+  const isDarkMode = useMemo(() => activeTheme?.backgroundColor === "#000", [
+    activeTheme?.backgroundColor,
+  ]);
 
   return {
     activeZoomLevel: activeImageZoomLevel,

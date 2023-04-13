@@ -1,0 +1,14 @@
+# Ignore all files in the node_modules directory
+node_modules/**
+
+# Ignore all generated files
+build/**
+dist/**
+*.min.js
+*.min.css
+
+# Ignore all gitignored files
+.gitignore
+
+
+*.d.ts
