@@ -26,6 +26,7 @@ module.exports = {
   ],
   rules: {
     "jsx-a11y/no-noninteractive-tabindex": "off",
+    "react-hooks/exhaustive-deps": "off",
     "react/jsx-sort-props": "warn",
     "react/prop-types": "off",
     "simple-import-sort/exports": "error",
