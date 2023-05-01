@@ -14,21 +14,22 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
 }
 
 .container {
   @extend .center;
-  height: 80vh;
+  min-height: 80vh;
   width: 100%;
+  align-items: flex-start;
 }
 
 .aside {
   @extend .center-column;
   width: 300px;
-  border: 1px solid #ccc;
+  // border: 1px solid #ccc;
   height: 100%;
 }
 

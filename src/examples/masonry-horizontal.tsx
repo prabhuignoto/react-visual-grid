@@ -7,8 +7,8 @@ export const MasonryHorizontal = () => {
     <Masonry
       animationDelay={500}
       fillMode="HORIZONTAL"
-      gutter={0}
-      height={1200}
+      gutter={1}
+      height={1400}
       width={1800}
     >
       {horizontalImages.map(([w, h], index) => (
