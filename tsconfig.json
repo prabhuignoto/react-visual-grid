@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "dist"
+    "outDir": "dist",
   },
   "include": ["src"],
   "exclude": ["src/App.tsx", "src/main.tsx"],
