@@ -25,3 +25,4 @@ dist-ssr
 .cache
 cache
 reports
+app_dist
