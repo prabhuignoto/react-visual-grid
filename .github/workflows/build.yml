@@ -29,4 +29,4 @@ jobs:
       - name: Build
         run: |
           pnpm install
-          pnpm build:lib
+          pnpm rollup

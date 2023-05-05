@@ -32,7 +32,7 @@
     "fix:css": "stylelint --fix ./src/components/**/*.scss",
     "prepare": "husky install",
     "lint:all": "pnpm run lint:js && pnpm run lint:css",
-    "rollup": "rollup -c ./rollup.config.cjs",
+    "rollup": "rollup -c ./rollup.config.mjs",
     "clean": "npx concurrently \"pnpm run format\" \"pnpm run lint:all\"",
     "webpack": "npx webpack --config ./webpack.config.mjs && tsc --project tsconfig.json --emitDeclarationOnly",
     "build:lib": "rspack build && tsc --project tsconfig.json --emitDeclarationOnly"
@@ -76,8 +76,6 @@
     "@rollup/plugin-eslint": "^9.0.3",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-strip": "^3.0.2",
-    "@rspack/cli": "^0.1.9",
-    "@rspack/plugin-minify": "^0.1.9",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.1",
     "@types/react": "^18.2.0",
