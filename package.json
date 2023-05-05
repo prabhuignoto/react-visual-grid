@@ -1,7 +1,6 @@
 {
   "name": "react-visual-grid",
   "version": "0.9.1",
-  "type": "module",
   "license": "MIT",
   "author": {
     "name": "Prabhu Murthy",
@@ -33,10 +32,10 @@
     "fix:css": "stylelint --fix ./src/components/**/*.scss",
     "prepare": "husky install",
     "lint:all": "pnpm run lint:js && pnpm run lint:css",
-    "rollup": "rollup -c ./rollup.config.js",
+    "rollup": "rollup -c ./rollup.config.cjs",
     "clean": "npx concurrently \"pnpm run format\" \"pnpm run lint:all\"",
     "webpack": "npx webpack --config ./webpack.config.mjs && tsc --project tsconfig.json --emitDeclarationOnly",
-    "rspack": "rspack build && tsc --project tsconfig.json --emitDeclarationOnly"
+    "build:lib": "rspack build && tsc --project tsconfig.json --emitDeclarationOnly"
   },
   "dependencies": {
     "classnames": "^2.3.2",

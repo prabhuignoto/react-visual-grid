@@ -15,10 +15,10 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "dist"
   },
   "include": ["src"],
-  "exclude": ["src/App.tsx", "src/main.tsx"],
+  "exclude": ["src/App.tsx", "src/main.tsx", "src/examples"],
   "references": [
     {
       "path": "./tsconfig.node.json"
