@@ -18,10 +18,10 @@ export default {
         banner: `
         ${pkg.name} v${pkg.version}
         ${pkg.description}
-      
+
         (c) ${new Date().getFullYear()} Prabhu Murthy
         License: MIT
-      
+
         https://github.com/prabhuignoto/react-visual-grid
         `,
       },
