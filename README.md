@@ -257,23 +257,25 @@ const App = () => {
     [1100, 200],
   ];
 
-  return <Masonry
-    animationDelay={500}
-    fillMode="HORIZONTAL"
-    gutter={0}
-    height={1200}
-    width={1800}
-  >
-    {dimensions.map(([w, h], index) => (
-      <span className={`rc-w-${w} rc-h-${h}`} key={index}>
-        <img
-          alt="Image 1"
-          src={`https://source.unsplash.com/random/${w}x${h}?space`}
-        />
-      </span>
-    ))}
-  </Masonry>
-}
+  return (
+    <Masonry
+      animationDelay={500}
+      fillMode="HORIZONTAL"
+      gutter={0}
+      height={1200}
+      width={1800}
+    >
+      {dimensions.map(([w, h], index) => (
+        <span className={`rc-w-${w} rc-h-${h}`} key={index}>
+          <img
+            alt="Image 1"
+            src={`https://source.unsplash.com/random/${w}x${h}?space`}
+          />
+        </span>
+      ))}
+    </Masonry>
+  );
+};
 ```
 
 ![masonry_demo_2](masonry_demo_2.png)
