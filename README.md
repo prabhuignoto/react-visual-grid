@@ -297,7 +297,6 @@ const App = () => {
 - [typescript](https://www.typescriptlang.org/)
 - [react](https://reactjs.org/)
 - [classNames](https://jedwatson.github.io/classnames/)
-- [nanoid](https://github.com/ai/nanoid)
 
 ## ✍️ Authors <a name = "authors"></a>
 

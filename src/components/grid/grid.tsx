@@ -1,5 +1,4 @@
 import cx from "classnames";
-import { nanoid } from "nanoid";
 import {
   FunctionComponent,
   useCallback,
@@ -8,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { isStringPercent, stringToNumber } from "../../common/utils";
+import { generateUniqueId, isStringPercent, stringToNumber } from "../../common/utils";
 import useSetup from "../../effects/useSetup";
 import { Context, defaultProps } from "../context";
 import { Controls } from "../controls/controls";
@@ -41,7 +40,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     enableDarkMode = false,
   } = contextProps;
 
-  const imagesRef = useRef(images.map((image) => ({ ...image, id: nanoid() })));
+  const imagesRef = useRef(images.map((image) => ({ ...image, id: generateUniqueId() })));
 
   const [transfDimensions] = useState<{ height: number; width: number }>(() => {
     if (isStringPercent(width) && isStringPercent(height)) {
