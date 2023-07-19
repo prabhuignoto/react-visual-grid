@@ -38,9 +38,7 @@ export type ScrollOptions = {
   zoomLevel?: ZoomLevel;
 };
 
-export type useSetupFunctionType = (
-  options: Options
-) => {
+export type useSetupFunctionType = (options: Options) => {
   style: CSSProperties;
   wrapperStyle: CSSProperties;
   onRef: (node: HTMLDivElement) => void;
