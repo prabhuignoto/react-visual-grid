@@ -7,7 +7,11 @@ import {
   useRef,
   useState,
 } from "react";
-import { generateUniqueId, isStringPercent, stringToNumber } from "../../common/utils";
+import {
+  generateUniqueId,
+  isStringPercent,
+  stringToNumber,
+} from "../../common/utils";
 import useSetup from "../../effects/useSetup";
 import { Context, defaultProps } from "../context";
 import { Controls } from "../controls/controls";
@@ -40,7 +44,9 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     enableDarkMode = false,
   } = contextProps;
 
-  const imagesRef = useRef(images.map((image) => ({ ...image, id: generateUniqueId() })));
+  const imagesRef = useRef(
+    images.map((image) => ({ ...image, id: generateUniqueId() }))
+  );
 
   const [transfDimensions] = useState<{ height: number; width: number }>(() => {
     if (isStringPercent(width) && isStringPercent(height)) {
@@ -129,11 +135,10 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     }
   }, []);
 
-  const galleryClass = useMemo(() => cx(styles.gallery, styles[gridLayout]), [
-    gridLayout,
-    hideImages,
-    isResized,
-  ]);
+  const galleryClass = useMemo(
+    () => cx(styles.gallery, styles[gridLayout]),
+    [gridLayout, hideImages, isResized]
+  );
 
   const wrapperClass = useMemo(
     () =>
