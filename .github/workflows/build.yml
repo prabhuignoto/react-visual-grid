@@ -30,3 +30,6 @@ jobs:
         run: |
           pnpm install
           pnpm rollup
+      - name: Test
+        run: |
+          pnpm test
