@@ -15,9 +15,17 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": [
+      "react",
+      "react-dom",
+      "jest",
+      "node",
+      "vite/client",
+      "@testing-library/jest-dom"
+    ]
   },
-  "include": ["src"],
+  "include": ["src", "./test-setup.ts"],
   "exclude": ["src/App.tsx", "src/main.tsx", "src/examples"],
   "references": [
     {
