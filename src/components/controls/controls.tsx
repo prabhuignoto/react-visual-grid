@@ -1,3 +1,28 @@
+/**
+ * Controls Component
+ *
+ * The Controls component is responsible for rendering navigation controls such as zoom buttons,
+ * scroll indicators, and theme toggles. It also handles positioning based on the scroll position
+ * and grid layout.
+ *
+ * @param {ControlsProps} props - The properties for the Controls component.
+ * @param {Function} props.onAction - Callback function for control actions.
+ * @param {string} props.activeZoom - Active zoom level.
+ * @param {boolean} props.isScrolled - Scrolling state.
+ * @param {Object} props.scrollPositions - Scroll positions.
+ * @param {number} props.rootHeight - Root container height.
+ * @param {number} props.rootWidth - Root container width.
+ * @param {number} props.containerWidth - Container width.
+ * @param {number} props.containerHeight - Container height.
+ * @param {boolean} props.isFullScreen - Fullscreen state.
+ * @param {number} props.scrollPercent - Scroll percentage.
+ * @param {boolean} props.endReached - Indicator for reaching the end.
+ * @param {boolean} props.startReached - Indicator for reaching the start.
+ * @param {boolean} props.isDark - Dark mode state.
+ *
+ * @returns {JSX.Element} The rendered Controls component.
+ */
+
 import cx from "classnames";
 import {
   forwardRef,
