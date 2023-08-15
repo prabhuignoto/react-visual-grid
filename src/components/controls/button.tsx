@@ -1,3 +1,22 @@
+/**
+ * Button Component
+ *
+ * The Button component is a reusable button element used within the Controls component.
+ * It can be styled and behave differently based on the provided props.
+ *
+ * @param {ButtonPropsType} props - The properties for the Button component.
+ * @param {Function} props.onAction - Callback function for button actions.
+ * @param {boolean} props.endReached - Indicator for reaching the end (disables the button if actionType is "GO_DOWN").
+ * @param {boolean} props.startReached - Indicator for reaching the start (disables the button if actionType is "GO_UP").
+ * @param {string} props.label - Accessible label for the button.
+ * @param {string} props.type - Type of the button (e.g., "control").
+ * @param {React.ReactNode} props.children - Inner content of the button.
+ * @param {string} props.actionType - Action type associated with the button.
+ * @param {boolean} props.active - Active state for styling purposes.
+ *
+ * @returns {JSX.Element} The rendered Button component.
+ */
+
 import cx from "classnames";
 import { FunctionComponent, useMemo } from "react";
 import { ButtonProps } from "./button.model";

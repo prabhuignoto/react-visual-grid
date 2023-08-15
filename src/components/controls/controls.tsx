@@ -1,6 +1,30 @@
+/**
+ * Controls Component
+ *
+ * The Controls component is responsible for rendering navigation controls such as zoom buttons,
+ * scroll indicators, and theme toggles. It also handles positioning based on the scroll position
+ * and grid layout.
+ *
+ * @param {ControlsProps} props - The properties for the Controls component.
+ * @param {Function} props.onAction - Callback function for control actions.
+ * @param {string} props.activeZoom - Active zoom level.
+ * @param {boolean} props.isScrolled - Scrolling state.
+ * @param {Object} props.scrollPositions - Scroll positions.
+ * @param {number} props.rootHeight - Root container height.
+ * @param {number} props.rootWidth - Root container width.
+ * @param {number} props.containerWidth - Container width.
+ * @param {number} props.containerHeight - Container height.
+ * @param {boolean} props.isFullScreen - Fullscreen state.
+ * @param {number} props.scrollPercent - Scroll percentage.
+ * @param {boolean} props.endReached - Indicator for reaching the end.
+ * @param {boolean} props.startReached - Indicator for reaching the start.
+ * @param {boolean} props.isDark - Dark mode state.
+ *
+ * @returns {JSX.Element} The rendered Controls component.
+ */
+
 import cx from "classnames";
 import {
-  CSSProperties,
   forwardRef,
   useCallback,
   useContext,
@@ -9,19 +33,12 @@ import {
   useRef,
 } from "react";
 import { Context } from "../context";
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  DefaultScreen,
-  FullScreenIcon,
-  MaximizeIcon,
-  MoonIcon,
-  SunIcon,
-} from "../icons";
+import { MaximizeIcon } from "../icons";
 import { ProgressBar } from "../progress-bar/progress-bar";
-import { Button } from "./button";
-import { ActionType, ControlsProps } from "./controls.model";
+import { ControlsProps } from "./controls.model";
 import styles from "./controls.module.scss";
+import { useCustomStyle } from "./useCustomStyle";
+import { renderControls } from "./render-controls";
 
 const Controls = forwardRef<HTMLElement, ControlsProps>(
   (
@@ -49,6 +66,14 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
       null
     );
 
+    const customStyle = useCustomStyle({
+      controlWrapperRef,
+      gridLayout,
+      rootHeight,
+      rootWidth,
+      scrollPositions,
+    });
+
     const controlWrapperClass = useMemo(
       () => cx(styles.controls_wrapper, hide ? styles.hide : ""),
       [hide]
@@ -66,42 +91,6 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
     const resizeRef = useRef<HTMLSpanElement | null>(null);
 
     useImperativeHandle(ref, () => resizeRef.current as HTMLElement);
-
-    const customStyle = useMemo<CSSProperties>(() => {
-      if (controlWrapperRef.current) {
-        const { scrollLeft, scrollTop } = scrollPositions;
-        const ele = controlWrapperRef.current as HTMLElement;
-
-        const { clientHeight: controlHeight, clientWidth: controlWidth } = ele;
-
-        let style = {
-          [gridLayout === "vertical" ? "top" : "left"]:
-            gridLayout === "horizontal"
-              ? `${(scrollLeft + rootWidth) / 2 - controlWidth / 2}px`
-              : `${scrollTop + rootHeight - controlHeight}px`,
-        };
-
-        if (scrollLeft) {
-          style = {
-            left: `${scrollLeft + rootWidth / 2 - controlWidth / 2}px`,
-          };
-        } else if (scrollTop) {
-          style = {
-            top: `${scrollTop + rootHeight - controlHeight}px`,
-          };
-        }
-        return style;
-      } else {
-        return {};
-      }
-    }, [
-      scrollPositions?.scrollTop,
-      scrollPositions?.scrollLeft,
-      rootHeight,
-      rootWidth,
-      controlWrapperRef.current,
-    ]);
-
     const wrapperStyle = useMemo(
       () =>
         gridLayout === "horizontal" ? { width: containerWidth } : customStyle,
@@ -124,61 +113,14 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
           ref={gridLayout === "horizontal" ? onRef : null}
           style={controlsStyle}
         >
-          <li className={styles.control}>
-            <Button
-              actionType="GO_UP"
-              label="Go Up"
-              onAction={() => onAction("GO_UP")}
-              startReached={startReached}
-              type="control"
-            >
-              <ChevronUpIcon />
-            </Button>
-          </li>
-          {["1X", "2X", "3X"].map((item, index) => (
-            <li className={styles.control} key={index}>
-              <Button
-                actionType={item as ActionType}
-                active={activeZoom === item}
-                label={item}
-                onAction={onAction}
-                type="control"
-              >
-                {item}
-              </Button>
-            </li>
-          ))}
-          <li className={styles.control}>
-            <Button
-              actionType="GO_DOWN"
-              endReached={endReached}
-              label={"Go Down"}
-              onAction={onAction}
-              type="control"
-            >
-              <ChevronDownIcon />
-            </Button>
-          </li>
-          <li className={cx(styles.control, styles.nav_button)}>
-            <Button
-              actionType="FULL_SCREEN"
-              label={isFullScreen ? "Minimize" : "Maximize"}
-              onAction={onAction}
-              type="control"
-            >
-              {isFullScreen ? <DefaultScreen /> : <FullScreenIcon />}
-            </Button>
-          </li>
-          <li className={cx(styles.control, styles.nav_button)}>
-            <Button
-              actionType="TOGGLE_THEME"
-              label={isDark ? "white" : "dark"}
-              onAction={onAction}
-              type="control"
-            >
-              {isDark ? <SunIcon /> : <MoonIcon />}
-            </Button>
-          </li>
+          {renderControls({
+            activeZoom,
+            endReached,
+            isDark,
+            isFullScreen,
+            onAction,
+            startReached,
+          })}
         </ul>
         {showProgressBar ? (
           <ProgressBar
