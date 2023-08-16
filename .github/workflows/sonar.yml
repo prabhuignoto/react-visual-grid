@@ -25,7 +25,7 @@ jobs:
             -Dsonar.organization=prabhuignoto
             -Dsonar.sources=src/components,src/common,src/effects
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.exclusions=**/node_modules/**,**/dist/**, src/examples/**
+            -Dsonar.exclusions=**/node_modules/**,**/dist/**,src/examples/**
             -Dsonar.coverage.exclusions=**/node_modules/**,**/dist/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
