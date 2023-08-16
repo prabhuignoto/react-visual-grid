@@ -19,8 +19,8 @@
 [![codebeat badge](https://codebeat.co/badges/4e12cb98-713b-4835-a118-338f1615ccab)](https://codebeat.co/projects/github-com-prabhuignoto-react-visual-grid-main)
 [![CodeFactor](https://www.codefactor.io/repository/github/prabhuignoto/react-visual-grid/badge)](https://www.codefactor.io/repository/github/prabhuignoto/react-visual-grid)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-visual-grid)
-![Known Vulnerabilities](https://snyk.io/test/github/prabhuignoto/react-visual-grid/badge.svg)
-![Follow on Twitter](https://badgen.net/twitter/follow/prabhumurthy2)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=prabhuignoto_react-visual-grid&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=prabhuignoto_react-visual-grid)
+[![Known Vulnerabilities](https://snyk.io/test/github/prabhuignoto/react-visual-grid/badge.svg)](https://snyk.io/test/github/prabhuignoto/react-visual-grid)
 
 </div>
 
