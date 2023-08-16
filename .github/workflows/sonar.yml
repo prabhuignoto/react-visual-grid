@@ -21,7 +21,7 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@master
         with:
           args: >
-            -Dsonar.projectKey=sonarcloud-github-action
+            -Dsonar.projectKey=prabhuignoto_react-visual-grid
             -Dsonar.organization=prabhuignoto
             -Dsonar.sources=src/components,src/common,src/effects
             -Dsonar.host.url=https://sonarcloud.io
