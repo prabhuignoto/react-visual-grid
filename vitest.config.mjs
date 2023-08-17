@@ -12,6 +12,25 @@ export default defineConfig({
   //     },
   //   },
   test: {
+    coverage: {
+      clean: true,
+      enabled: true,
+      exclude: ["**/*.test.tsx", "**/*.test.ts"],
+      // include: [
+      //   "./src/components/**/*.{tsx,ts}",
+      //   "./src/common/**/*.{tsx,ts}",
+      //   "./src/effects/**/*.{ts,tsx}",
+      // ],
+      provider: "v8",
+      reporter: ["lcov", "clover", "cobertura"],
+      reportsDirectory: "./coverage",
+      threshold: {
+        branches: 80,
+        functions: 80,
+        lines: 80,
+        statements: 80,
+      },
+    },
     environment: "jsdom",
     globals: true,
     include: [

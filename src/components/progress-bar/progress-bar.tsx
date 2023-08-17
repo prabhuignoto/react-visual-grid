@@ -21,21 +21,33 @@ const ProgressBar: FunctionComponent<ProgressBarProps> = ({
     }
   }, []);
 
+  const percentToUse = useMemo(() => {
+    return Math.min(Math.max(0, percent), 1.0);
+  }, [percent]);
+
   const style = useMemo(() => {
     const ele = ref.current;
     if (ele) {
       const width = containerWidth || ele.clientWidth;
       return {
-        "--rc-images-width": `${Math.round(width * percent)}px`,
+        "--rc-images-width": `${Math.round(width * percentToUse)}px`,
         left: `${left}px`,
         width: `${width}px`,
       } as CSSProperties;
     }
-  }, [percent, ref.current, left]);
+  }, [percentToUse, ref.current, left]);
 
   return (
     <div className={styles.container} ref={onRef} style={style}>
-      <span className={styles.progress_bar}></span>
+      <progress
+        aria-valuemax={100}
+        aria-valuemin={0}
+        aria-valuenow={percentToUse * 100}
+        className={styles.progress_bar}
+        max="100"
+        style={{ border: 0 }}
+        value={percentToUse * 100}
+      ></progress>
     </div>
   );
 };

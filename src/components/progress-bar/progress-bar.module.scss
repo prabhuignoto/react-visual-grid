@@ -14,5 +14,8 @@ $bg-color: var(--rcvg-bg-color);
   transition: 0.25s width ease-in-out;
   width: var(--rc-images-width);
   background-color: $primary;
+  top: 0;
+  left: 0;
+  position: absolute;
   height: 100%;
 }
