@@ -12,7 +12,7 @@
 
 <!-- <h3 align="center">react-visual-grid</h3> -->
 
-<div align="center">
+<div align="center" style="width:600px">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
@@ -233,11 +233,11 @@ Here is the list of all the colors that can be customized:
 
 ## 🧱 Masonry
 
-The masonry layout is a great choice for displaying images of different sizes. You can choose to fill the images horizontally or vertically, and choose how big you want them to be. The `Masonry` component sets the height and width of each image using class names. Class names should be formatted `rc-w-[width]`, where [width] corresponds to an integer length value measured in pixels; similarly, class names should be formatted `rc-h-[height]`, with correspondingly formatted values.
+The masonry layout is an excellent option for showcasing images of varying sizes. With the Masonry component, you have the flexibility to arrange images either horizontally or vertically, and you can also define the dimensions of each image.
 
-The layout honors the dimensions of the parent container, and the images will be automatically wrapped to the next row or column depending on the `fill` mode. In vertical fill mode, the images are arranged in columns, and in horizontal fill mode, the images are arranged in rows.
+To set the height and width of each image, you'll use specific class names. For the width, use the format rc-w-[width], where [width] is replaced with the desired pixel value. Similarly, for the height, use rc-h-[height], replacing [height] with the corresponding value.
 
-The `Masonry` Component exports as its own React Component, with documentation available at the following URL
+The layout adapts to the parent container's dimensions, ensuring that images are neatly wrapped to the next row or column based on the chosen fill mode. If you opt for vertical fill mode, the images will be organized into columns. Conversely, in horizontal fill mode, they will be arranged in rows.
 
 ```jsx
 const App = () => {
