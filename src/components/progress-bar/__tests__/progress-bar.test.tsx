@@ -20,49 +20,49 @@ describe("ProgressBar Component", () => {
     expect(progressBar).toHaveAttribute("value", "50");
   });
 
-//   it("applies custom width and left position", async () => {
-//     const { container } = render(<ProgressBar {...defaultProps} />);
-//     const containerDiv = container.firstChild as HTMLElement;
+  //   it("applies custom width and left position", async () => {
+  //     const { container } = render(<ProgressBar {...defaultProps} />);
+  //     const containerDiv = container.firstChild as HTMLElement;
 
-//     console.log(containerDiv.style);
+  //     console.log(containerDiv.style);
 
-//     await waitFor(() => {
-//       expect(containerDiv).toHaveStyle({
-//         left: `${defaultProps.left}px`,
-//         width: `${defaultProps.containerWidth}px`,
-//       });
-//     });
-//   });
+  //     await waitFor(() => {
+  //       expect(containerDiv).toHaveStyle({
+  //         left: `${defaultProps.left}px`,
+  //         width: `${defaultProps.containerWidth}px`,
+  //       });
+  //     });
+  //   });
 
-    it("renders correctly with 0 percent", () => {
-      const { getByRole } = render(<ProgressBar {...defaultProps} percent={0} />);
-      const progressBar = getByRole("progressbar");
-      expect(progressBar).toHaveAttribute("aria-valuenow", "0");
-      expect(progressBar).toHaveAttribute("value", "0");
-    });
+  it("renders correctly with 0 percent", () => {
+    const { getByRole } = render(<ProgressBar {...defaultProps} percent={0} />);
+    const progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "0");
+    expect(progressBar).toHaveAttribute("value", "0");
+  });
 
-    it("renders correctly with 100 percent", () => {
-      const { getByRole } = render(<ProgressBar {...defaultProps} percent={1} />);
-      const progressBar = getByRole("progressbar");
-      expect(progressBar).toHaveAttribute("aria-valuenow", "100");
-      expect(progressBar).toHaveAttribute("value", "100");
-    });
+  it("renders correctly with 100 percent", () => {
+    const { getByRole } = render(<ProgressBar {...defaultProps} percent={1} />);
+    const progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "100");
+    expect(progressBar).toHaveAttribute("value", "100");
+  });
 
-    it("does not render with negative percent", () => {
-      const { getByRole } = render(
-        <ProgressBar {...defaultProps} percent={-0.1} />
-      );
-      const progressBar = getByRole("progressbar");
-      expect(progressBar).toHaveAttribute("aria-valuenow", "0");
-      expect(progressBar).toHaveAttribute("value", "0");
-    });
+  it("does not render with negative percent", () => {
+    const { getByRole } = render(
+      <ProgressBar {...defaultProps} percent={-0.1} />
+    );
+    const progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "0");
+    expect(progressBar).toHaveAttribute("value", "0");
+  });
 
-    it("does not render more than 100 percent", () => {
-      const { getByRole } = render(
-        <ProgressBar {...defaultProps} percent={1.1} />
-      );
-      const progressBar = getByRole("progressbar");
-      expect(progressBar).toHaveAttribute("aria-valuenow", "100");
-      expect(progressBar).toHaveAttribute("value", "100");
-    });
+  it("does not render more than 100 percent", () => {
+    const { getByRole } = render(
+      <ProgressBar {...defaultProps} percent={1.1} />
+    );
+    const progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "100");
+    expect(progressBar).toHaveAttribute("value", "100");
+  });
 });

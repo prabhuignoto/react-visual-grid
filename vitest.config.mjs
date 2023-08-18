@@ -36,6 +36,7 @@ export default defineConfig({
     include: [
       "./src/components/**/*.test.tsx",
       "./src/components/**/*.test.ts",
+      "./src/effects/**/*.test.{ts,tsx}",
     ],
     maxThreads: 12,
     minThreads: 5,
