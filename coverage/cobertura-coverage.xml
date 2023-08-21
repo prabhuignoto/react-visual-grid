@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="817" lines-covered="640" line-rate="0.7833" branches-valid="81" branches-covered="73" branch-rate="0.9012" timestamp="1692337704697" complexity="0" version="0.1">
+<coverage lines-valid="829" lines-covered="660" line-rate="0.7961" branches-valid="87" branches-covered="78" branch-rate="0.8965000000000001" timestamp="1692594572451" complexity="0" version="0.1">
   <sources>
     <source>C:/Users/prabh/Github/react-visual-grid</source>
   </sources>
@@ -860,13 +860,13 @@
         </class>
       </classes>
     </package>
-    <package name="effects" line-rate="0.9466" branch-rate="0.9411">
+    <package name="effects" line-rate="0.9862000000000001" branch-rate="0.925">
       <classes>
-        <class name="useKey.ts" filename="src\effects\useKey.ts" line-rate="0.7954000000000001" branch-rate="1">
+        <class name="useKey.ts" filename="src\effects\useKey.ts" line-rate="0.9821" branch-rate="0.909">
           <methods>
-            <method name="useKey" hits="7" signature="()V">
+            <method name="useKey" hits="12" signature="()V">
               <lines>
-                <line number="9" hits="7"/>
+                <line number="9" hits="12"/>
               </lines>
             </method>
           </methods>
@@ -879,42 +879,54 @@
             <line number="6" hits="1" branch="false"/>
             <line number="7" hits="1" branch="false"/>
             <line number="8" hits="1" branch="false"/>
-            <line number="9" hits="7" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="10" hits="7" branch="false"/>
-            <line number="11" hits="7" branch="false"/>
-            <line number="12" hits="7" branch="false"/>
-            <line number="13" hits="0" branch="false"/>
-            <line number="14" hits="0" branch="false"/>
-            <line number="15" hits="0" branch="false"/>
-            <line number="16" hits="0" branch="false"/>
-            <line number="17" hits="0" branch="false"/>
-            <line number="18" hits="0" branch="false"/>
-            <line number="19" hits="0" branch="false"/>
-            <line number="20" hits="0" branch="false"/>
-            <line number="21" hits="0" branch="false"/>
-            <line number="22" hits="7" branch="false"/>
-            <line number="23" hits="7" branch="false"/>
-            <line number="24" hits="7" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="25" hits="14" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="26" hits="7" branch="false"/>
-            <line number="27" hits="7" branch="false"/>
-            <line number="28" hits="7" branch="false"/>
-            <line number="29" hits="7" branch="false"/>
-            <line number="30" hits="7" branch="false"/>
-            <line number="31" hits="7" branch="false"/>
-            <line number="32" hits="7" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="33" hits="7" branch="true" condition-coverage="100% (1/1)"/>
-            <line number="34" hits="7" branch="false"/>
-            <line number="35" hits="7" branch="false"/>
-            <line number="36" hits="7" branch="false"/>
-            <line number="37" hits="7" branch="false"/>
-            <line number="38" hits="7" branch="false"/>
-            <line number="39" hits="7" branch="false"/>
-            <line number="40" hits="7" branch="false"/>
-            <line number="41" hits="7" branch="false"/>
-            <line number="42" hits="7" branch="false"/>
-            <line number="43" hits="7" branch="false"/>
-            <line number="44" hits="7" branch="false"/>
+            <line number="9" hits="12" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="10" hits="12" branch="false"/>
+            <line number="11" hits="12" branch="false"/>
+            <line number="12" hits="12" branch="false"/>
+            <line number="13" hits="12" branch="false"/>
+            <line number="14" hits="12" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="15" hits="4" branch="false"/>
+            <line number="16" hits="4" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="17" hits="2" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="18" hits="2" branch="false"/>
+            <line number="19" hits="4" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="20" hits="1" branch="false"/>
+            <line number="21" hits="1" branch="false"/>
+            <line number="22" hits="4" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="23" hits="1" branch="false"/>
+            <line number="24" hits="1" branch="false"/>
+            <line number="25" hits="4" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="26" hits="0" branch="false"/>
+            <line number="27" hits="4" branch="false"/>
+            <line number="28" hits="4" branch="false"/>
+            <line number="29" hits="12" branch="false"/>
+            <line number="30" hits="12" branch="false"/>
+            <line number="31" hits="12" branch="false"/>
+            <line number="32" hits="12" branch="false"/>
+            <line number="33" hits="12" branch="false"/>
+            <line number="34" hits="12" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="35" hits="19" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="36" hits="12" branch="false"/>
+            <line number="37" hits="12" branch="false"/>
+            <line number="38" hits="12" branch="false"/>
+            <line number="39" hits="12" branch="false"/>
+            <line number="40" hits="19" branch="false"/>
+            <line number="41" hits="12" branch="false"/>
+            <line number="42" hits="12" branch="false"/>
+            <line number="43" hits="12" branch="false"/>
+            <line number="44" hits="12" branch="false"/>
+            <line number="45" hits="12" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="46" hits="12" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="47" hits="12" branch="false"/>
+            <line number="48" hits="12" branch="false"/>
+            <line number="49" hits="12" branch="false"/>
+            <line number="50" hits="12" branch="false"/>
+            <line number="51" hits="12" branch="false"/>
+            <line number="52" hits="12" branch="false"/>
+            <line number="53" hits="12" branch="false"/>
+            <line number="54" hits="12" branch="false"/>
+            <line number="55" hits="12" branch="false"/>
+            <line number="56" hits="12" branch="false"/>
           </lines>
         </class>
         <class name="useStyle.ts" filename="src\effects\useStyle.ts" line-rate="0.9823999999999999" branch-rate="0.9166">
