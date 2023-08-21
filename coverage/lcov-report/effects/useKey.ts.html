@@ -15,41 +15,41 @@
         }
     </style>
 </head>
-
+    
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../index.html">All files</a> / <a href="index.html">effects</a> useKey.ts</h1>
         <div class='clearfix'>
-
+            
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.54% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>35/44</span>
+                <span class='fraction'>42/56</span>
             </div>
-
-
+        
+            
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>5/5</span>
             </div>
-
-
+        
+            
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>1/1</span>
             </div>
-
-
+        
+            
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.54% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>35/44</span>
+                <span class='fraction'>42/56</span>
             </div>
-
-
+        
+            
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -107,7 +107,19 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -119,6 +131,8 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -128,6 +142,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
@@ -148,48 +175,57 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useCallback, useEffect, useRef } from "react";
 &nbsp;
-type options = {
+type Options = {
   escCB?: () =&gt; void;
   leftCB?: () =&gt; void;
   rightCB?: () =&gt; void;
 };
 &nbsp;
-export default function useKey({ escCB, leftCB, rightCB }: options) {
+export default function useKey({ escCB, leftCB, rightCB }: Options) {
   const ref = useRef&lt;HTMLDivElement | null&gt;(null);
 &nbsp;
-  const handleKeyUp = useCallback((ev: KeyboardEvent) =&gt; {
-<span class="cstat-no" title="statement not covered" >    const { key } = ev;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (key === "Escape") {</span>
-<span class="cstat-no" title="statement not covered" >      escCB?.();</span>
-<span class="cstat-no" title="statement not covered" >    } else if (key === "ArrowRight") {</span>
-<span class="cstat-no" title="statement not covered" >      rightCB?.();</span>
-<span class="cstat-no" title="statement not covered" >    } else if (key === "ArrowLeft") {</span>
-<span class="cstat-no" title="statement not covered" >      leftCB?.();</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-  }, []);
+  // Handler to manage keyup events
+  const handleKeyUp = useCallback(
+    (ev: KeyboardEvent) =&gt; {
+<span class="cstat-no" title="statement not covered" >      switch (ev.key) {</span>
+<span class="cstat-no" title="statement not covered" >        case "Escape":</span>
+<span class="cstat-no" title="statement not covered" >          escCB?.();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+<span class="cstat-no" title="statement not covered" >        case "ArrowRight":</span>
+<span class="cstat-no" title="statement not covered" >          rightCB?.();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+<span class="cstat-no" title="statement not covered" >        case "ArrowLeft":</span>
+<span class="cstat-no" title="statement not covered" >          leftCB?.();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+<span class="cstat-no" title="statement not covered" >        default:</span>
+<span class="cstat-no" title="statement not covered" >          break; // Handle any other keys if necessary</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+    [escCB, leftCB, rightCB]
+  ); // Dependencies added to ensure the callbacks are updated
 &nbsp;
-  const onRef = useCallback((node: HTMLDivElement) =&gt; {
-    if (node) {
-      ref.current = node;
-      node.focus();
-      node.addEventListener("keyup", handleKeyUp);
-    }
-  }, []);
+  // Callback to set ref and add the keyup event listener
+  const onRef = useCallback(
+    (node: HTMLDivElement) =&gt; {
+      if (node) {
+        ref.current = node;
+        node.focus();
+        node.addEventListener("keyup", handleKeyUp);
+      }
+    },
+    [handleKeyUp]
+  ); // Dependency added to ensure correct reference to handleKeyUp
 &nbsp;
+  // Cleanup function to remove the keyup event listener when component unmounts
   useEffect(() =&gt; {
     return () =&gt; {
       if (ref.current) {
-        const ele = ref.current as HTMLElement;
-        ele.removeEventListener("keyup", handleKeyUp);
+        ref.current.removeEventListener("keyup", handleKeyUp);
       }
     };
-  }, []);
+  }, [handleKeyUp]); // Dependency added to ensure correct reference to handleKeyUp
 &nbsp;
   return {
     onRef,
@@ -202,7 +238,7 @@ export default function useKey({ escCB, leftCB, rightCB }: options) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-18T05:48:24.579Z
+                at 2023-08-21T04:48:45.193Z
             </div>
         <script src="../prettify.js"></script>
         <script>
@@ -214,3 +250,4 @@ export default function useKey({ escCB, leftCB, rightCB }: options) {
         <script src="../block-navigation.js"></script>
     </body>
 </html>
+    
