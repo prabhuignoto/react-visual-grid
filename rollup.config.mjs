@@ -13,6 +13,7 @@ import PeerDepsExternalPlugin from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 import terser from "@rollup/plugin-terser";
 import typescript from "rollup-plugin-typescript2";
+import resolve from "@rollup/plugin-node-resolve";
 
 import pkg from "./package.json" assert { type: "json" };
 
@@ -83,8 +84,8 @@ export default {
       ],
       syntax: "postcss-scss",
     }),
+    resolve(),
     common(),
-    // resolve(),
     terser({
       compress: {
         drop_console: true,
