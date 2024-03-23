@@ -11,4 +11,5 @@ export { default as MinimizeIcon } from "./minimize";
 export { default as MoonIcon } from "./moon";
 export { default as ResizeIcon } from "./resize";
 export { default as SpinnerIcon } from "./spinner";
+export { default as SubmitIcon } from "./submit";
 export { default as SunIcon } from "./sun";

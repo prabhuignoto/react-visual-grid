@@ -14,4 +14,5 @@ export type ImageProps = {
     }
   ) => void;
   index?: number;
+  selected?: boolean;
 };

@@ -38,9 +38,12 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     theme,
     enableResize,
     enableDarkMode = false,
+    submit,
   } = contextProps;
 
-  const imagesRef = useRef(images.map((image) => ({ ...image, id: generateUniqueId() })));
+  const imagesRef = useRef(
+    images.map((image) => ({ ...image, id: generateUniqueId() }))
+  );
 
   const [transfDimensions] = useState<{ height: number; width: number }>(() => {
     if (isStringPercent(width) && isStringPercent(height)) {
@@ -129,11 +132,10 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     }
   }, []);
 
-  const galleryClass = useMemo(() => cx(styles.gallery, styles[gridLayout]), [
-    gridLayout,
-    hideImages,
-    isResized,
-  ]);
+  const galleryClass = useMemo(
+    () => cx(styles.gallery, styles[gridLayout]),
+    [gridLayout, hideImages, isResized]
+  );
 
   const wrapperClass = useMemo(
     () =>
@@ -144,6 +146,11 @@ const Grid: FunctionComponent<GridProps> = (props) => {
       ),
     [gridLayout, isResized]
   );
+
+  const submitImages = () => {
+    const images = imagesRef.current.filter((image) => image.selected);
+    submit(images);
+  };
 
   const handleAction = (type: ActionType) => {
     if (type === "FULL_SCREEN") {
@@ -156,6 +163,8 @@ const Grid: FunctionComponent<GridProps> = (props) => {
       scrollToBottom();
     } else if (type === "TOGGLE_THEME") {
       toggleTheme();
+    } else if (type === "SUBMIT") {
+      submitImages();
     }
   };
 
@@ -183,11 +192,8 @@ const Grid: FunctionComponent<GridProps> = (props) => {
   }, [containerWidth, containerHeight]);
 
   const handleImageClick = (src: string, id?: string, pos?: Position) => {
-    const index = imagesRef.current.findIndex((image) => image.id === id);
-
-    setShowViewer(true);
-    setActiveImageIndex(index || 0);
-    pos && setPosition(pos);
+    const image = imagesRef.current.find((image) => image.id === id);
+    image!.selected = !image!.selected;
   };
 
   const onClose = () => {
@@ -219,26 +225,24 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     [showViewer, wrapperStyle]
   );
 
-  // memoized gallery list
-  const galleryList = useMemo(() => {
-    return (
-      <ul className={galleryClass} style={style}>
-        {records.map((image, index) => (
-          <li className={styles.gallery_item} key={image.id}>
-            <Image
-              alt={image.alt}
-              height={getImageDimensions.height}
-              id={image.id}
-              index={index}
-              onClick={handleImageClick}
-              src={image.src}
-              width={getImageDimensions.width}
-            />
-          </li>
-        ))}
-      </ul>
-    );
-  }, [records.length, regionTop, regionBottom]);
+  const galleryList = (
+    <ul className={galleryClass} style={style}>
+      {records.map((image, index) => (
+        <li className={styles.gallery_item} key={image.id}>
+          <Image
+            alt={image.alt}
+            height={getImageDimensions.height}
+            id={image.id}
+            index={index}
+            onClick={handleImageClick}
+            selected={image.selected}
+            src={image.src}
+            width={getImageDimensions.width}
+          />
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <Context.Provider value={contextProps}>

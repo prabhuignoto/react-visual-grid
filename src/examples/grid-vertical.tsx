@@ -10,6 +10,7 @@ export const GridVertical = () => {
       height={1200}
       images={images}
       mode="auto"
+      submit={(images) => {}}
       width={1200}
     />
   );

@@ -10,9 +10,10 @@ import { ImageProps } from "./image.model";
 import styles from "./image.module.scss";
 
 const Image: FunctionComponent<ImageProps> = React.memo(
-  ({ src, alt, width = 100, height = 100, onClick, index, id }) => {
+  ({ src, alt, width = 100, height = 100, onClick, index, id, selected }) => {
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(false);
+    const [select, setSelect] = useState(selected);
 
     const onLoaded = () => setLoaded(true);
     const onError = () => setError(true);
@@ -20,6 +21,14 @@ const Image: FunctionComponent<ImageProps> = React.memo(
     const imageClass = useMemo(
       () => cx(styles.image, loaded ? styles.visible : styles.hidden),
       [loaded]
+    );
+
+    const wrapperClass = useMemo(
+      () =>
+        select
+          ? { backgroundColor: "#B4D5FE", height, width }
+          : { height, width },
+      [select]
     );
 
     const handleOpen = useCallback(
@@ -32,6 +41,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
         if (error) {
           return;
         }
+        setSelect(!select);
 
         const { x, y } = (ev.target as HTMLElement).getBoundingClientRect();
 
@@ -43,7 +53,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
           onClick?.(src, id, { x, y });
         }
       },
-      [error]
+      [error, select]
     );
 
     return (
@@ -52,7 +62,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
         onClick={(ev) => handleOpen(ev, src)}
         onKeyUp={(ev) => handleOpen(ev, src)}
         role="button"
-        style={{ height, width }}
+        style={wrapperClass}
         tabIndex={0}
       >
         {error && (

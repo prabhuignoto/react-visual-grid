@@ -7,7 +7,8 @@ export type ActionType =
   | "FULL_SCREEN"
   | "GO_UP"
   | "TOGGLE_THEME"
-  | "GO_DOWN";
+  | "GO_DOWN"
+  | "SUBMIT";
 
 export type ControlsProps = {
   onAction: (type: ActionType) => void;

@@ -17,6 +17,7 @@ import {
   MaximizeIcon,
   MoonIcon,
   SunIcon,
+  SubmitIcon,
 } from "../icons";
 import { ProgressBar } from "../progress-bar/progress-bar";
 import { Button } from "./button";
@@ -177,6 +178,16 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
               type="control"
             >
               {isDark ? <SunIcon /> : <MoonIcon />}
+            </Button>
+          </li>
+          <li className={cx(styles.control, styles.nav_button)}>
+            <Button
+              actionType="SUBMIT"
+              label={isDark ? "white" : "dark"}
+              onAction={onAction}
+              type="control"
+            >
+              {isDark ? <SubmitIcon /> : <SubmitIcon />}
             </Button>
           </li>
         </ul>
