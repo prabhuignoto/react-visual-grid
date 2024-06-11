@@ -11,7 +11,7 @@ export type ImageProps = {
     rect?: {
       x: number;
       y: number;
-    }
+    },
   ) => void;
   index?: number;
 };

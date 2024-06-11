@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/dom";
 import { Button } from "../button";
 import { describe, it, expect, vi } from "vitest";
 import { ButtonType } from "../button.model";
@@ -30,7 +31,7 @@ describe("Button Component", () => {
     render(
       <Button {...defaultProps} active>
         Click Me
-      </Button>
+      </Button>,
     );
     const buttonElement = screen.getByLabelText("Test Label");
     expect(buttonElement).toHaveClass(styles.active);
@@ -40,7 +41,7 @@ describe("Button Component", () => {
     render(
       <Button {...defaultProps} actionType="GO_DOWN" endReached>
         Click Me
-      </Button>
+      </Button>,
     );
     const buttonElement = screen.getByLabelText("Test Label");
     expect(buttonElement).toHaveClass(styles.button_disabled);
@@ -50,7 +51,7 @@ describe("Button Component", () => {
     render(
       <Button {...defaultProps} actionType="GO_UP" startReached>
         Click Me
-      </Button>
+      </Button>,
     );
     const buttonElement = screen.getByLabelText("Test Label");
     expect(buttonElement).toHaveClass(styles.button_disabled);
@@ -60,7 +61,7 @@ describe("Button Component", () => {
     render(
       <Button {...defaultProps} endReached>
         Click Me
-      </Button>
+      </Button>,
     );
     const buttonElement = screen.getByLabelText("Test Label");
     expect(buttonElement).not.toHaveClass(styles.button_disabled);

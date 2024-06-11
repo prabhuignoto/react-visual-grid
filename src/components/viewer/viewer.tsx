@@ -50,7 +50,7 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
         top: `${top}px`,
         width: `${width}px`,
       }),
-      [height, width, left, top]
+      [height, width, left, top],
     );
 
     // Reference to track the first render
@@ -72,9 +72,9 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
       () =>
         cx(
           styles.image,
-          !isFirstRender.current ? (showImage ? styles.show : styles.hide) : ""
+          !isFirstRender.current ? (showImage ? styles.show : styles.hide) : "",
         ),
-      [showImage]
+      [showImage],
     );
 
     // Custom hook to handle keyboard navigation
@@ -104,7 +104,7 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
             aria-label="previous"
             className={cx(
               styles.nav_button,
-              activeImageIndex === 0 ? styles.hide : ""
+              activeImageIndex === 0 ? styles.hide : "",
             )}
             onClick={onPrevious}
           >
@@ -115,7 +115,7 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
             aria-label="next"
             className={cx(
               styles.nav_button,
-              activeImageIndex === totalImages - 1 ? styles.hide : ""
+              activeImageIndex === totalImages - 1 ? styles.hide : "",
             )}
             onClick={onNext}
           >
@@ -134,7 +134,7 @@ const Viewer: FunctionComponent<ViewerProps> = React.memo(
       prev.top === next.top &&
       prev.left === next.left
     );
-  }
+  },
 );
 
 Viewer.displayName = "Viewer";
@@ -145,7 +145,7 @@ const ViewerContainer: FunctionComponent<ViewerProps> = (props) => {
         <>
           <Viewer {...props} onClose={props.onClose} />
         </>,
-        props.node
+        props.node,
       )
     : null;
 };

@@ -57,7 +57,7 @@ describe("Image Component", () => {
     expect(defaultProps.onClick).toHaveBeenCalledWith(
       defaultProps.src,
       defaultProps.id,
-      expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) })
+      expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) }),
     );
   });
 
@@ -68,7 +68,7 @@ describe("Image Component", () => {
     expect(defaultProps.onClick).toHaveBeenCalledWith(
       defaultProps.src,
       defaultProps.id,
-      expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) })
+      expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) }),
     );
   });
 });

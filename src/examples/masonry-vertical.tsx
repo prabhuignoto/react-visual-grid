@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import { Masonry } from "../react-visual-grid";
 import { images, verticalImages } from "./data";
 

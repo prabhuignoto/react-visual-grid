@@ -17,9 +17,9 @@ const Screen: FunctionComponent<ScreenProps> = ({
     () =>
       cx(
         styles.screen,
-        show !== null ? (show ? styles.show : styles.hide) : ""
+        show !== null ? (show ? styles.show : styles.hide) : "",
       ),
-    [show]
+    [show],
   );
 
   const style = useMemo(() => {
