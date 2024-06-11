@@ -58,12 +58,12 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
       startReached,
       isDark,
     }: ControlsProps,
-    ref
+    ref,
   ) => {
     const { gridLayout, showProgressBar, enableResize } = useContext(Context);
 
     const controlWrapperRef = useRef<HTMLDivElement | HTMLUListElement | null>(
-      null
+      null,
     );
 
     const customStyle = useCustomStyle({
@@ -76,7 +76,7 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
 
     const controlWrapperClass = useMemo(
       () => cx(styles.controls_wrapper, hide ? styles.hide : ""),
-      [hide]
+      [hide],
     );
 
     const onRef = useCallback(
@@ -85,7 +85,7 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
           controlWrapperRef.current = node;
         }
       },
-      []
+      [],
     );
 
     const resizeRef = useRef<HTMLSpanElement | null>(null);
@@ -94,12 +94,12 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
     const wrapperStyle = useMemo(
       () =>
         gridLayout === "horizontal" ? { width: containerWidth } : customStyle,
-      [gridLayout, containerWidth, customStyle]
+      [gridLayout, containerWidth, customStyle],
     );
 
     const controlsStyle = useMemo(
       () => (gridLayout === "horizontal" ? customStyle : {}),
-      [gridLayout, customStyle]
+      [gridLayout, customStyle],
     );
 
     return (
@@ -143,7 +143,7 @@ const Controls = forwardRef<HTMLElement, ControlsProps>(
         ) : null}
       </div>
     );
-  }
+  },
 );
 
 Controls.displayName = "Controls";

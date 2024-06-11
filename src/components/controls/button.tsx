@@ -34,7 +34,7 @@ const Button: FunctionComponent<ButtonProps> = ({
 }) => {
   const controlButton = useMemo(
     () => cx(styles.control_button, styles.rounded),
-    []
+    [],
   );
 
   const controlClass = useMemo(
@@ -44,9 +44,9 @@ const Button: FunctionComponent<ButtonProps> = ({
         styles.nav_button,
         endReached && actionType === "GO_DOWN" ? styles.button_disabled : "",
         startReached && actionType === "GO_UP" ? styles.button_disabled : "",
-        active ? styles.active : ""
+        active ? styles.active : "",
       ),
-    [endReached, startReached, active]
+    [endReached, startReached, active],
   );
 
   return (

@@ -27,13 +27,13 @@ const Masonry = ({
 
   const style = useMemo(
     () => ({ height: `${height}px`, width: `${width}px` }),
-    [height, width]
+    [height, width],
   );
 
   const containerClass = cx(
     styles.container,
     !gutter ? styles.no_gutter : "",
-    []
+    [],
   );
 
   return (

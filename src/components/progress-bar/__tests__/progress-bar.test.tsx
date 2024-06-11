@@ -50,7 +50,7 @@ describe("ProgressBar Component", () => {
 
   it("does not render with negative percent", () => {
     const { getByRole } = render(
-      <ProgressBar {...defaultProps} percent={-0.1} />
+      <ProgressBar {...defaultProps} percent={-0.1} />,
     );
     const progressBar = getByRole("progressbar");
     expect(progressBar).toHaveAttribute("aria-valuenow", "0");
@@ -59,7 +59,7 @@ describe("ProgressBar Component", () => {
 
   it("does not render more than 100 percent", () => {
     const { getByRole } = render(
-      <ProgressBar {...defaultProps} percent={1.1} />
+      <ProgressBar {...defaultProps} percent={1.1} />,
     );
     const progressBar = getByRole("progressbar");
     expect(progressBar).toHaveAttribute("aria-valuenow", "100");

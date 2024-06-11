@@ -33,7 +33,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
     // Memoized class for image visibility
     const imageClass = useMemo(
       () => cx(styles.image, loaded ? styles.visible : styles.hidden),
-      [loaded]
+      [loaded],
     );
 
     // Callback to handle image click and keyboard events
@@ -42,7 +42,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
         ev:
           | React.MouseEvent<HTMLDivElement>
           | React.KeyboardEvent<HTMLDivElement>,
-        src: string
+        src: string,
       ) => {
         if (error) {
           return;
@@ -57,7 +57,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
 
         onClick?.(src, id, { x, y });
       },
-      [error]
+      [error],
     );
 
     return (
@@ -86,7 +86,7 @@ const Image: FunctionComponent<ImageProps> = React.memo(
     );
   },
   // Custom comparison function to prevent unnecessary re-renders
-  (prev, next) => prev.index === next.index
+  (prev, next) => prev.index === next.index,
 );
 
 Image.displayName = "Image";

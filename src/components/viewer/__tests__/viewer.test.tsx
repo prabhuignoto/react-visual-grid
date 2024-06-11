@@ -40,7 +40,7 @@ describe("Viewer Component", () => {
 
   it("hides previous button if activeImageIndex is 0", () => {
     const { queryByLabelText } = render(
-      <Viewer {...defaultProps} activeImageIndex={0} />
+      <Viewer {...defaultProps} activeImageIndex={0} />,
     );
     expect(queryByLabelText("previous")).toHaveClass(styles.hide);
   });
@@ -50,7 +50,7 @@ describe("Viewer Component", () => {
       <Viewer
         {...defaultProps}
         activeImageIndex={defaultProps.totalImages - 1}
-      />
+      />,
     );
     expect(queryByLabelText("next")).toHaveClass(styles.hide);
   });

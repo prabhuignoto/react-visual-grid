@@ -45,7 +45,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
   } = contextProps;
 
   const imagesRef = useRef(
-    images.map((image) => ({ ...image, id: generateUniqueId() }))
+    images.map((image) => ({ ...image, id: generateUniqueId() })),
   );
 
   const [transfDimensions] = useState<{ height: number; width: number }>(() => {
@@ -110,7 +110,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
       return imagesRef.current.filter(
         (_, index) =>
           Math.floor(index / columns) >= regionTop &&
-          Math.floor(index / columns) <= regionBottom
+          Math.floor(index / columns) <= regionBottom,
       );
     } else {
       return imagesRef.current.filter((_, index) => {
@@ -137,7 +137,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
 
   const galleryClass = useMemo(
     () => cx(styles.gallery, styles[gridLayout]),
-    [gridLayout, hideImages, isResized]
+    [gridLayout, hideImages, isResized],
   );
 
   const wrapperClass = useMemo(
@@ -145,9 +145,9 @@ const Grid: FunctionComponent<GridProps> = (props) => {
       cx(
         gridLayout === "vertical" ? styles.vertical : styles.horizontal,
         styles.wrapper,
-        isResized ? styles.resized : ""
+        isResized ? styles.resized : "",
       ),
-    [gridLayout, isResized]
+    [gridLayout, isResized],
   );
 
   const handleAction = (type: ActionType) => {
@@ -169,7 +169,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
       height: imageSizes[activeZoomLevel].height - gap,
       width: imageSizes[activeZoomLevel].width - gap,
     }),
-    [activeZoomLevel]
+    [activeZoomLevel],
   );
 
   const getRootDimensions = useMemo(
@@ -177,7 +177,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
       rootHeight,
       rootWidth,
     }),
-    [isFullScreen, rootHeight, rootWidth]
+    [isFullScreen, rootHeight, rootWidth],
   );
 
   const containerStyle = useMemo(() => {
@@ -221,7 +221,7 @@ const Grid: FunctionComponent<GridProps> = (props) => {
   const wrapperStyleMod = useMemo(
     () =>
       Object.assign({}, wrapperStyle, showViewer ? { overflow: "hidden" } : {}),
-    [showViewer, wrapperStyle]
+    [showViewer, wrapperStyle],
   );
 
   // memoized gallery list
