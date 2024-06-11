@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/dom";
 import { Button } from "../button";
 import { describe, it, expect, vi } from "vitest";
 import { ButtonType } from "../button.model";

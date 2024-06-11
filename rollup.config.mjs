@@ -68,7 +68,7 @@ export default {
         "@babel/plugin-proposal-optional-chaining",
       ],
     }),
-    eslint(),
+    // eslint(),
     strip(),
     postcss({
       extract: pathResolve("dist/react-visual-grid.css"),

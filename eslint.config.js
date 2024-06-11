@@ -47,6 +47,7 @@ export default [
       "**/dist",
       "**/coverage",
       "examples",
+      "**/app_dist",
     ],
   },
 ];
