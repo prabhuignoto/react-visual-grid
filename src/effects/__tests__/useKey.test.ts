@@ -1,4 +1,4 @@
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook, act } from "@testing-library/react";
 import useKey from "../useKey"; // Adjust the path to your hook
 import { describe, expect, it, vi } from "vitest";
 
