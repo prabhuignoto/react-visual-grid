@@ -1,4 +1,4 @@
-export type progressbarprops = {
+export type ProgressBarProps = {
   percent: number;
   top: number;
   containerWidth: number;

@@ -9,7 +9,7 @@ type CustomStyleProps = {
   scrollPositions: ScrollPositions;
   rootHeight: number;
   rootWidth: number;
-  controlWrapperRef: RefObject<HTMLElement | HTMLUListElement>;
+  controlWrapperRef: RefObject<HTMLElement | HTMLUListElement | null>;
   gridLayout: "horizontal" | "vertical" | undefined; // You can further define a specific type if there are limited values for gridLayout
 };
 

@@ -12,7 +12,7 @@ import del from "rollup-plugin-delete";
 import PeerDepsExternalPlugin from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 import terser from "@rollup/plugin-terser";
-import typescript from "rollup-plugin-typescript2";
+import typescript from "@rollup/plugin-typescript";
 import resolve from "@rollup/plugin-node-resolve";
 
 import pkg from "./package.json" assert { type: "json" };
@@ -27,12 +27,14 @@ const banner = `/*
 
 export default {
   input: "src/react-visual-grid.ts",
+  external: ["react", "react-dom"],
   output: [
     {
       banner,
       exports: "named",
       file: pkg.main,
       format: "cjs",
+      sourcemap: true,
       strict: true,
     },
     {
@@ -40,7 +42,9 @@ export default {
       exports: "named",
       file: pkg.module,
       format: "es",
+      sourcemap: true,
       strict: true,
+      preserveModules: true,
     },
     {
       banner,
@@ -59,7 +63,13 @@ export default {
     PeerDepsExternalPlugin(),
     del({ targets: "dist/*" }),
     typescript(),
-    // eslint(),
+    eslint({
+      throwOnError: true,
+      throwOnWarning: true,
+      include: ["src/**/*"],
+      exclude: ["node_modules/**", "dist/**"],
+      overrideConfigFile: "./eslint.config.js",
+    }),
     babel({
       babelHelpers: "runtime",
       extensions: ["tsx", "ts"],
@@ -68,7 +78,6 @@ export default {
         "@babel/plugin-proposal-optional-chaining",
       ],
     }),
-    // eslint(),
     strip(),
     postcss({
       extract: pathResolve("dist/react-visual-grid.css"),
@@ -102,4 +111,8 @@ export default {
       targets: [{ dest: "dist", src: "README.md" }],
     }),
   ],
+  watch: {
+    include: "src/**",
+    clearScreen: false,
+  },
 };

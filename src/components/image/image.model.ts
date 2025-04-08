@@ -1,4 +1,4 @@
-export type imageprops = {
+export type ImageProps = {
   src: string;
   alt: string;
   width?: number;

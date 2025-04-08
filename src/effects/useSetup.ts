@@ -32,7 +32,7 @@ const useSetup: useSetupFunctionType = ({
     useState<ZoomLevel>("2X");
 
   // reference to the gallery container
-  const galleryRef = useRef<HTMLElement | null>(null);
+  const galleryRef = useRef<HTMLElement>(null!);
 
   const [isResized, setIsResized] = useState(false);
 

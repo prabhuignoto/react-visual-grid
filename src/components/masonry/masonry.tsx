@@ -21,7 +21,7 @@ const Masonry = ({
   gutter = 4,
   enableAnimation = true,
 }: MasonryProps) => {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null!);
 
   useMasonry({ enableAnimation, fillMode, gutter, target: ref });
 

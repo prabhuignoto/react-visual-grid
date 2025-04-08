@@ -1,4 +1,4 @@
-export interface viewerprops {
+export interface ViewerProps {
   url: string;
   rect?: {
     x: number;
@@ -12,7 +12,7 @@ export interface viewerprops {
     height?: number;
   };
 
-  node?: element | htmldivelement | null;
+  node?: Element | HTMLDivElement | null;
   onClose?: () => void;
   show?: boolean;
   onNext?: () => void;

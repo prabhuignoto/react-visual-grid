@@ -26,7 +26,7 @@ export default function useResize({
   const ref = useRef<HTMLElement | null>(null);
 
   // Reference to the current bounding rectangle of the target element
-  const rect = useRef<DOMRect>();
+  const rect = useRef<DOMRect | undefined>(undefined);
 
   // Store the current dimensions during resizing
   const activeDimension = useRef<Dimension>({ height: 0, width: 0 });

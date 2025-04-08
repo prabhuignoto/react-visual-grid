@@ -21,7 +21,7 @@ export default function useScroll({
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const intervalTrackerRef = useRef<number>();
+  const intervalTrackerRef = useRef<number | undefined>(undefined);
 
   const [endReached, setEndReached] = useState(false);
 
