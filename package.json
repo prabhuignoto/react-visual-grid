@@ -33,7 +33,7 @@
     "fix:css": "stylelint --fix ./src/components/**/*.scss",
     "prepare": "husky install",
     "lint:all": "pnpm run lint:js && pnpm run lint:css",
-    "rollup": "rollup -c ./rollup.config.mjs --configPlugin typescript --configImportAttributesKey with",
+    "rollup": "rollup -c ./rollup.config.mjs",
     "clean": "npx concurrently \"pnpm run format\" \"pnpm run lint:all\"",
     "webpack": "npx webpack --config ./webpack.config.mjs && tsc --project tsconfig.json --emitDeclarationOnly",
     "test": "npx vitest --config ./vitest.config.mjs --coverage"

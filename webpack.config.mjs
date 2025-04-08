@@ -10,7 +10,9 @@ import TerserWebpackPlugin from "terser-webpack-plugin";
 import { fileURLToPath } from "url";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 // import MergeIntoSingleFilePlugin from "webpack-merge-and-include-globally";
-import pkg from "./package.json" assert { type: "json" };
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const pkg = require('./package.json');
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distPath = path.resolve(__dirname, "dist");

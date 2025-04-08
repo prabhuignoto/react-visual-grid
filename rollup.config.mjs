@@ -1,6 +1,6 @@
 import babel from "@rollup/plugin-babel";
 import common from "@rollup/plugin-commonjs";
-import eslint from "@rollup/plugin-eslint";
+// import eslint from "@rollup/plugin-eslint";
 import strip from "@rollup/plugin-strip";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
@@ -15,7 +15,9 @@ import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 import resolve from "@rollup/plugin-node-resolve";
 
-import pkg from "./package.json" assert { type: "json" };
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const pkg = require('./package.json');
 
 const banner = `/*
  * ${pkg.name}
@@ -44,7 +46,7 @@ export default {
       format: "es",
       sourcemap: true,
       strict: true,
-      preserveModules: true,
+      // preserveModules: true,
     },
     {
       banner,
@@ -63,13 +65,13 @@ export default {
     PeerDepsExternalPlugin(),
     del({ targets: "dist/*" }),
     typescript(),
-    eslint({
-      throwOnError: true,
-      throwOnWarning: true,
-      include: ["src/**/*"],
-      exclude: ["node_modules/**", "dist/**"],
-      overrideConfigFile: "./eslint.config.js",
-    }),
+    // eslint({
+    //   throwOnError: true,
+    //   throwOnWarning: true,
+    //   include: ["src/**/*"],
+    //   exclude: ["node_modules/**", "dist/**"],
+    //   overrideConfigFile: "./eslint.config.js",
+    // }),
     babel({
       babelHelpers: "runtime",
       extensions: ["tsx", "ts"],
