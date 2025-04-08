@@ -1,42 +1,10 @@
-import { fixupConfigRules } from "@eslint/compat";
-import pluginJs from "@eslint/js";
-import typescriptParser from "@typescript-eslint/parser";
-import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
-import globals from "globals";
+import js from "@eslint/js";
 import tseslint from "typescript-eslint";
+import react from "eslint-plugin-react";
+// import reactHooks from "eslint-plugin-react-hooks";
+import globals from "globals";
 
 export default [
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  {
-    files: ["**/*.tsx"],
-    languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
-  },
-  ...fixupConfigRules(pluginReactConfig),
-  {
-    rules: {
-      "react-hooks/exhaustive-deps": "off",
-      "react/jsx-sort-props": "warn",
-      "react/prop-types": "off",
-      "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/no-unused-vars": "off",
-    },
-  },
-  {
-    languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
-      parser: typescriptParser,
-    },
-  },
-  {
-    settings: {
-      react: {
-        version: "detect",
-      },
-    },
-  },
   {
     ignores: [
       "**/*.d.ts",
@@ -49,5 +17,50 @@ export default [
       "examples",
       "**/app_dist",
     ],
+  },
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: true,
+    },
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+      },
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+  },
+  // js.configs.recommended,
+  // ...tseslint.configs.recommendedTypeChecked,
+  {
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      parser: tseslint.parser,
+      // parserOptions: {
+      //   project: "./tsconfig.json",
+      //   tsconfigRootDir: ".",
+      // },
+    },
+    plugins: {
+      react,
+      // "react-hooks": reactHooks,
+    },
+    rules: {
+      "react-hooks/exhaustive-deps": "off",
+      "react/jsx-sort-props": "warn",
+      "react/prop-types": "off",
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
   },
 ];

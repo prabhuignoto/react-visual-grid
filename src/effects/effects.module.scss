@@ -1,14 +1,14 @@
 .unveil {
-  clip-path: inset(0px 0px 0px 0px);
+  clip-path: inset(0 0 0 0);
   opacity: 1;
 }
 
 .veil_horizontal {
   opacity: 0;
-  clip-path: inset(0px 100% 0px 0px);
+  clip-path: inset(0 100% 0 0);
 }
 
 .veil_vertical {
   opacity: 0;
-  clip-path: inset(0px 0px 100% 0px);
+  clip-path: inset(0 0 100% 0);
 }

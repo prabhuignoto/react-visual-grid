@@ -1,5 +1,5 @@
-@use "../../common/styles.module.scss";
-@use "../../common/colors.module.scss";
+@use "../../common/styles.module";
+@use "../../common/colors.module";
 
 $primary: var(--rcvg-primary-color);
 $white: colors.$white;

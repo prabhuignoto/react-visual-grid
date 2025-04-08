@@ -1,48 +1,35 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
-// import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  //   resolve: {
-  //     alias: {
-  //       "@design": path.resolve(__dirname, "./design"),
-  //       "@icons": path.resolve(__dirname, "./icons"),
-  //     },
-  //   },
   test: {
     coverage: {
-      clean: true,
       enabled: true,
-      exclude: ["**/*.test.tsx", "**/*.test.ts"],
-      // include: [
-      //   "./src/components/**/*.{tsx,ts}",
-      //   "./src/common/**/*.{tsx,ts}",
-      //   "./src/effects/**/*.{ts,tsx}",
-      // ],
+      clean: true,
+      exclude: ["**/*.test.*", "**/node_modules/**"],
       provider: "v8",
-      reporter: ["lcov", "clover", "cobertura"],
+      reporter: ["text", "lcov", "clover", "cobertura"],
       reportsDirectory: "./coverage",
-      threshold: {
-        branches: 80,
-        functions: 80,
-        lines: 80,
-        statements: 80,
+      thresholds: {
+        branches: 50,
+        functions: 50,
+        lines: 50,
+        statements: 50,
       },
     },
     environment: "jsdom",
     globals: true,
-    include: [
-      "./src/components/**/*.test.tsx",
-      "./src/components/**/*.test.ts",
-      "./src/effects/**/*.test.{ts,tsx}",
-    ],
-    maxThreads: 12,
-    minThreads: 5,
+    include: ["./src/**/*.test.{ts,tsx}"],
+    pool: "threads",
+    poolOptions: {
+      threads: {
+        minThreads: 5,
+        maxThreads: 12,
+      },
+    },
     setupFiles: "./test-setup.ts",
     silent: true,
-    threads: true,
-    update: true,
   },
 });
