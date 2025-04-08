@@ -1,12 +1,11 @@
-@use "../../common/styles.module.scss";
-@use "../../common/colors.module.scss";
+@use "../../common/styles.module";
+@use "../../common/colors.module";
 
 $primary: var(--rcvg-primary-color);
 $bg-color: var(--rcvg-bg-color);
 $btn-color: var(--rcvg-control-btn-color);
 $controls-bg-color: var(--rcvg-controls-bg-color);
 $controls-backdrop-color: var(--rcvg-controls-backdrop-color);
-$btn-color: var(--rcvg-control-btn-color);
 $white: colors.$white;
 
 .controls {

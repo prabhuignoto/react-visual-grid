@@ -187,12 +187,14 @@ const Grid: FunctionComponent<GridProps> = (props) => {
     };
   }, [containerWidth, containerHeight]);
 
-  const handleImageClick = (src: string, id?: string, pos?: Position) => {
-    const index = imagesRef.current.findIndex((image) => image.id === id);
+    const handleImageClick = (src: string, id?: string, pos?: Position) => {
+    const index = imagesRef.current.findIndex((image: { id: string | undefined; }) => image.id === id);
 
     setShowViewer(true);
     setActiveImageIndex(index || 0);
-    pos && setPosition(pos);
+    if (pos) {
+      setPosition(pos);
+    }
   };
 
   const onClose = () => {

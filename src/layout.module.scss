@@ -21,6 +21,7 @@
 
 .container {
   @extend .center;
+
   min-height: 80vh;
   width: 100%;
   align-items: flex-start;
@@ -28,7 +29,9 @@
 
 .aside {
   @extend .center-column;
+
   width: 300px;
+
   // border: 1px solid #ccc;
   height: 100%;
 }
@@ -43,6 +46,7 @@
 
 .header {
   @extend .center;
+
   width: 100%;
   height: 50px;
   border: 1px solid #ccc;
